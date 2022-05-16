@@ -1,0 +1,128 @@
+rule example_1
+# Every message is written before reading everything
+for every msg:
+write(msg) must precede read_everything()
+
+rule example_2
+# Every shared resource must be released
+for every shmid:
+shm_destroy(shmid) must happen 1 times
+
+rule example_3
+# m is called for every i,j combination
+for every i, j:
+m(i, j) must happen at least 2 times
+
+rule example_4
+# 10 items are produced among all producers
+for any item_id:
+produce(item_id) must happen 10 times
+
+rule example_5
+# At most 5 processes wait on the semaphore
+for any pid:
+sem_wait(pid) must happen at most 5 times
+
+rule example_6
+# m is called 5 times
+for any i, j:
+m(i, j) must happen 5 times
+
+rule example_7
+# All items must have been produced before consuming all
+for every item_id and any pid:
+produce(pid, item_id) must precede consume_all()
+
+rule example_8
+# 10 messages must be queued on every message queue
+for every msqid and any msg:
+msq_send(msqid, msg) must happen 10 times
+
+rule example_9
+# m is called at most once for every i
+for every i and any j:
+m(i, j) must happen at most 1 times
+
+rule example_10
+# Smokers never take elements they already have
+for any smoker_id, element_id with element_id=smoker_id:
+smoker_take_element(smoker_id, element_id) must happen 0 times
+
+rule example_11
+# Items are produced in order
+for every i, j with j>i:
+produce(i) must precede produce(j)
+
+rule example_12
+# Semaphore cannot have negative value
+for every semid, k with k<0:
+sem_create(semid, k) must happen 0 times
+
+rule example_13
+# Released resource cannot be accessed
+after shm_destroy():
+for any pid:
+shm_read(pid) must happen 0 times
+
+rule example_14
+# At most 5 processes are awaken via notify
+after notify_all():
+for any pid:
+process_awake(pid) must happen at most 5 times
+
+rule example_15
+# Lock cannot be acquired if it was not yet created
+before lock_create():
+for any pid:
+lock_acquire(pid) must happen 0 times
+
+rule example_16
+# At most 5 processes can wait on the semaphore
+before sem_signal():
+for any pid:
+sem_wait(pid) must happen at most 5 times
+
+rule example_17
+# Lock should not be destroyed twice
+between lock_destroy() and previous lock_create():
+lock_destroy() must happen 1 times
+
+rule example_18
+# The items buffer size is 5
+between produce() and next consume():
+produce() must happen at most 5 times
+
+rule example_19
+# Elements cannot be taken after smoking if agent does not wake again
+for any smoker_id:
+between smoker_smoke(smoker_id) and next agent_wake():
+for any sid, element_id:
+smoker_take_element(sid, element_id) must happen 0 times
+
+rule example_20
+# At most 10 elements can enter inside the buffer
+for any producer_id, consumer_id, i1, i2:
+between produce(producer_id, i1) and next consume(consumer_id, i2):
+for any p, i:
+produce(p, i) must happen at most 10 times
+
+rule example_21
+# Locks must not be acquired after their destruction
+for every lock_id:
+after lock_destroy(lock_id):
+for every lid with lid=lock_id:
+lock_acquire(lid) must happen 0 times
+
+rule example_22
+# On every queue, messages are sent before received
+for every msqid1, msqid2 with msqid1=msqid2:
+between msq_create(msqid1) and next msq_destroy(msqid2):
+for every m1, m2 and any msg_id1, msg_id2 with m1=msqid1, m2=m1, msg_id1=msg_id2:
+msq_send(m1, msg_id1) must precede msq_receive(m2, msg_id2)
+
+rule example_23
+# If a reader reads something, a writer wrote it
+for every reader_id, buffer, msg:
+before read_buffer(reader_id, buffer, msg):
+for any b, m, writer_id with b=buffer, m=msg:
+write_buffer(writer_id, b, m) must happen at least 1 times
