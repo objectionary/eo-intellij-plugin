@@ -290,3 +290,7 @@ TEXT:
     TEXT_MARK
     ;
 
+BAD_CHARACTER
+	:	.	-> channel(HIDDEN)
+	;
+

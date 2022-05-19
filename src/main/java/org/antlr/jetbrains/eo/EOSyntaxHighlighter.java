@@ -1,6 +1,7 @@
 package org.antlr.jetbrains.eo;
 import com.intellij.lexer.Lexer;
 import com.intellij.openapi.editor.DefaultLanguageHighlighterColors;
+import com.intellij.openapi.editor.HighlighterColors;
 import com.intellij.openapi.editor.colors.TextAttributesKey;
 import com.intellij.openapi.fileTypes.SyntaxHighlighterBase;
 import com.intellij.psi.tree.IElementType;
@@ -84,6 +85,9 @@ public class EOSyntaxHighlighter extends SyntaxHighlighterBase {
 			createTextAttributesKey("EO_NAME", DefaultLanguageHighlighterColors.CLASS_NAME);
 	public static final TextAttributesKey TEXT =
 			createTextAttributesKey("EO_TEXT", DefaultLanguageHighlighterColors.STRING);
+	public static final TextAttributesKey BAD_CHARACTER =
+			createTextAttributesKey("EO_BAD_CHARACTER", HighlighterColors.BAD_CHARACTER);
+
 	private static final TextAttributesKey[] EMPTY_KEYS = new TextAttributesKey[0];
 
 	@NotNull

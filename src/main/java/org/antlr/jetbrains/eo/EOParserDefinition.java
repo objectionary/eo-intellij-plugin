@@ -80,9 +80,9 @@ public class EOParserDefinition implements ParserDefinition {
 		return STRING;
 	}
 
-	public SpaceRequirements spaceExistanceTypeBetweenTokens(ASTNode left, ASTNode right) {
+	/*public SpaceRequirements spaceExistanceTypeBetweenTokens(ASTNode left, ASTNode right) {
 		return SpaceRequirements.MAY;
-	}
+	}*/
 
 	/** What is the IFileElementType of the root parse tree node? It
 	 *  is called from {@link #createFile(FileViewProvider)} at least.
