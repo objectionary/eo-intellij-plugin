@@ -1,6 +1,6 @@
 # EO-intellij-plugin
 
-This is Intellij plugin for **[EO language](https://github.com/objectionary/eo)**. Plugin implemented on Java and ANTLR4 grammar.
+This is Intellij plugin for **[EO language](https://github.com/objectionary/eo)**. Plugin is implemented on Java and ANTLR4 grammar.
 
  **[ANTLR 4 adapter](https://github.com/antlr/antlr4-intellij-adaptor)** was used for generating lexer and parser classes.
 First version contains syntax highlighting
