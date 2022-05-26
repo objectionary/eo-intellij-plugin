@@ -15,9 +15,9 @@ Please make sure to update tests as appropriate.
 In `src/main` you may find source code.
 
 In `main/antlr/org/antlr/jetbrains/eo/parser` you may find description of EO grammar.
-Generating of needed classes is possible in grammar file (right click --> generate ANTLR recognising)
+Generating of needed classes is possible in grammar file (right click --> generate ANTLR recognizer)
 
-`java/org/antlr/jetbrains/eo/parser` - auto-generated classes should be here. Create this folder
+`java/org/antlr/jetbrains/eo/parser` - auto-generated classes should be here. Create this folder in IDEA
 
 All other folders and files in `java/org/antlr/jetbrains/eo` are not auto-generated. These files describe highlighting colors, extension of language and etc.
 Resources (icons and plugin.xml) are located in `src/resources`.
