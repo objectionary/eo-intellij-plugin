@@ -27,7 +27,7 @@ compileJava {
 intellij {
     version = ideaVersion
 
-    pluginName 'jarl-intellij-plugin'
+    pluginName 'eo-intellij'
     downloadSources true
     updateSinceUntilBuild false
 }
@@ -37,7 +37,7 @@ repositories {
 }
 
 dependencies {
-    antlr("org.antlr:antlr4:$antlr4Version") { // use ANTLR version 4
+    antlr("org.antlr:antlr4:$antlr4Version") {
         exclude group:'com.ibm.icu', module:'icu4j'
     }
     implementation 'org.antlr:antlr4-intellij-adaptor:0.1'
