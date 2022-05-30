@@ -22,6 +22,7 @@ import org.antlr.jetbrains.eo.psi.*;
 import org.antlr.v4.runtime.Parser;
 import org.antlr.v4.runtime.tree.ParseTree;
 import org.jetbrains.annotations.NotNull;
+import org.junit.Test;
 
 import java.util.List;
 
@@ -64,22 +65,22 @@ public class EOParserDefinition implements ParserDefinition {
 	}
 
 	/** "Tokens of those types are automatically skipped by PsiBuilder." */
-	// commented because spaces are critically important in EO
-	/* @NotNull
+	@NotNull
 	public TokenSet getWhitespaceTokens() {
-	 	return WHITESPACE;
-	} */
+	 	return TokenSet.EMPTY;
+	}
 
 	@NotNull
 	public TokenSet getCommentTokens() {
-		return COMMENTS;
+		return TokenSet.EMPTY;
+		// return COMMENTS;
 	}
 
 	@NotNull
 	public TokenSet getStringLiteralElements() {
-		return STRING;
+		return TokenSet.EMPTY;
+		// return STRING;
 	}
-
 	/*public SpaceRequirements spaceExistanceTypeBetweenTokens(ASTNode left, ASTNode right) {
 		return SpaceRequirements.MAY;
 	}*/

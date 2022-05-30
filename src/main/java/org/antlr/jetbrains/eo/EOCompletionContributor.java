@@ -10,7 +10,6 @@ import org.antlr.jetbrains.eo.parser.EOLexer;
 import org.jetbrains.annotations.NotNull;
 
 public class EOCompletionContributor extends CompletionContributor {
-    // next releases
     public EOCompletionContributor() {
         extend(CompletionType.BASIC, PlatformPatterns.psiElement(),
                 new CompletionProvider<CompletionParameters>() {
