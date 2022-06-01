@@ -1,0 +1,21 @@
++alias org.eolang.io.stdout
++alias org.eolang.txt.sprintf
+
+[args...] > main
+
+  #aaaa
+  [y] > leap
+    or. > @
+      and.
+        # bbbb
+        eq. (mod. y 4) 0
+        not. (eq. (mod. y 100) 0)
+      eq. (mod. y 400) 0
+
+  #eewf
+  #kjhk
+  stdout > @
+    sprintf
+      "%d is %sa leap year!"
+      (args.get 0).as-int > year!
+      if. (leap year:y) "" "not "

@@ -48,8 +48,11 @@ dependencies {
     testCompile group: 'junit', name: 'junit', version: '4.11'
 }
 
+// Uncomment this before first run. Move generated classes in org.antlr.jetbrains.eo.parser
+/*
 generateGrammarSource {
-    arguments += ["-package", "org.antlr.jetbrains.jarl.parser", "-Xexact-output-dir"]
+     arguments += ["-package", "org.antlr.jetbrains.eo.parser", "-Xexact-output-dir"]
 }
+*/
 sourceCompatibility = JavaVersion.VERSION_1_9
 targetCompatibility = JavaVersion.VERSION_1_9
