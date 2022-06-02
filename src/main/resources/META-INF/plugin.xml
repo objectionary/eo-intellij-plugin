@@ -5,7 +5,9 @@
 	<vendor email="stepa.strunkov@gmail.com">EO developing</vendor>
 
 	<description><![CDATA[
-  	Simple plugin for EO language with syntax highlighter
+  	Simple plugin for EO language with syntax highlighter.
+  	Just turn plugin on. It will show icons near .eo files and
+  	highlight your code (comments, names, constants, etc). You may set custom colors in preferences tab
     ]]></description>
 
 	<change-notes><![CDATA[
