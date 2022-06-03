@@ -1,4 +1,4 @@
-# EO-intellij-plugin
+# eo-intellij-plugin
 
 This is Intellij plugin for **[EO language](https://github.com/objectionary/eo)**. Plugin is implemented on Java and ANTLR4 grammar.
 
