@@ -5,5 +5,5 @@ import javax.swing.*;
 
 
 public class Icons {
-	public static Icon EO_ICON = IconLoader.getIcon("/org/antlr/jetbrains/eo/small_cactus.png");
+	public static Icon EO_ICON = IconLoader.getIcon("/org/antlr/jetbrains/eo/cactus-16.png");
 }

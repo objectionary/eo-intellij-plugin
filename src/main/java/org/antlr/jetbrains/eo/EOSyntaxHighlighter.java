@@ -56,13 +56,13 @@ public class EOSyntaxHighlighter extends SyntaxHighlighterBase {
 	public static final TextAttributesKey DOT =
 			createTextAttributesKey("EO_DOT", DefaultLanguageHighlighterColors.CONSTANT);
 	public static final TextAttributesKey LSQ =
-			createTextAttributesKey("EO_LSQ", DefaultLanguageHighlighterColors.CONSTANT);
+			createTextAttributesKey("EO_LSQ", DefaultLanguageHighlighterColors.BRACES);
 	public static final TextAttributesKey RSQ =
-			createTextAttributesKey("EO_RSQ", DefaultLanguageHighlighterColors.CONSTANT);
+			createTextAttributesKey("EO_RSQ", DefaultLanguageHighlighterColors.BRACES);
 	public static final TextAttributesKey LB =
-			createTextAttributesKey("EO_RB", DefaultLanguageHighlighterColors.CONSTANT);
+			createTextAttributesKey("EO_RB", DefaultLanguageHighlighterColors.BRACES);
 	public static final TextAttributesKey RB =
-			createTextAttributesKey("EO_RB", DefaultLanguageHighlighterColors.CONSTANT);
+			createTextAttributesKey("EO_RB", DefaultLanguageHighlighterColors.BRACES);
 	public static final TextAttributesKey AT =
 			createTextAttributesKey("EO_AT", DefaultLanguageHighlighterColors.CONSTANT);
 	public static final TextAttributesKey RHO =
