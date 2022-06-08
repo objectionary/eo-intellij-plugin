@@ -32,7 +32,7 @@ intellij {
 
     pluginName 'eo-intellij'
     downloadSources true
-    updateSinceUntilBuild true
+    updateSinceUntilBuild false
 }
 
 publishPlugin {
