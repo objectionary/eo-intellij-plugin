@@ -5,30 +5,27 @@ import org.antlr.jetbrains.eo.EOParserDefinition;
 
 public class EOParsingTestСomments extends ParsingTestCase {
 
-    public EOParsingTestСomments() {
-        super("", "eo", new EOParserDefinition());
-    }
+  public EOParsingTestСomments() {
+    super("", "eo", new EOParserDefinition());
+  }
 
-    public void testParsingTestData() {
-        doTest(true);
-    }
+  public void testParsingTestData() {
+    doTest(true);
+  }
 
-    /**
-     * @return path to test data file directory relative to root of this module.
-     */
-    @Override
-    protected String getTestDataPath() {
-        return "src/test/testData_2";
-    }
+  /** @return path to test data file directory relative to root of this module. */
+  @Override
+  protected String getTestDataPath() {
+    return "src/test/testData_2";
+  }
 
-    @Override
-    protected boolean skipSpaces() {
-        return false;
-    }
+  @Override
+  protected boolean skipSpaces() {
+    return false;
+  }
 
-    @Override
-    protected boolean includeRanges() {
-        return true;
-    }
-
+  @Override
+  protected boolean includeRanges() {
+    return true;
+  }
 }

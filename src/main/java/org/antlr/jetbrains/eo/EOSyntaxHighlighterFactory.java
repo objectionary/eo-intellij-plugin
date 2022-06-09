@@ -7,9 +7,9 @@ import com.intellij.openapi.vfs.VirtualFile;
 import org.jetbrains.annotations.NotNull;
 
 public class EOSyntaxHighlighterFactory extends SyntaxHighlighterFactory {
-    @NotNull
-    @Override
-    public SyntaxHighlighter getSyntaxHighlighter(Project project, VirtualFile virtualFile) {
-        return new EOSyntaxHighlighter();
-    }
+  @NotNull
+  @Override
+  public SyntaxHighlighter getSyntaxHighlighter(Project project, VirtualFile virtualFile) {
+    return new EOSyntaxHighlighter();
+  }
 }

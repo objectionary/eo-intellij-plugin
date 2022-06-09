@@ -11,15 +11,15 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 public class EOStructureViewFactory implements PsiStructureViewFactory {
-	@Nullable
-	@Override
-	public StructureViewBuilder getStructureViewBuilder(final PsiFile psiFile) {
-		return new TreeBasedStructureViewBuilder() {
-			@NotNull
-			@Override
-			public StructureViewModel createStructureViewModel(@Nullable Editor editor) {
-				return new EOStructureViewModel((EOPSIFileRoot)psiFile);
-			}
-		};
-	}
+  @Nullable
+  @Override
+  public StructureViewBuilder getStructureViewBuilder(final PsiFile psiFile) {
+    return new TreeBasedStructureViewBuilder() {
+      @NotNull
+      @Override
+      public StructureViewModel createStructureViewModel(@Nullable Editor editor) {
+        return new EOStructureViewModel((EOPSIFileRoot) psiFile);
+      }
+    };
+  }
 }

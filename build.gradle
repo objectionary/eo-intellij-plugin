@@ -1,7 +1,13 @@
 buildscript {
     repositories {
+        jcenter()
         mavenCentral()
         gradlePluginPortal()
+        flatDir dirs:  "build/libs"
+    }
+    dependencies {
+        classpath "com.qulice:qulice-gradle-plugin:0.18.19"  // doesn't generate gradle task
+        classpath "gradle.plugin.com.github.sherter.google-java-format:google-java-format-gradle-plugin:0.9"
     }
 }
 
@@ -11,7 +17,7 @@ plugins {
 }
 
 wrapper {
-    gradleVersion = '5.2.1'
+    gradleVersion = '6.1.1'
 }
 
 group 'antlr'
@@ -20,6 +26,7 @@ version pluginVersion
 apply plugin: 'java'
 apply plugin: 'org.jetbrains.intellij'
 apply plugin: 'antlr'
+apply plugin: "com.github.sherter.google-java-format"
 
 
 compileJava {
@@ -43,6 +50,7 @@ publishPlugin {
 }
 
 repositories {
+    jcenter()
     mavenCentral()
 }
 
@@ -52,7 +60,6 @@ dependencies {
     }
     implementation 'org.antlr:antlr4-intellij-adaptor:0.1'
     testCompile group: 'junit', name: 'junit', version: '4.11'
-    // implementation 'com.qulice:qulice-gradle-plugin:0.18.19'
 }
 
 // Uncomment this before first run. Move generated classes in org.antlr.jetbrains.eo.parser
