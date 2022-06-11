@@ -28,6 +28,6 @@ target/
 .idea/
 *.DS_Store
 src/main/gen/
-src/main/java/org/eolang/jetbrains/parser
+src/main/java/org/eolang/jetbrains/parser/
 src/main/antlr/org/jetbrains/eolang/parser/EO.g4
 
