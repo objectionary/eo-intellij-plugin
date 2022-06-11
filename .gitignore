@@ -29,4 +29,5 @@ target/
 *.DS_Store
 src/main/gen/
 src/main/java/org/antlr/jetbrains/eo/parser
+src/main/antlr/org/jetbrains/eolang/parser/EO.g4
 

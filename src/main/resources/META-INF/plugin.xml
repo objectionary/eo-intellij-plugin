@@ -28,28 +28,28 @@
 
 	<project-components>
 		<component>
-			<implementation-class>org.antlr.jetbrains.eo.EOPluginController</implementation-class>
+			<implementation-class>org.eolang.jetbrains.EOPluginController</implementation-class>
 		</component>
 	</project-components>
 
 	<actions>
 	</actions>
 	<extensions defaultExtensionNs="com.intellij">
-		<fileTypeFactory implementation="org.antlr.jetbrains.eo.EOFileTypeFactory"/>
-		<lang.syntaxHighlighterFactory language='EO' implementationClass="org.antlr.jetbrains.eo.EOSyntaxHighlighterFactory"/>
+		<fileTypeFactory implementation="org.eolang.jetbrains.EOFileTypeFactory"/>
+		<lang.syntaxHighlighterFactory language='EO' implementationClass="org.eolang.jetbrains.EOSyntaxHighlighterFactory"/>
 
-		<lang.parserDefinition language="EO" implementationClass="org.antlr.jetbrains.eo.EOParserDefinition"/>
+		<lang.parserDefinition language="EO" implementationClass="org.eolang.jetbrains.EOParserDefinition"/>
 
-		<lang.psiStructureViewFactory language="EO" implementationClass="org.antlr.jetbrains.eo.structview.EOStructureViewFactory"/>
+		<lang.psiStructureViewFactory language="EO" implementationClass="org.eolang.jetbrains.structview.EOStructureViewFactory"/>
 
-		<colorSettingsPage implementation="org.antlr.jetbrains.eo.EOColorSettingsPage"/>
+		<colorSettingsPage implementation="org.eolang.jetbrains.EOColorSettingsPage"/>
 
-		<externalAnnotator language="EO" implementationClass="org.antlr.jetbrains.eo.EOExternalAnnotator"/>
+		<externalAnnotator language="EO" implementationClass="org.eolang.jetbrains.EOExternalAnnotator"/>
 
-		<lang.findUsagesProvider language="EO" implementationClass="org.antlr.jetbrains.eo.EOFindUsagesProvider"/>
+		<lang.findUsagesProvider language="EO" implementationClass="org.eolang.jetbrains.EOFindUsagesProvider"/>
 
 		<completion.contributor
 				language="EO"
-				implementationClass="org.antlr.jetbrains.eo.EOCompletionContributor"/>
+				implementationClass="org.eolang.jetbrains.EOCompletionContributor"/>
 	</extensions>
 </idea-plugin>

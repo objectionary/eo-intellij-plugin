@@ -1,7 +1,7 @@
 package org.antlr.jetbrains.adaptor.test;
 
 import com.intellij.testFramework.ParsingTestCase;
-import org.antlr.jetbrains.eo.EOParserDefinition;
+import org.eolang.jetbrains.EOParserDefinition;
 
 public class EOParsingTest1 extends ParsingTestCase {
 

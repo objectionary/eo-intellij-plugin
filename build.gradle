@@ -29,6 +29,24 @@ apply plugin: 'antlr'
 apply plugin: "com.github.sherter.google-java-format"
 
 
+task getGgrammar {
+    println("Creating and downloading grammar file from " +
+            "https://raw.githubusercontent.com/objectionary/" +
+            "eo/master/eo-parser/src/main/antlr4/org/eolang/parser/Program.g4")
+    def f = new File('src/main/antlr/org/jetbrains/eolang/parser/EO.g4')
+    new URL('https://raw.githubusercontent.com/objectionary/eo/master/eo-parser/src/main/antlr4/org/eolang/parser/Program.g4').
+            withInputStream { i -> f.withOutputStream { it << i } }
+    f.append('\n\nBAD_CHARACTER\n' +
+            '\t:\t.\t-> channel(HIDDEN)\n' +
+            '\t;')
+    if (f.exists())
+        println("Grammar downloading is completed")
+
+    ant.replaceregexp(match: 'Program', replace: 'EO', flags: 'g', byline: true) {
+        fileset(dir: 'src/main/antlr/org/jetbrains/eolang/parser', includes: 'EO.g4')
+    }
+}
+
 compileJava {
     sourceCompatibility = '1.8'
     targetCompatibility = '1.8'
@@ -70,3 +88,4 @@ generateGrammarSource {
 */
 sourceCompatibility = JavaVersion.VERSION_1_9
 targetCompatibility = JavaVersion.VERSION_1_9
+
