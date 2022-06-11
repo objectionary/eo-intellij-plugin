@@ -6,7 +6,7 @@ This is Intellij plugin for **[eo language](https://github.com/objectionary/eo)*
 First version contains syntax highlighting
 
 ## Usage
-Installing is possible from IDE. Type 'EO' in plugins search tab.
+Installing is possible from IDEA. Type 'EO' in plugins search tab.
 
 You may also install plugin from **[eo plugin page](https://plugins.jetbrains.com/plugin/19256-eo/versions)**
 ## Contributing
@@ -24,16 +24,26 @@ Grammar file should appear in `main/antlr/org/antlr/jetbrains/eo/parser`.
 Then you should generate needed classes from downloaded grammar file. 
 You may use `generateGrammarSource` gradle task or do it manually (EO.g4 -> right click -> generate ANTLR recognizer)
 
+Resources (icons and plugin.xml) are located in `src/resources`.
+
 
 ## Publishing
-The easiest and most automatically way to publish plugin is using gradle tasks
-1) `buildPlugin` (generates zip in `build/distributions`)
-   Don't forget to change version in plugin.xml and gradle.properties!
-2) `publishPlugin` 
-    You will need to get private token in **[JetBrains Marketplace](https://plugins.jetbrains.com)** and pass its value into env. variable TOKEN 
-    Note that first publishing HAS TO be manually. Gradle task will work for later releases.
+**Note that first publishing HAS TO be manually. Gradle task will work only for later releases.**
+
+The easiest and most automatically way to publish plugin is using 2 gradle tasks 
+1. **Building** (generates zip and puts it here `build/distributions`)
+    
+    Don't forget to change version in plugin.xml and gradle.properties!
+    
+    Run `buildPlugin`
+   
+    First time you should send zip archive to marketplace manually to **[JetBrains Marketplace](https://plugins.jetbrains.com)**
+2. **Publishing**
+    
+    You will need to get private token here **[JetBrains Marketplace](https://plugins.jetbrains.com)** and pass its value into env. variable TOKEN 
+    
+    Then just run `publishPlugin` gradle task, zip archive will be pushed automatically.
 
 
-Resources (icons and plugin.xml) are located in `src/resources`.
 ## License
 [MIT](https://choosealicense.com/licenses/mit/)
