@@ -24,6 +24,16 @@ Grammar file should appear in `main/antlr/org/antlr/jetbrains/eo/parser`.
 Then you should generate needed classes from downloaded grammar file. 
 You may use `generateGrammarSource` gradle task or do it manually (EO.g4 -> right click -> generate ANTLR recognizer)
 
+
+## Publishing
+The easiest and most automatically way to publish plugin is using gradle tasks
+1) `buildPlugin` (generates zip in `build/distributions`)
+   Don't forget to change version in plugin.xml and gradle.properties!
+2) `publishPlugin` 
+    You will need to get private token in **[JetBrains Marketplace](https://plugins.jetbrains.com)** and pass its value into env. variable TOKEN 
+    Note that first publishing HAS TO be manually. Gradle task will work for later releases.
+
+
 Resources (icons and plugin.xml) are located in `src/resources`.
 ## License
 [MIT](https://choosealicense.com/licenses/mit/)
