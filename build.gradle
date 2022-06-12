@@ -34,7 +34,7 @@ task getGgrammar {
             "https://raw.githubusercontent.com/objectionary/" +
             "eo/master/eo-parser/src/main/antlr4/org/eolang/parser/Program.g4")
     def f = new File('src/main/antlr/org/jetbrains/eolang/parser/EO.g4')
-    println("Created destination file")
+    println("Created destination file.")
     new URL('https://raw.githubusercontent.com/objectionary/eo/master/eo-parser/src/main/antlr4/org/eolang/parser/Program.g4').
             withInputStream { i -> f.withOutputStream { it << i } }
     f.append('\n\nBAD_CHARACTER\n' +
