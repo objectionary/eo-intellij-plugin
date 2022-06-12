@@ -26,7 +26,7 @@ version pluginVersion
 apply plugin: 'java'
 apply plugin: 'org.jetbrains.intellij'
 apply plugin: 'antlr'
-apply plugin: "com.github.sherter.google-java-format"
+// apply plugin: "com.github.sherter.google-java-format"
 
 
 task getGgrammar {
@@ -67,6 +67,11 @@ publishPlugin {
     token = System.getenv("TOKEN")
 }
 
+generateGrammarSource {
+    outputDirectory = new File("src/main/java/org/eolang/jetbrains/parser".toString())
+    arguments += ["-package", "org.eolang.jetbrains.parser", "-Xexact-output-dir"]
+}
+
 repositories {
     jcenter()
     mavenCentral()
@@ -80,12 +85,6 @@ dependencies {
     testCompile group: 'junit', name: 'junit', version: '4.11'
 }
 
-// Uncomment this before first run. Move generated classes in org.antlr.jetbrains.eo.parser
-/*
-generateGrammarSource {
-     arguments += ["-package", "org.antlr.jetbrains.eo.parser", "-Xexact-output-dir"]
-}
-*/
 sourceCompatibility = JavaVersion.VERSION_1_9
 targetCompatibility = JavaVersion.VERSION_1_9
 

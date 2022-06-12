@@ -104,9 +104,6 @@ public class EOSyntaxHighlighter extends SyntaxHighlighterBase {
     int ttype = myType.getANTLRTokenType();
     TextAttributesKey attrKey;
     switch (ttype) {
-      case EOLexer.REGEX:
-        attrKey = REGEX;
-        break;
       case EOLexer.BOOL:
         attrKey = BOOL;
         break;
