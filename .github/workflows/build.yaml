@@ -25,7 +25,6 @@ jobs:
         with:
           java-version: 11
       - name: Build with Gradle
-        working-directory: ./app
         run: |
           ./gradlew -PideaVersion=${IDEA_VERSION} check buildPlugin
           echo "DIST_FILE=$(find build/distributions/ -name 'EO_intellij_plugin*.zip' -exec basename {} .zip \;)" >> $GITHUB_ENV
