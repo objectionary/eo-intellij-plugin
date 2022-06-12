@@ -17,7 +17,6 @@ jobs:
           - IDEA_VERSION: IC-2021.3.3
           - IDEA_VERSION: IC-2022.1.1
           - IDEA_VERSION: IU-LATEST-EAP-SNAPSHOT
-
     steps:
       - uses: actions/checkout@v2
       - name: Set up JDK 11
