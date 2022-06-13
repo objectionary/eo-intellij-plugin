@@ -30,8 +30,4 @@ jobs:
         #  echo "DIST_FILE=$(find build/distributions/ -name 'EO_intellij_plugin*.zip' -exec basename {} .zip \;)" >> $GITHUB_ENV
         run: ./gradlew build
         env: ${{ matrix.env }}
-      - name: Archive distribution artifact
-        uses: actions/upload-artifact@v2
-        with:
-          name: ${{env.DIST_FILE}}
-          path: build/distributions/EO-intellij-plugin*.zip
+
