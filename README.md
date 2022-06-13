@@ -1,4 +1,4 @@
-![img.png](src/main/resources/img.png)
+<img src="https://www.yegor256.com/images/books/elegant-objects/cactus.svg" height="100px" />
 
 # eo-intellij-plugin
 
