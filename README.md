@@ -1,3 +1,5 @@
+![img.png](src/main/resources/img.png)
+
 # eo-intellij-plugin
 
 This is Intellij plugin for **[eo language](https://github.com/objectionary/eo)**. Plugin is implemented on Java and ANTLR4 grammar.
