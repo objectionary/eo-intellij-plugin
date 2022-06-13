@@ -1,0 +1,2 @@
+In this folder should be located EO.h4 grammar file.
+You may run getGrammar task for doing that or you may run build task

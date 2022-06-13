@@ -2,7 +2,7 @@
 
 name: Java CI
 
-on: [ push, pull_request ]
+on: [push, pull_request]
 
 jobs:
   build:
@@ -24,10 +24,6 @@ jobs:
         with:
           java-version: 11
       - name: Build with Gradle
-        # run: |
-        #
-        #  ./gradlew -PideaVersion=${IDEA_VERSION} check buildPlugin
-        #  echo "DIST_FILE=$(find build/distributions/ -name 'EO_intellij_plugin*.zip' -exec basename {} .zip \;)" >> $GITHUB_ENV
         run: ./gradlew build
         env: ${{ matrix.env }}
 
