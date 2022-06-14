@@ -63,7 +63,9 @@ intellij {
 }
 
 publishPlugin {
+    println("TOKEN")
     println System.getenv('intellijPublishToken')
+    println("TOKEN")
     token System.getenv('intellijPublishToken')
 }
 
