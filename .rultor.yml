@@ -4,4 +4,4 @@ assets:
 
 release:
   script: |-
-    ./gradlew publishPlugin -Dorg.eolang.jetbrains.intellijPublishToken=token
+    ./gradlew publishPlugin -PmarketplaceToken=token
