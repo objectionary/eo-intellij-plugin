@@ -1,0 +1,7 @@
+assets:
+  token: yegor256/objectionary-secrets#marketplace.token
+
+
+release:
+  script: |-
+    ./gradlew publishPlugin -Dorg.eolang.jetbrains.intellijPublishToken=token

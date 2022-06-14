@@ -65,8 +65,8 @@ intellij {
 publishPlugin {
     /*  Don't forget to change plugin version in gradle.properties and in plugin.xml.
         Otherwise gradle task fails */
-    /* Token should be generated in your profile in Marketplace */
-    token = System.getenv("TOKEN")
+    /* Token should be generated in your profile in Marketplace and pasted to gradle.properties*/
+    token intellijPublishToken
 }
 
 generateGrammarSource {
