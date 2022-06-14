@@ -4,5 +4,5 @@ assets:
 
 release:
   script: |-
-
-    export intellijPublishToken=$(head -n 1 ../token.txt) ./gradlew publishPlugin
+    export intellijPublishToken=$(head -n 1 ../token.txt)
+    ./gradlew publishPlugin
