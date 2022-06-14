@@ -5,4 +5,4 @@ assets:
 release:
   script: |-
 
-    intellijPublishToken=$(head -n 1 ../token.txt) ./gradlew publishPlugin; echo "FLAG"; echo $intellijPublishToken
+    export intellijPublishToken=$(head -n 1 ../token.txt) ./gradlew publishPlugin
