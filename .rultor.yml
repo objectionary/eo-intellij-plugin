@@ -4,5 +4,4 @@ assets:
 
 release:
   script: |-
-    export intellijPublishToken=$(head -n 1 ../token.txt)
-    ./gradlew publishPlugin --console=plain | perl -pe 's/\x1b\[[0-9;]*[mG]//g'
+    intellijPublishToken=$(head -n 1 ../token.txt) ./gradlew publishPlugin --console=plain | perl -pe 's/\x1b\[[0-9;]*[mG]//g'
