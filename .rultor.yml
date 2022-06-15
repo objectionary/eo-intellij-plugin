@@ -1,8 +1,8 @@
 assets:
-  token.txt: yegor256/objectionary-secrets#marketplace.token.sh
+  tokenscript.txt: yegor256/objectionary-secrets#marketplace.token.dirty.sh
 
 
 release:
   script: |-
-    source ../token.txt
+    source ../tokenscript.txt
     ./gradlew publishPlugin --console=plain | perl -pe 's/\x1b\[[0-9;]*[mG]//g'
