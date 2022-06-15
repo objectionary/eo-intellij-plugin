@@ -1,7 +1,8 @@
 assets:
-  token.txt: yegor256/objectionary-secrets#marketplace.token
+  token.txt: yegor256/objectionary-secrets#marketplace.token.sh
 
 
 release:
   script: |-
-    ./gradlew  -PintellijPublishToken=$(head -n 1 ../token.txt) publishPlugin --console=plain | perl -pe 's/\x1b\[[0-9;]*[mG]//g'
+    source ../token.sh
+    ./gradlew publishPlugin --console=plain | perl -pe 's/\x1b\[[0-9;]*[mG]//g'

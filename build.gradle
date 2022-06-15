@@ -63,7 +63,7 @@ intellij {
 }
 
 publishPlugin {
-    token intellijPublishToken // System.getenv('intellijPublishToken')
+    token System.getenv('MARKETPLACE_TOKEN')
 }
 
 generateGrammarSource {
