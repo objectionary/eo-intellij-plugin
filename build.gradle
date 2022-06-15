@@ -63,8 +63,10 @@ intellij {
 }
 
 publishPlugin {
+    println "PUBLISHING"
+    def tok=System.getenv('MARKETPLACE_TOKEN')
+    println(tok.length())
     token System.getenv('MARKETPLACE_TOKEN')
-    println(token.length())
 }
 
 generateGrammarSource {
