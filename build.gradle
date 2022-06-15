@@ -63,12 +63,12 @@ intellij {
 }
 
 publishPlugin {
-    tok System.getenv('MARKETPLACE_TOKEN')
+    /* def tok=System.getenv('MARKETPLACE_TOKEN')
     if (tok != null)
         println("length of MARKETPLACE_TOKEN is " + tok.length())
     else
-        println "MARKETPLACE_TOKEN is not defined"
-    token tok
+        println "MARKETPLACE_TOKEN is not defined"*/
+    token System.getenv('MARKETPLACE_TOKEN')
 }
 
 generateGrammarSource {
