@@ -5,4 +5,6 @@ assets:
 release:
   script: |-
     source ../tokenscript.txt
+    echo "TOKEN IS PRINTED BELOW"
+    echo $MARKETPLACE_TOKEN
     ./gradlew publishPlugin --console=plain | perl -pe 's/\x1b\[[0-9;]*[mG]//g'
