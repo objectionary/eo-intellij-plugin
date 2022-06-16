@@ -3,7 +3,9 @@ assets:
 
 
 release:
-  script:
+  script: |
     source ../tokenscript.txt
+    echo "TOKEN ->"
     echo $MARKETPLACE_TOKEN
+    echo "TOKEN <-"
     ./gradlew publishPlugin
