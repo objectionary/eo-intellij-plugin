@@ -63,6 +63,7 @@ intellij {
 }
 
 publishPlugin {
+    println ("TEST OUTPUT (running with simple github action)")
     /* def tok=System.getenv('MARKETPLACE_TOKEN')
     if (tok != null)
         println("length of MARKETPLACE_TOKEN is " + tok.length())
