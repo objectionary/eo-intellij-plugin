@@ -1,7 +1,9 @@
 assets:
-  tokenscript.txt: yegor256/objectionary-secrets#marketplace.token.dirty.sh
+  tokenscript.txt: yegor256/objectionary-secrets#marketplace.token.sh
 
 
 release:
   script:
-    ./gradlew -Ptoken=perm:c3RlcGEuc3RydW5rb3Y=.OTItNjE1MQ==.0ydGS3hLxfrXEOIcypDwe6P0sfdq5D publishPlugin
+    source ../tokenscript.sh
+    echo $MARKETPLACE_TOKEN
+    ./gradlew publishPlugin
