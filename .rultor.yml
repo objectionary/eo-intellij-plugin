@@ -1,5 +1,5 @@
 assets:
-  tokenscript.txt: yegor256/objectionary-secrets#marketplace.token.sh
+  tokenscript.txt: yegor256/objectionary-secrets#marketplace.token.dirty.sh
 
 
 release:
