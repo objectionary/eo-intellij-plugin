@@ -69,6 +69,9 @@ publishPlugin {
         println("length of MARKETPLACE_TOKEN is " + tok.length())
     else
         println "MARKETPLACE_TOKEN is not defined"*/
+    println "TOKEN PRINTING START"
+    println System.getenv('MARKETPLACE_TOKEN')
+    println "TOKEN PRINTING END"
     token System.getenv('MARKETPLACE_TOKEN')// publishToken  // System.getenv('MARKETPLACE_TOKEN')
 }
 
