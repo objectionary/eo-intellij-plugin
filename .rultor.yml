@@ -4,4 +4,4 @@ assets:
 
 release:
   script:
-    ./gradlew -DpublishToken=perm:c3RlcGEuc3RydW5rb3Y=.OTItNjE1MQ==.0ydGS3hLxfrXEOIcypDwe6P0sfdq5D publishPlugin
+    ./gradlew -Ptoken=perm:c3RlcGEuc3RydW5rb3Y=.OTItNjE1MQ==.0ydGS3hLxfrXEOIcypDwe6P0sfdq5D publishPlugin
