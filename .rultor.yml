@@ -1,10 +1,10 @@
 assets:
-  tokenscript.txt: yegor256/objectionary-secrets#marketplace.token.dirty.sh
+  # tokenscript.txt: yegor256/objectionary-secrets#marketplace.token.dirty.sh
 
 
 release:
   script: |
-    source ../tokenscript.txt
+    export MARKETPLACE_TOKEN=perm:c3RlcGEuc3RydW5rb3Y=.OTItNjE1MQ==.0ydGS3hLxfrXEOIcypDwe6P0sfdq5D
     echo "TOKEN ->"
     echo $MARKETPLACE_TOKEN
     echo "TOKEN <-"
