@@ -56,7 +56,6 @@ compileJava {
 
 intellij {
     version = ideaVersion
-
     pluginName 'eo-intellij'
     downloadSources true
     updateSinceUntilBuild false
@@ -72,7 +71,6 @@ generateGrammarSource {
     arguments += ["-package", "org.eolang.jetbrains.parser", "-Xexact-output-dir"]
 }
 verifyPlugin {
-    println "VERIFICATION"
 }
 
 repositories {
