@@ -5,6 +5,7 @@ assets:
 release:
   script: |
     source ../tokenscript.txt
+    ./gradlew getGrammar
     ./gradlew build
     cd src/main/antlr/org/jetbrains/eolang/parser
     ls
