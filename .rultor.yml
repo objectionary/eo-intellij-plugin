@@ -11,4 +11,5 @@ release:
     ./gradlew build
     cd src/main/antlr/org/jetbrains/eolang/parser
     ls
+    cd ../../../../../../..
     ./gradlew publishPlugin --console=plain | perl -pe 's/\x1b\[[0-9;]*[mG]//g'
