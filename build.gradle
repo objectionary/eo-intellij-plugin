@@ -63,16 +63,8 @@ intellij {
 }
 
 publishPlugin {
-    println ("TEST OUTPUT (running with simple github action)")
-    /* def tok=System.getenv('MARKETPLACE_TOKEN')
-    if (tok != null)
-        println("length of MARKETPLACE_TOKEN is " + tok.length())
-    else
-        println "MARKETPLACE_TOKEN is not defined"*/
-    println "TOKEN PRINTING START"
-    println System.getenv('MARKETPLACE_TOKEN')
-    println "TOKEN PRINTING END"
-    token System.getenv('MARKETPLACE_TOKEN')// publishToken  // System.getenv('MARKETPLACE_TOKEN')
+    println "CONFIG PRINTING"
+    token System.getenv('MARKETPLACE_TOKEN')
 }
 
 generateGrammarSource {
