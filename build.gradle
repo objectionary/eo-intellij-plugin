@@ -11,6 +11,25 @@ buildscript {
     }
 }
 
+
+plugins {
+    id "org.jetbrains.intellij" version "0.4.2"
+}
+
+wrapper {
+    gradleVersion = '5.2.1'
+}
+
+group 'antlr'
+version pluginVersion
+
+apply plugin: 'java'
+apply plugin: 'org.jetbrains.intellij'
+apply plugin: 'antlr'
+// apply plugin: "com.github.sherter.google-java-format"
+
+
+
 task getGrammar {
     println("Creating and downloading grammar file from " +
             "https://raw.githubusercontent.com/objectionary/" +
@@ -30,24 +49,6 @@ task getGrammar {
         fileset(dir: 'src/main/antlr/org/jetbrains/eolang/parser', includes: 'EO.g4')
     }
 }
-
-plugins {
-    id "org.jetbrains.intellij" version "0.4.2"
-}
-
-wrapper {
-    gradleVersion = '5.2.1'
-}
-
-group 'antlr'
-version pluginVersion
-
-apply plugin: 'java'
-apply plugin: 'org.jetbrains.intellij'
-apply plugin: 'antlr'
-// apply plugin: "com.github.sherter.google-java-format"
-
-
 
 
 compileJava {
