@@ -3,7 +3,7 @@ assets:
 
 release:
   script: |
-    source ../tokensrcipt.txt
+    source ../tokenscript.txt
     ./gradlew build
     cd src/main/antlr/org/jetbrains/eolang/parser
     ls
