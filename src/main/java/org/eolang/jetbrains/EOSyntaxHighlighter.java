@@ -14,7 +14,6 @@ import org.eolang.jetbrains.parser.EOLexer;
 import org.jetbrains.annotations.NotNull;
 
 public class EOSyntaxHighlighter extends SyntaxHighlighterBase {
-
   public static final TextAttributesKey INT =
       createTextAttributesKey("EO_INT", DefaultLanguageHighlighterColors.CONSTANT);
   public static final TextAttributesKey COMMENT =
@@ -22,7 +21,7 @@ public class EOSyntaxHighlighter extends SyntaxHighlighterBase {
   public static final TextAttributesKey BOOL =
       createTextAttributesKey("EO_BOOL", DefaultLanguageHighlighterColors.BRACES);
   public static final TextAttributesKey META =
-      createTextAttributesKey("EO_META", DefaultLanguageHighlighterColors.BRACES);
+      createTextAttributesKey("EO_META", DefaultLanguageHighlighterColors.FUNCTION_DECLARATION);
   public static final TextAttributesKey REGEX =
       createTextAttributesKey("EO_REGEX", DefaultLanguageHighlighterColors.CONSTANT);
   public static final TextAttributesKey STAR =
@@ -30,7 +29,7 @@ public class EOSyntaxHighlighter extends SyntaxHighlighterBase {
   public static final TextAttributesKey DOTS =
       createTextAttributesKey("EO_DOTS", DefaultLanguageHighlighterColors.CONSTANT);
   public static final TextAttributesKey CONST =
-      createTextAttributesKey("EO_CONST", DefaultLanguageHighlighterColors.NUMBER);
+      createTextAttributesKey("EO_CONST", DefaultLanguageHighlighterColors.CONSTANT);
   public static final TextAttributesKey SLASH =
       createTextAttributesKey("EO_SLASH", DefaultLanguageHighlighterColors.CLASS_NAME);
   public static final TextAttributesKey COLON =
@@ -199,6 +198,9 @@ public class EOSyntaxHighlighter extends SyntaxHighlighterBase {
         break;
       case EOLexer.TEXT:
         attrKey = TEXT;
+        break;
+      case EOLexer.META:
+        attrKey = META;
         break;
       default:
         return EMPTY_KEYS;

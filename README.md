@@ -1,5 +1,9 @@
 <img src="https://www.yegor256.com/images/books/elegant-objects/cactus.svg" height="100px" />
 
+[![EO principles respected here](https://www.elegantobjects.org/badge.svg)](https://www.elegantobjects.org)
+[![DevOps By Rultor.com](http://www.rultor.com/b/objectionary/eo)](http://www.rultor.com/p/objectionary/eo)
+
+[![License](https://img.shields.io/badge/license-MIT-green.svg)](https://github.com/objectionary/eo/blob/master/LICENSE.txt)
 # eo-intellij-plugin
 
 This is Intellij plugin for **[eo language](https://github.com/objectionary/eo)**. Plugin is implemented on Java and ANTLR4 grammar.
@@ -45,6 +49,8 @@ The easiest and most automatically way to publish plugin is using 2 gradle tasks
     You will need to get private token here **[JetBrains Marketplace](https://plugins.jetbrains.com)** and pass its value into env. variable TOKEN 
     
     Then just run `publishPlugin` gradle task, zip archive will be pushed automatically.
+
+## Example
 
 
 ## License
