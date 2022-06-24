@@ -42,7 +42,7 @@
 
 		<lang.psiStructureViewFactory language="EO" implementationClass="org.eolang.jetbrains.structview.EOStructureViewFactory"/>
 
-		<!-- <lang.substitutor language="EO" implementationClass="org.eolang.jetbrains.psi.LanguageSubstitutor"/> -->
+		<lang.substitutor language="EO" implementationClass="org.eolang.jetbrains.psi.EOSubstitutor" order="first"/>
 		<colorSettingsPage implementation="org.eolang.jetbrains.EOColorSettingsPage"/>
 
 		<externalAnnotator language="EO" implementationClass="org.eolang.jetbrains.EOExternalAnnotator"/>

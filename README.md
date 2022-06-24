@@ -3,6 +3,9 @@
 [![EO principles respected here](https://www.elegantobjects.org/badge.svg)](https://www.elegantobjects.org)
 [![DevOps By Rultor.com](http://www.rultor.com/b/objectionary/eo)](http://www.rultor.com/p/objectionary/eo)
 
+![Lines of code](https://img.shields.io/tokei/lines/github/objectionary/eo-intellij-plugin)
+![Hits-of-Code](https://hitsofcode.com/github/objectionary/eo-intellij-plugin)
+![Build](https://img.shields.io/github/workflow/status/objectionary/eo-intellij-plugin/Java%20CI)
 [![License](https://img.shields.io/badge/license-MIT-green.svg)](https://github.com/objectionary/eo/blob/master/LICENSE.txt)
 # eo-intellij-plugin
 

@@ -16,27 +16,26 @@
 package org.eolang.jetbrains.psi;
 
 import com.intellij.lang.Language;
+import com.intellij.lang.StdLanguages;
 import com.intellij.openapi.project.Project;
 import com.intellij.openapi.vfs.VirtualFile;
-import com.intellij.psi.LanguageSubstitutors;
+import com.intellij.psi.LanguageSubstitutor;
+import org.eolang.jetbrains.EOLanguage;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-/**
- * Allows to change the language used to parse given file in the context of a specific project.<p/>
- *
- * When determining the file's final language, the IDE takes the language associated with its file type,
- * queries all {@link LanguageSubstitutor}s registered for that language, and returns the result
- * of the first one that returned a non-null value.
- *
- * @see LanguageSubstitutors
- */
-public abstract class LanguageSubstitutor {
+import javax.annotation.Nonnull;
 
-    /**
-     * @return the language that should be used instead of the default one for the given file in the given project,
-     * or null if this substitutor isn't applicable to this file.
-     */
+public class EOSubstitutor extends LanguageSubstitutor {
     @Nullable
-    public abstract Language getLanguage(@NotNull VirtualFile file, @NotNull Project project);
+    @Override
+    public Language getLanguage(@NotNull VirtualFile virtualFile, @NotNull Project project) {
+        if (virtualFile.getExtension() == null) {
+            return null;
+        }
+        if (virtualFile.getExtension().equals("eo")) {
+            return EOLanguage.INSTANCE;
+        }
+        return null;
+    }
 }
