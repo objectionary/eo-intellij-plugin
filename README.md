@@ -57,6 +57,7 @@ We use **[rultor](https://github.com/yegor256/rultor)** for publishing
 
 ## How it looks
 ![example.png](src/main/resources/example.png)
+
 You may set own colors
 
 
