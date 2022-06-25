@@ -45,20 +45,22 @@ The easiest and most automatically way to publish plugin from terminal is descri
     
     Run `buildPlugin`
    
-    First time you should send zip archive to marketplace manually to **[JetBrains Marketplace](https://plugins.jetbrains.com)**
+    First time you should send zip archive manually to **[JetBrains Marketplace](https://plugins.jetbrains.com)**
 2. **Publishing**
     
-    You will need to get private token here **[JetBrains Marketplace](https://plugins.jetbrains.com)** and pass its value into env. variable TOKEN 
+    You will need to get private token here **[JetBrains Marketplace](https://plugins.jetbrains.com)** 
+    
+    Then run `export MARKETPLACE_TOKEN=<your token>` 
     
     Then just run `publishPlugin` gradle task, zip archive will be pushed automatically.
 
 
-We use **[rultor](https://github.com/yegor256/rultor)** for publishing
+We use **[rultor](https://github.com/yegor256/rultor)** for publishing (see .rultor.yml)
 
 ## How it looks
 ![example.png](src/main/resources/example.png)
 
-You may set own colors
+You may set your own highlighting colors
 
 
 ## License

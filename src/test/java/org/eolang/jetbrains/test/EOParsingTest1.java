@@ -1,4 +1,4 @@
-package org.antlr.jetbrains.adaptor.test;
+package org.eolang.jetbrains.test;
 
 import com.intellij.testFramework.ParsingTestCase;
 import org.eolang.jetbrains.EOParserDefinition;
@@ -16,6 +16,7 @@ public class EOParsingTest1 extends ParsingTestCase {
   /** @return path to test data file directory relative to root of this module. */
   @Override
   protected String getTestDataPath() {
+    System.out.println("TEST1\n");
     return "src/test/testData_1";
   }
 

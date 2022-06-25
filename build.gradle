@@ -6,7 +6,7 @@ buildscript {
         flatDir dirs:  "build/libs"
     }
     dependencies {
-        // doesn't generate gradle task
+        // qulice doesn't generate gradle task
         // classpath "gradle.plugin.com.github.sherter.google-java-format:google-java-format-gradle-plugin:0.9"
     }
 }
@@ -65,11 +65,16 @@ compileJava {
     targetCompatibility = '1.8'
 }
 
+compileTestJava {
+    sourceCompatibility = '1.8'
+    targetCompatibility = '1.8'
+}
+
 intellij {
     version = ideaVersion
     pluginName 'eo-intellij'
     downloadSources true
-    updateSinceUntilBuild false
+    updateSinceUntilBuild true  //
 }
 
 
@@ -96,11 +101,10 @@ dependencies {
         exclude group:'com.ibm.icu', module:'icu4j'
     }
     implementation 'org.antlr:antlr4-intellij-adaptor:0.1'
-    implementation "com.qulice:qulice-gradle-plugin:0.18.19"
+    // implementation "com.qulice:qulice-gradle-plugin:0.18.19"
     testCompile group: 'junit', name: 'junit', version: '4.11'
 }
 
 
 sourceCompatibility = JavaVersion.VERSION_1_9
 targetCompatibility = JavaVersion.VERSION_1_9
-

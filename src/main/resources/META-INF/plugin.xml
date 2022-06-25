@@ -36,6 +36,12 @@
 	</actions>
 	<extensions defaultExtensionNs="com.intellij">
 		<fileTypeFactory implementation="org.eolang.jetbrains.EOFileTypeFactory"/>
+		<!--<fileType
+				name="EO File"
+				implementationClass="org.intellij.sdk.language.EOFileType"
+				fieldName="INSTANCE"
+				language="EO"
+				extensions="eo"/>-->
 		<lang.syntaxHighlighterFactory language='EO' implementationClass="org.eolang.jetbrains.EOSyntaxHighlighterFactory"/>
 
 		<lang.parserDefinition language="EO" implementationClass="org.eolang.jetbrains.EOParserDefinition"/>
