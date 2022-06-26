@@ -1,6 +1,6 @@
 buildscript {
     repositories {
-        jcenter()
+        // jcenter()
         mavenCentral()
         gradlePluginPortal()
         flatDir dirs:  "build/libs"
@@ -18,7 +18,10 @@ plugins {
 }
 
 wrapper {
-    gradleVersion = '5.2.1'
+    doLast {
+        println "WRAPPER"
+    }
+    gradleVersion = '5.2.1'  // 6.3
 }
 
 group 'antlr'
@@ -71,10 +74,10 @@ compileTestJava {
 }
 
 intellij {
-    version = ideaVersion
+    version ideaVersion
     pluginName 'eo-intellij'
     downloadSources true
-    updateSinceUntilBuild true  //
+    updateSinceUntilBuild false  //
 }
 
 
@@ -92,7 +95,7 @@ verifyPlugin {
 }
 
 repositories {
-    jcenter()
+    // jcenter()
     mavenCentral()
 }
 

@@ -58,7 +58,7 @@ The easiest and most automatically way to publish plugin from terminal is descri
 We use **[rultor](https://github.com/yegor256/rultor)** for publishing (see .rultor.yml)
 
 ## How it looks
-![example.png](src/main/resources/example.png)
+<img src="https://i.ibb.co/4RGCqKD/2022-06-24-16-47-36.png"/>
 
 You may set your own highlighting colors
 

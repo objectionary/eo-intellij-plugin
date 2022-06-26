@@ -36,19 +36,13 @@
 	</actions>
 	<extensions defaultExtensionNs="com.intellij">
 		<fileTypeFactory implementation="org.eolang.jetbrains.EOFileTypeFactory"/>
-		<!--<fileType
-				name="EO File"
-				implementationClass="org.intellij.sdk.language.EOFileType"
-				fieldName="INSTANCE"
-				language="EO"
-				extensions="eo"/>-->
 		<lang.syntaxHighlighterFactory language='EO' implementationClass="org.eolang.jetbrains.EOSyntaxHighlighterFactory"/>
 
 		<lang.parserDefinition language="EO" implementationClass="org.eolang.jetbrains.EOParserDefinition"/>
 
 		<lang.psiStructureViewFactory language="EO" implementationClass="org.eolang.jetbrains.structview.EOStructureViewFactory"/>
 
-		<lang.substitutor language="EO" implementationClass="org.eolang.jetbrains.psi.EOSubstitutor" order="first"/>
+		<!-- <lang.substitutor language="EO" implementationClass="org.eolang.jetbrains.psi.EOSubstitutor" order="first"/> -->
 		<colorSettingsPage implementation="org.eolang.jetbrains.EOColorSettingsPage"/>
 
 		<externalAnnotator language="EO" implementationClass="org.eolang.jetbrains.EOExternalAnnotator"/>
