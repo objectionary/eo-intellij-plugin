@@ -2,7 +2,7 @@
 	<id>org.antlr.jetbrains.eo</id>
 	<name>EO</name>
 	<version>0.3</version>
-	<vendor email="stepa.strunkov@gmail.com">EO developing</vendor>
+	<vendor email="stepa.strunkov@gmail.com">objectionary</vendor>
 
 	<description><![CDATA[
   	Simple plugin for EO language with syntax highlighter.
