@@ -21,7 +21,7 @@ wrapper {
     doLast {
         println "WRAPPER"
     }
-    gradleVersion = '6.3'  // 6.3
+    gradleVersion = '5.2.1'  // 6.3
 }
 
 group 'antlr'
