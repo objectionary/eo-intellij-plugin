@@ -11,7 +11,8 @@
 
 This is Intellij plugin for [EO](https://github.com/objectionary/eo).
 
-Installing is possible from IntelliJ IDEA and other JetBrains family products, such
+Installing is possible from [IntelliJ IDEA](https://www.jetbrains.com/idea/)
+and other [JetBrains](https://www.jetbrains.com/) family products, such
 as PyCharm, CLion, and so on. Just type "EO" in plugins search tab and you will find it.
 
 You may also install it from [its page](https://plugins.jetbrains.com/plugin/19256-eo/versions)
