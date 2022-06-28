@@ -25,7 +25,7 @@ provided they don't violate our quality standards. To avoid frustration,
 before sending us your pull request please run full Maven build:
 
 ```bash
-$ gradle
+$ gradle build
 ```
 
 You will need [Gradle](https://gradle.org/guides/) and Java 14+ installed.
