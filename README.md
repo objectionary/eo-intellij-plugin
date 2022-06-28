@@ -49,6 +49,4 @@ We use [Rultor](https://github.com/yegor256/rultor) for publishing (see `.rultor
 
 Plugin is implemented in Java and ANTLR4 grammar.
 
-[ANTLR4 adapter](https://github.com/antlr/antlr4-intellij-adaptor) is used
-<<<<<<< HEAD
-for generating `EOLexer` and `EOParser` classes.
+[ANTLR4 adapter](https://github.com/antlr/antlr4-intellij-adaptor) is used for generating `EOLexer` and `EOParser` classes.
