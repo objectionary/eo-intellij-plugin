@@ -5,5 +5,9 @@ assets:
 release:
   script: |
     source ../tokenscript.txt
+    curl -s "https://get.sdkman.io" | bash
+    source "$HOME/.sdkman/bin/sdkman-init.sh"
+    sdk version
+    sdk install gradle 7.4.2
     gradle wrapper
-    ./gradlew publishPlugin --console=plain | perl -pe 's/\x1b\[[0-9;]*[mG]//g'
+    gradle publishPlugin --console=plain | perl -pe 's/\x1b\[[0-9;]*[mG]//g'

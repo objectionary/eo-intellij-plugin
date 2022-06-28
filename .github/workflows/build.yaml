@@ -24,6 +24,6 @@ jobs:
         with:
           java-version: 14
       - name: Build with Gradle
-        run: gradle wrapper; ./gradlew build
+        run: gradle wrapper; gradle build
         env: ${{ matrix.env }}
 
