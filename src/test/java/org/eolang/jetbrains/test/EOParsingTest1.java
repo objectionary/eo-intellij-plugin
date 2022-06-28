@@ -3,6 +3,7 @@ package org.eolang.jetbrains.test;
 import com.intellij.testFramework.ParsingTestCase;
 import org.eolang.jetbrains.EOParserDefinition;
 
+
 public class EOParsingTest1 extends ParsingTestCase {
 
   public EOParsingTest1() {

@@ -3,9 +3,9 @@ package org.eolang.jetbrains.test;
 import com.intellij.testFramework.ParsingTestCase;
 import org.eolang.jetbrains.EOParserDefinition;
 
-public class EOParsingTestСomments extends ParsingTestCase {
+public class EOParsingTestComments extends ParsingTestCase {
 
-  public EOParsingTestСomments() {
+  public EOParsingTestComments() {
     super("", "eo", new EOParserDefinition());
   }
 

@@ -1,9 +1,9 @@
 buildscript {
     repositories {
-        // jcenter()
         mavenCentral()
-        gradlePluginPortal()
-        flatDir dirs:  "build/libs"
+        repositories {
+            maven { url "https://maven.pkg.jetbrains.space/public/p/kotlinx-html/maven" }
+        }
     }
     dependencies {
         // qulice doesn't generate gradle task
@@ -13,15 +13,17 @@ buildscript {
 
 
 plugins {
-    id "org.jetbrains.intellij" version "0.4.2"
-    id "com.dorongold.task-tree" version "1.5"
+    id "org.jetbrains.intellij" version "1.5.3"
+    // id "org.jetbrains.intellij" version "0.4.2"
+    // id "com.dorongold.task-tree" version "1.5"
 }
 
 wrapper {
     doLast {
         println "WRAPPER"
     }
-    gradleVersion = '5.2.1'  // 6.3
+    // gradleVersion = '5.2.1'  // 6.3
+    gradleVersion = '7.4.2'
 }
 
 group 'antlr'
@@ -74,16 +76,16 @@ compileTestJava {
 }
 
 intellij {
-    version ideaVersion
-    pluginName 'eo-intellij'
-    downloadSources true
-    updateSinceUntilBuild false  //
+    version = ideaVersion
+    pluginName = 'eo-intellij'
+    downloadSources = false
+    updateSinceUntilBuild = true //
 }
 
 
 publishPlugin {
     dependsOn(test)
-    token System.getenv('MARKETPLACE_TOKEN')
+    token = System.getenv('MARKETPLACE_TOKEN')
 }
 
 generateGrammarSource {
@@ -95,7 +97,6 @@ verifyPlugin {
 }
 
 repositories {
-    // jcenter()
     mavenCentral()
 }
 
@@ -105,7 +106,14 @@ dependencies {
     }
     implementation 'org.antlr:antlr4-intellij-adaptor:0.1'
     // implementation "com.qulice:qulice-gradle-plugin:0.18.19"
-    testCompile group: 'junit', name: 'junit', version: '4.11'
+    // testCompile group: 'junit', name: 'junit', version: '4.11'
+    testImplementation group: 'junit', name: 'junit', version: '4.11'
+    //testImplementation 'org.hamcrest:hamcrest:2.2'
+    //testImplementation 'org.hamcrest:hamcrest-library:2.2'
+    /*testImplementation group: 'org.hamcrest', name: 'hamcrest-core', version: '1.3'
+    testImplementation group: 'junit', name: 'junit-dep', version: '4.10'
+    testImplementation group: 'org.hamcrest', name: 'hamcrest-library', version: '1.3'
+    testImplementation group: 'org.mockito', name: 'mockito-core', version: '1.9.+'*/
 }
 
 
