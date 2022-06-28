@@ -18,6 +18,12 @@ plugins {
     // id "com.dorongold.task-tree" version "1.5"
 }
 
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(14)
+    }
+}
+
 wrapper {
     doLast {
         println "WRAPPER"

@@ -5,4 +5,5 @@ assets:
 release:
   script: |
     source ../tokenscript.txt
+    gradle wrapper
     ./gradlew publishPlugin --console=plain | perl -pe 's/\x1b\[[0-9;]*[mG]//g'
