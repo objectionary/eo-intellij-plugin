@@ -13,11 +13,12 @@ import org.jetbrains.annotations.Nullable;
 public class EOColorSettingsPage implements ColorSettingsPage {
   private static final AttributesDescriptor[] DESCRIPTORS =
     new AttributesDescriptor[] {
-      new AttributesDescriptor("CONSTANTS", EOSyntaxHighlighter.CONST),
-      new AttributesDescriptor("COMMENTS", EOSyntaxHighlighter.COMMENT),
-      new AttributesDescriptor("NAMES", EOSyntaxHighlighter.NAME),
-      new AttributesDescriptor("STRING", EOSyntaxHighlighter.STRING),
-      new AttributesDescriptor("METAS", EOSyntaxHighlighter.META)
+      new AttributesDescriptor("Data", EOSyntaxHighlighter.CONST),
+      new AttributesDescriptor("Keywords", EOSyntaxHighlighter.COLON),
+      new AttributesDescriptor("Comments", EOSyntaxHighlighter.COMMENT),
+      new AttributesDescriptor("Identifiers", EOSyntaxHighlighter.NAME),
+      new AttributesDescriptor("Strings", EOSyntaxHighlighter.STRING),
+      new AttributesDescriptor("Metas", EOSyntaxHighlighter.META)
     };
 
   @Nullable

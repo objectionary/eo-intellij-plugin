@@ -1,16 +1,7 @@
-# Compiled class file
 *.class
-
-# Log file
 *.log
-
-# BlueJ files
 *.ctxt
-
-# Mobile Tools for Java (J2ME)
 .mtj.tmp/
-
-# Package Files #
 *.jar
 *.war
 *.nar
@@ -18,9 +9,7 @@
 *.zip
 *.tar.gz
 *.rar
-# ANTLR4
 *.tokens
-
 target/
 /build/
 /.gradle/
@@ -30,4 +19,6 @@ target/
 src/main/gen/
 src/main/java/org/eolang/jetbrains/parser/
 src/main/antlr/org/jetbrains/eolang/parser/EO.g4
-
+gradle/
+gradlew
+gradlew.bat
