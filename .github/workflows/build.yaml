@@ -1,8 +1,8 @@
 # This workflow will build a Java project with Gradle
 
 name: Java CI
-
-on: [push, pull_request]
+on:
+  [push, pull_request]
 
 jobs:
   build:
