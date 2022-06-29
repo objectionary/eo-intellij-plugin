@@ -19,41 +19,39 @@ public class EOSyntaxHighlighter extends SyntaxHighlighterBase {
   public static final TextAttributesKey COMMENT =
       createTextAttributesKey("EO_COMMENT", DefaultLanguageHighlighterColors.LINE_COMMENT);
   public static final TextAttributesKey BOOL =
-      createTextAttributesKey("EO_BOOL", DefaultLanguageHighlighterColors.BRACES);
+      createTextAttributesKey("EO_BOOL", DefaultLanguageHighlighterColors.CONSTANT);
   public static final TextAttributesKey META =
-      createTextAttributesKey("EO_META", DefaultLanguageHighlighterColors.FUNCTION_DECLARATION);
-  public static final TextAttributesKey REGEX =
-      createTextAttributesKey("EO_REGEX", DefaultLanguageHighlighterColors.CONSTANT);
+      createTextAttributesKey("EO_META", DefaultLanguageHighlighterColors.METADATA);
   public static final TextAttributesKey STAR =
-      createTextAttributesKey("EO_STAR", DefaultLanguageHighlighterColors.CONSTANT);
+      createTextAttributesKey("EO_STAR", DefaultLanguageHighlighterColors.KEYWORD);
   public static final TextAttributesKey DOTS =
-      createTextAttributesKey("EO_DOTS", DefaultLanguageHighlighterColors.CONSTANT);
+      createTextAttributesKey("EO_DOTS", DefaultLanguageHighlighterColors.KEYWORD);
   public static final TextAttributesKey CONST =
-      createTextAttributesKey("EO_CONST", DefaultLanguageHighlighterColors.CONSTANT);
+      createTextAttributesKey("EO_CONST", DefaultLanguageHighlighterColors.KEYWORD);
   public static final TextAttributesKey SLASH =
-      createTextAttributesKey("EO_SLASH", DefaultLanguageHighlighterColors.CLASS_NAME);
+      createTextAttributesKey("EO_SLASH", DefaultLanguageHighlighterColors.KEYWORD);
   public static final TextAttributesKey COLON =
-      createTextAttributesKey("EO_COLON", DefaultLanguageHighlighterColors.CLASS_NAME);
+      createTextAttributesKey("EO_COLON", DefaultLanguageHighlighterColors.KEYWORD);
   public static final TextAttributesKey COPY =
-      createTextAttributesKey("EO_COPY", DefaultLanguageHighlighterColors.CLASS_NAME);
+      createTextAttributesKey("EO_COPY", DefaultLanguageHighlighterColors.KEYWORD);
   public static final TextAttributesKey ARROW =
-      createTextAttributesKey("EO_ARROW", DefaultLanguageHighlighterColors.CLASS_NAME);
+      createTextAttributesKey("EO_ARROW", DefaultLanguageHighlighterColors.KEYWORD);
   public static final TextAttributesKey VERTEX =
-      createTextAttributesKey("EO_VERTEX", DefaultLanguageHighlighterColors.CLASS_NAME);
+      createTextAttributesKey("EO_VERTEX", DefaultLanguageHighlighterColors.KEYWORD);
   public static final TextAttributesKey SIGMA =
-      createTextAttributesKey("EO_SIGMA", DefaultLanguageHighlighterColors.CONSTANT);
+      createTextAttributesKey("EO_SIGMA", DefaultLanguageHighlighterColors.KEYWORD);
   public static final TextAttributesKey XI =
-      createTextAttributesKey("EO_XI", DefaultLanguageHighlighterColors.CLASS_NAME);
+      createTextAttributesKey("EO_XI", DefaultLanguageHighlighterColors.KEYWORD);
   public static final TextAttributesKey PLUS =
-      createTextAttributesKey("EO_PLUS", DefaultLanguageHighlighterColors.CLASS_NAME);
+      createTextAttributesKey("EO_PLUS", DefaultLanguageHighlighterColors.KEYWORD);
   public static final TextAttributesKey MINUS =
-      createTextAttributesKey("EO_MINUS", DefaultLanguageHighlighterColors.CLASS_NAME);
+      createTextAttributesKey("EO_MINUS", DefaultLanguageHighlighterColors.KEYWORD);
   public static final TextAttributesKey QUESTION =
-      createTextAttributesKey("EO_QUESTION", DefaultLanguageHighlighterColors.CONSTANT);
+      createTextAttributesKey("EO_QUESTION", DefaultLanguageHighlighterColors.KEYWORD);
   public static final TextAttributesKey SPACE =
-      createTextAttributesKey("EO_SPACE", DefaultLanguageHighlighterColors.CLASS_NAME);
+      createTextAttributesKey("EO_SPACE", DefaultLanguageHighlighterColors.TEMPLATE_LANGUAGE_COLOR);
   public static final TextAttributesKey DOT =
-      createTextAttributesKey("EO_DOT", DefaultLanguageHighlighterColors.CONSTANT);
+      createTextAttributesKey("EO_DOT", DefaultLanguageHighlighterColors.DOT);
   public static final TextAttributesKey LSQ =
       createTextAttributesKey("EO_LSQ", DefaultLanguageHighlighterColors.BRACES);
   public static final TextAttributesKey RSQ =
@@ -63,17 +61,15 @@ public class EOSyntaxHighlighter extends SyntaxHighlighterBase {
   public static final TextAttributesKey RB =
       createTextAttributesKey("EO_RB", DefaultLanguageHighlighterColors.BRACES);
   public static final TextAttributesKey AT =
-      createTextAttributesKey("EO_AT", DefaultLanguageHighlighterColors.CONSTANT);
+      createTextAttributesKey("EO_AT", DefaultLanguageHighlighterColors.KEYWORD);
   public static final TextAttributesKey RHO =
-      createTextAttributesKey("EO_RHO", DefaultLanguageHighlighterColors.CONSTANT);
+      createTextAttributesKey("EO_RHO", DefaultLanguageHighlighterColors.KEYWORD);
   public static final TextAttributesKey HASH =
-      createTextAttributesKey("EO_HASH", DefaultLanguageHighlighterColors.CONSTANT);
+      createTextAttributesKey("EO_HASH", DefaultLanguageHighlighterColors.LINE_COMMENT);
   public static final TextAttributesKey EOL =
-      createTextAttributesKey("EO_EOL", DefaultLanguageHighlighterColors.CONSTANT);
+      createTextAttributesKey("EO_EOL", DefaultLanguageHighlighterColors.TEMPLATE_LANGUAGE_COLOR);
   public static final TextAttributesKey BYTES =
       createTextAttributesKey("EO_BYTES", DefaultLanguageHighlighterColors.CONSTANT);
-  public static final TextAttributesKey CHAR =
-      createTextAttributesKey("EO_CHAR", DefaultLanguageHighlighterColors.CONSTANT);
   public static final TextAttributesKey STRING =
       createTextAttributesKey("EO_STRING", DefaultLanguageHighlighterColors.STRING);
   public static final TextAttributesKey FLOAT =
@@ -81,7 +77,7 @@ public class EOSyntaxHighlighter extends SyntaxHighlighterBase {
   public static final TextAttributesKey HEX =
       createTextAttributesKey("EO_HEX", DefaultLanguageHighlighterColors.CONSTANT);
   public static final TextAttributesKey NAME =
-      createTextAttributesKey("EO_NAME", DefaultLanguageHighlighterColors.CLASS_NAME);
+      createTextAttributesKey("EO_NAME", DefaultLanguageHighlighterColors.IDENTIFIER);
   public static final TextAttributesKey TEXT =
       createTextAttributesKey("EO_TEXT", DefaultLanguageHighlighterColors.STRING);
   public static final TextAttributesKey BAD_CHARACTER =
