@@ -23,7 +23,7 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 -->
 <idea-plugin>
-  <id>org.eolang.jetbrains</id>
+  <id>org.antlr.jetbrains.eo</id> <!-- org.eolang.jetbrains -->
   <name>EO</name>
   <version>0.0.0</version>
   <vendor email="team@eolang.org">eolang.org</vendor>
