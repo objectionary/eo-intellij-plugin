@@ -13,7 +13,7 @@ This is Intellij plugin for [EO](https://github.com/objectionary/eo).
 
 Installing is possible from [IntelliJ IDEA](https://www.jetbrains.com/idea/)
 and other [JetBrains](https://www.jetbrains.com/) family products, such
-as PyCharm, CLion, and so on. Just type "EO" in plugins search tab and you will find it.
+as [PyCharm](https://www.jetbrains.com/ru-ru/pycharm/), [CLion](https://www.jetbrains.com/ru-ru/clion/), and so on. Just type "EO" in plugins search tab and you will find it.
 
 You may also install it from [its page](https://plugins.jetbrains.com/plugin/19256-eo/versions)
 at JetBrains Marketplace.
@@ -23,7 +23,7 @@ at JetBrains Marketplace.
 Fork repository, make changes, send us a [pull request](https://www.yegor256.com/2014/04/15/github-guidelines.html).
 We will review your changes and apply them to the `master` branch shortly,
 provided they don't violate our quality standards. To avoid frustration,
-before sending us your pull request please run full Maven build:
+before sending us your pull request please run full gradle build:
 
 ```bash
 $ gradle build
