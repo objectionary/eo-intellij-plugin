@@ -5,6 +5,8 @@ assets:
 release:
   script: |
     source ../tokenscript.txt
+    sed -i -e "s/0.0.0/${tag}/" src/main/resources/META-INF/plugin.xml
+    sed -i -e "s/0.0.0/${tag}/" gradle.properties
     curl -s "https://get.sdkman.io" | bash
     source "$HOME/.sdkman/bin/sdkman-init.sh"
     sdk version
