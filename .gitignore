@@ -21,3 +21,4 @@ src/main/java/org/eolang/jetbrains/parser/
 src/main/antlr/org/jetbrains/eolang/parser/EO.g4
 gradle/
 gradlew
+gradlew.bat
