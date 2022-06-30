@@ -35,6 +35,7 @@ version pluginVersion
 apply plugin: 'java'
 apply plugin: 'org.jetbrains.intellij'
 apply plugin: 'antlr'
+apply plugin: 'jacoco'
 
 
 task getGrammar {
@@ -64,6 +65,20 @@ task getGrammar {
     }
 }
 
+task codeCoverageReport(type: JacocoReport) {
+    executionData fileTree(project.rootDir.absolutePath).include("**/build/jacoco/*.exec")
+
+    subprojects.each {
+        sourceSets it.sourceSets.main
+    }
+
+    reports {
+        xml.enabled true
+        xml.destination file("${buildDir}/reports/jacoco/report.xml")
+        html.enabled false
+        csv.enabled false
+    }
+}
 
 compileJava {
     sourceCompatibility = '1.8'
