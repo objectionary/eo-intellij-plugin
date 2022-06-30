@@ -66,17 +66,21 @@ task getGrammar {
 }
 
 task codeCoverageReport(type: JacocoReport) {
-    executionData fileTree(project.rootDir.absolutePath).include("**/build/jacoco/*.exec")
+    doLast {
+        executionData fileTree(project.rootDir.absolutePath).include("**/build/jacoco/*.exec")
 
-    subprojects.each {
-        sourceSets it.sourceSets.main
-    }
+        subprojects.each {
+            sourceSets it.sourceSets.main
+        }
+        // test.useTestNG()
 
-    reports {
-        xml.enabled true
-        xml.destination file("${buildDir}/reports/jacoco/report.xml")
-        html.enabled false
-        csv.enabled false
+        reports {
+            xml.enabled true
+            xml.destination file("**/build/reports/jacoco/report.xml")
+            // xml.destination file("${buildDir}/reports/jacoco/report.xml")
+            html.enabled false
+            csv.enabled false
+        }
     }
 }
 
