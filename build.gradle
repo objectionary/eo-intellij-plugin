@@ -68,15 +68,14 @@ task getGrammar {
 task codeCoverageReport(type: JacocoReport) {
     doLast {
         executionData fileTree(project.rootDir.absolutePath).include("**/build/jacoco/*.exec")
-
+        executionData fileTree(project.rootDir.absolutePath).include("**/build/jacoco/report.xml")
         subprojects.each {
             sourceSets it.sourceSets.main
         }
-        // test.useTestNG()
 
         reports {
             xml.enabled true
-            xml.destination file("**/build/reports/jacoco/report.xml")
+            xml.destination file("**/build/jacoco/report.xml")   // doesn't move reports here after test
             // xml.destination file("${buildDir}/reports/jacoco/report.xml")
             html.enabled false
             csv.enabled false
