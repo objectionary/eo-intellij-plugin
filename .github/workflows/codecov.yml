@@ -7,4 +7,4 @@ jobs:
       - uses: actions/checkout@master
       - uses: codecov/codecov-action@v3
         with:
-          verbose: true
+          verbose: false
