@@ -11,5 +11,8 @@ jobs:
           java-version: 14
       - name: setup
         run: gradle wrapper; gradle build; gradle jacocoTestReport; bash <(curl -s https://codecov.io/bash) #; bash <(curl -s https://codecov.io/bash)
-      # - name: Codecov
-      #   uses: codecov/codecov-action@v2
+      - name: Codecov
+        uses: codecov/codecov-action@v2
+        with:
+          file: build/reports/jacoco/report.xml
+          fail_ci_if_error: true
