@@ -65,21 +65,16 @@ task getGrammar {
     }
 }
 
-task codeCoverageReport(type: JacocoReport) {
-    doLast {
-        executionData fileTree(project.rootDir.absolutePath).include("**/build/jacoco/*.exec")
-        executionData fileTree(project.rootDir.absolutePath).include("**/build/jacoco/report.xml")
-        subprojects.each {
-            sourceSets it.sourceSets.main
-        }
+jacoco {
+    toolVersion = "0.8.7"
+}
 
-        reports {
-            xml.enabled true
-            xml.destination file("**/build/jacoco/report.xml")   // doesn't move reports here after test
-            // xml.destination file("${buildDir}/reports/jacoco/report.xml")
-            html.enabled false
-            csv.enabled false
-        }
+jacocoTestReport {
+    dependsOn test // tests are required to run before generating the report
+    reports {
+        xml.required = false
+        csv.required = false
+        html.outputLocation = layout.buildDirectory.dir('jacoco')
     }
 }
 
