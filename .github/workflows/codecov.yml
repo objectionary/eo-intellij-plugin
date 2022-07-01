@@ -10,6 +10,6 @@ jobs:
         with:
           java-version: 14
       - name: setup
-        run: gradle wrapper; gradle build; jacocoTestReport #; bash <(curl -s https://codecov.io/bash)
+        run: gradle wrapper; gradle build; gradle jacocoTestReport #; bash <(curl -s https://codecov.io/bash)
       - name: Codecov
         uses: codecov/codecov-action@v2
