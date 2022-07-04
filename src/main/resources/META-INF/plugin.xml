@@ -23,36 +23,36 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 -->
 <idea-plugin>
-  <id>org.antlr.jetbrains.eo</id> <!-- org.eolang.jetbrains -->
-  <name>EO</name>
-  <version>0.0.0</version>
-  <vendor email="team@eolang.org">eolang.org</vendor>
-  <description><![CDATA[
-  	Simple plugin for EO language with syntax highlighter.
-  	Just turn plugin on. It will show icons near .eo files and
-  	highlight your code (comments, names, constants, etc). You may
-  	set custom colors in preferences tab
+    <id>org.eolang</id> <!-- org.eolang.jetbrains -->
+    <name>EO</name>
+    <version>0.0.0</version>
+    <vendor email="team@eolang.org">eolang.org</vendor>
+    <description><![CDATA[
+    Simple plugin for EO language with syntax highlighter.
+    Just turn plugin on. It will show icons near .eo files and
+    highlight your code (comments, names, constants, etc). You may
+    set custom colors in preferences tab
     ]]></description>
-  <change-notes>bug fixes</change-notes>
-  <idea-version since-build="182"/>
-  <depends>com.intellij.modules.lang</depends>
-  <application-components>
-	</application-components>
-  <project-components>
-    <component>
-      <implementation-class>org.eolang.jetbrains.EOPluginController</implementation-class>
-    </component>
-  </project-components>
-  <actions>
-	</actions>
-  <extensions defaultExtensionNs="com.intellij">
-    <fileTypeFactory implementation="org.eolang.jetbrains.EOFileTypeFactory"/>
-    <lang.syntaxHighlighterFactory language="EO" implementationClass="org.eolang.jetbrains.EOSyntaxHighlighterFactory"/>
-    <lang.parserDefinition language="EO" implementationClass="org.eolang.jetbrains.EOParserDefinition"/>
-    <lang.psiStructureViewFactory language="EO" implementationClass="org.eolang.jetbrains.structview.EOStructureViewFactory"/>
-    <colorSettingsPage implementation="org.eolang.jetbrains.EOColorSettingsPage"/>
-    <externalAnnotator language="EO" implementationClass="org.eolang.jetbrains.EOExternalAnnotator"/>
-    <lang.findUsagesProvider language="EO" implementationClass="org.eolang.jetbrains.EOFindUsagesProvider"/>
-    <completion.contributor language="EO" implementationClass="org.eolang.jetbrains.EOCompletionContributor"/>
-  </extensions>
+    <change-notes>bug fixes</change-notes>
+    <idea-version since-build="182"/>
+    <depends>com.intellij.modules.lang</depends>
+    <application-components>
+    </application-components>
+    <project-components>
+        <component>
+            <implementation-class>org.eolang.jetbrains.EOPluginController</implementation-class>
+        </component>
+    </project-components>
+    <actions>
+    </actions>
+    <extensions defaultExtensionNs="com.intellij">
+        <fileTypeFactory implementation="org.eolang.jetbrains.EOFileTypeFactory"/>
+        <lang.syntaxHighlighterFactory language="EO" implementationClass="org.eolang.jetbrains.EOSyntaxHighlighterFactory"/>
+        <lang.parserDefinition language="EO" implementationClass="org.eolang.jetbrains.EOParserDefinition"/>
+        <lang.psiStructureViewFactory language="EO" implementationClass="org.eolang.jetbrains.structview.EOStructureViewFactory"/>
+        <colorSettingsPage implementation="org.eolang.jetbrains.EOColorSettingsPage"/>
+        <externalAnnotator language="EO" implementationClass="org.eolang.jetbrains.EOExternalAnnotator"/>
+        <!-- <lang.findUsagesProvider language="EO" implementationClass="org.eolang.jetbrains.EOFindUsagesProvider"/> -->
+        <!-- <completion.contributor language="EO" implementationClass="org.eolang.jetbrains.EOCompletionContributor"/> -->
+    </extensions>
 </idea-plugin>

@@ -6,14 +6,13 @@ buildscript {
         }
     }
     dependencies {
-        // qulice doesn't generate gradle task
-        // classpath "gradle.plugin.com.github.sherter.google-java-format:google-java-format-gradle-plugin:0.9"
     }
 }
 
 
 plugins {
     id "org.jetbrains.intellij" version "1.5.3"
+    // id "com.github.dkorotych.gradle-maven-exec" version "2.2.1"
 }
 
 java {
@@ -26,6 +25,7 @@ wrapper {
     doLast {
         println "WRAPPER"
     }
+    // gradleVersion = '6.3.0'
     gradleVersion = '7.4.2'
 }
 
@@ -36,6 +36,7 @@ apply plugin: 'java'
 apply plugin: 'org.jetbrains.intellij'
 apply plugin: 'antlr'
 apply plugin: 'jacoco'
+
 
 
 task getGrammar {
@@ -65,6 +66,12 @@ task getGrammar {
     }
 }
 
+tasks.register('hello') {
+    doLast {
+        ant.echo('hello from Ant')
+    }
+}
+
 jacoco {
     toolVersion = "0.8.7"
 }
@@ -75,10 +82,24 @@ jacocoTestReport {
         html.required = false
         xml.required = true
         csv.required = false
-        // xml.outputLocation = layout.buildDirectory.dir('jacoco')
         xml.destination file("${buildDir}/reports/jacoco/report.xml")
     }
 }
+
+task qulice (type: Exec) {
+    commandLine 'mvn', 'clean install -Pqulice --errors -Dstyle.color=never'
+}
+/*task qulice(type: MavenExec) {
+    goals 'check'
+    options {
+        license = file("LICENSE.txt")
+        define = [
+                'groupId'   : 'com.qulice',
+                'artifactId': 'qulice-maven-plugin'
+        ]
+    }
+}*/
+
 
 compileJava {
     sourceCompatibility = '1.8'
@@ -120,7 +141,7 @@ dependencies {
         exclude group:'com.ibm.icu', module:'icu4j'
     }
     implementation 'org.antlr:antlr4-intellij-adaptor:0.1'
-    // implementation "com.qulice:qulice-gradle-plugin:0.18.19"
+    // implementation "com.qulice:qulice-maven-plugin"
     testImplementation group: 'junit', name: 'junit', version: '4.11'
 }
 

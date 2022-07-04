@@ -1,3 +1,27 @@
+/*
+ * The MIT License (MIT)
+ *
+ * Copyright (c) 2021-2022 Stepan Strunkov
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included
+ * in all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ * SOFTWARE.
+ */
+
 package org.eolang.jetbrains;
 
 import com.intellij.lang.annotation.AnnotationHolder;
@@ -17,45 +41,45 @@ import org.jetbrains.annotations.Nullable;
  * of band.
  */
 public class EOExternalAnnotator
-    extends ExternalAnnotator<PsiFile, List<EOExternalAnnotator.Issue>> {
-  // NOTE: can't use instance vars as only 1 instance
+        extends ExternalAnnotator<PsiFile, List<EOExternalAnnotator.Issue>> {
+    // NOTE: can't use instance vars as only 1 instance
 
-  public static class Issue {
-    String msg;
-    PsiElement offendingNode;
+    public static class Issue {
+        final String msg;
+        final PsiElement offendingNode;
 
-    public Issue(String msg, PsiElement node) {
-      this.msg = msg;
-      offendingNode = node;
+        public Issue(final String msg, final PsiElement node) {
+            this.msg = msg;
+            this.offendingNode = node;
+        }
     }
-  }
 
-  /** Called first; in our case, just return file and do nothing */
-  @Override
-  @Nullable
-  public PsiFile collectInformation(@NotNull PsiFile file) {
-    return file;
-  }
-
-  /**
-   * Called 2nd; look for trouble in file and return list of issues.
-   *
-   * <p>For most custom languages, you would not reimplement your semantic analyzer using PSI trees.
-   * Instead, here is where you would call out to your custom languages compiler or interpreter to
-   * get error messages or other bits of information you'd like to annotate the document with.
-   */
-  @Nullable
-  @Override
-  public List<Issue> doAnnotate(final PsiFile file) {
-    return new ArrayList<>();
-  }
-
-  /** Called 3rd to actually annotate the editor window */
-  @Override
-  public void apply(@NotNull PsiFile file, List<Issue> issues, @NotNull AnnotationHolder holder) {
-    for (Issue issue : issues) {
-      TextRange range = issue.offendingNode.getTextRange();
-      holder.createErrorAnnotation(range, issue.msg);
+    /** Called first; in our case, just return file and do nothing */
+    @Override
+    @Nullable
+    public PsiFile collectInformation(@NotNull final PsiFile file) {
+        return file;
     }
-  }
+
+    /**
+     * Called 2nd; look for trouble in file and return list of issues.
+     *
+     * <p>For most custom languages, you would not reimplement your semantic analyzer using PSI trees.
+     * Instead, here is where you would call out to your custom languages compiler or interpreter to
+     * get error messages or other bits of information you'd like to annotate the document with.
+     */
+    @Nullable
+    @Override
+    public List<Issue> doAnnotate(final PsiFile file) {
+        return new ArrayList<>();
+    }
+
+    /** Called 3rd to actually annotate the editor window */
+    @Override
+    public void apply(@NotNull final PsiFile file, final List<Issue> issues, @NotNull final AnnotationHolder holder) {
+        for (final Issue issue : issues) {
+            final TextRange range = issue.offendingNode.getTextRange();
+            holder.createErrorAnnotation(range, issue.msg);
+        }
+    }
 }
