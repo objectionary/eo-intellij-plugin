@@ -16,7 +16,7 @@ Installing is possible from [IntelliJ IDEA](https://www.jetbrains.com/idea/)
 and other [JetBrains](https://www.jetbrains.com/) family products, such
 as [PyCharm](https://www.jetbrains.com/ru-ru/pycharm/), [CLion](https://www.jetbrains.com/ru-ru/clion/), and so on. Just type "EO" in plugins search tab and you will find it.
 
-You may also install it from [its page](https://plugins.jetbrains.com/plugin/19256-eo/versions)
+You may also install it from [its page](https://plugins.jetbrains.com/plugin/19460-eo)
 at JetBrains Marketplace.
 
 ## How to Contribute
