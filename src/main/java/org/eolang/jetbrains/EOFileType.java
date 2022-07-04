@@ -29,10 +29,24 @@ import javax.swing.*;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
+/**
+ * Description of *.eo files.
+ * @since 0.0.0
+ */
 public class EOFileType extends LanguageFileType {
+    /**
+     * EO language file extension.
+     */
     public static final String FILE_EXTENSION = "eo";
+
+    /**
+     * Creating instance.
+     */
     public static final EOFileType INSTANCE = new EOFileType();
 
+    /**
+     * Call constructor of super class.
+     */
     protected EOFileType() {
         super(EOLanguage.INSTANCE);
     }

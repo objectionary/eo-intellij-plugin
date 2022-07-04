@@ -66,10 +66,14 @@ public class EOPluginController implements ProjectComponent {
     @Override
     public void initComponent() {
         final FileTypeManager fileTypeManager = FileTypeManager.getInstance();
-        final Runnable r1 = ()->fileTypeManager.removeAssociatedExtension(FileTypes.PLAIN_TEXT, "eo");
-        final Runnable r2 = ()->fileTypeManager.associateExtension(EOFileType.INSTANCE, "eo");
-        WriteCommandAction.runWriteCommandAction(project, r1);
-        WriteCommandAction.runWriteCommandAction(project, r2);
+        final Runnable runnableRemove = () -> fileTypeManager.removeAssociatedExtension(
+                FileTypes.PLAIN_TEXT, "eo"
+        );
+        final Runnable runnableAssociate = () -> fileTypeManager.associateExtension(
+                EOFileType.INSTANCE, "eo"
+        );
+        WriteCommandAction.runWriteCommandAction(project, runnableRemove);
+        WriteCommandAction.runWriteCommandAction(project, runnableAssociate);
     }
 
     @Override

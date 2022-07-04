@@ -31,10 +31,14 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 /**
- * Describing PSIFileRoot
+ * Describing PSIFileRoot.
  * @since 0.0.0
  */
 public class EOPSIFileRoot extends PsiFileBase implements ScopeNode {
+    /**
+     * Definition of PsiFileRoot
+     * @param viewProvider FileViewProvider
+     */
     public EOPSIFileRoot(@NotNull final FileViewProvider viewProvider) {
         super(viewProvider, EOLanguage.INSTANCE);
     }

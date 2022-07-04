@@ -39,46 +39,86 @@ import org.jetbrains.annotations.NotNull;
 
 /**
  * Class for declaration groups of tokens and highlighting colors.
+ * We will highlight all tokens with one of colors below. One group - one color.
  * @since 0.0.0
  */
 
 public class EOSyntaxHighlighter extends SyntaxHighlighterBase {
+    /**
+     * Code below is description of token groups.
+     */
     public static final TextAttributesKey NUMBERS =
         createTextAttributesKey("EO_INT", DefaultLanguageHighlighterColors.CONSTANT);
 
+    /**
+     * Define comments.
+     */
     public static final TextAttributesKey COMMENT =
         createTextAttributesKey("EO_COMMENT", DefaultLanguageHighlighterColors.LINE_COMMENT);
 
+    /**
+     * Define metas.
+     */
     public static final TextAttributesKey META =
         createTextAttributesKey("EO_META", DefaultLanguageHighlighterColors.METADATA);
 
+    /**
+     * Define keyword.
+     */
     public static final TextAttributesKey KEYWORD =
         createTextAttributesKey("EO_STAR", DefaultLanguageHighlighterColors.KEYWORD);
 
+    /**
+     * Define space.
+     */
     public static final TextAttributesKey SPACE =
         createTextAttributesKey("EO_SPACE", DefaultLanguageHighlighterColors.TEMPLATE_LANGUAGE_COLOR);
 
+    /**
+     * Define dot.
+     */
     public static final TextAttributesKey DOT =
         createTextAttributesKey("EO_DOT", DefaultLanguageHighlighterColors.DOT);
 
+    /**
+     * Define braces.
+     */
     public static final TextAttributesKey BRACES =
         createTextAttributesKey("EO_LSQ", DefaultLanguageHighlighterColors.BRACES);
 
+    /**
+     * Define hash.
+     */
     public static final TextAttributesKey HASH =
         createTextAttributesKey("EO_HASH", DefaultLanguageHighlighterColors.LINE_COMMENT);
 
+    /**
+     * Define EOL.
+     */
     public static final TextAttributesKey EOL =
         createTextAttributesKey("EO_EOL", DefaultLanguageHighlighterColors.TEMPLATE_LANGUAGE_COLOR);
 
+    /**
+     * Define string.
+     */
     public static final TextAttributesKey STRING =
         createTextAttributesKey("EO_STRING", DefaultLanguageHighlighterColors.STRING);
 
+    /**
+     * Define name.
+     */
     public static final TextAttributesKey NAME =
         createTextAttributesKey("EO_NAME", DefaultLanguageHighlighterColors.IDENTIFIER);
 
+    /**
+     * Define bad symbol.
+     */
     public static final TextAttributesKey BAD_CHARACTER =
         createTextAttributesKey("EO_BAD_CHARACTER", HighlighterColors.BAD_CHARACTER);
 
+    /**
+     * Define empty key.
+     */
     private static final TextAttributesKey[] EMPTY_KEYS = new TextAttributesKey[0];
 
     @NotNull
@@ -96,7 +136,7 @@ public class EOSyntaxHighlighter extends SyntaxHighlighterBase {
         }
         final TokenIElementType myType = (TokenIElementType) tokenType;
         final int ttype = myType.getANTLRTokenType();
-        TextAttributesKey attrKey;
+        final TextAttributesKey attrKey;
         switch (ttype) {
             case EOLexer.LSQ:
             case EOLexer.RSQ:

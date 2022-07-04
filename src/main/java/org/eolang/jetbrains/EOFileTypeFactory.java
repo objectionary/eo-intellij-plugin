@@ -28,6 +28,10 @@ import com.intellij.openapi.fileTypes.FileTypeConsumer;
 import com.intellij.openapi.fileTypes.FileTypeFactory;
 import org.jetbrains.annotations.NotNull;
 
+/**
+ * Class for definition of FileType.
+ * @since 0.0.0
+ */
 public class EOFileTypeFactory extends FileTypeFactory {
     @Override
     public void createFileTypes(@NotNull final FileTypeConsumer fileTypeConsumer) {

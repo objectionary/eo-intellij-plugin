@@ -49,7 +49,6 @@ public class EOParsingTest1 extends ParsingTestCase {
 
     @Override
     protected final String getTestDataPath() {
-        System.out.println("TEST1\n");
         return "src/test/testData_1";
     }
 

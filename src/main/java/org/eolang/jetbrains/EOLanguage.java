@@ -30,8 +30,10 @@ import com.intellij.lang.Language;
  * Language Definition.
  * @since 0.0.0
  */
-
 public final class EOLanguage extends Language {
+    /**
+     * Creating instance.
+     */
     public static final EOLanguage INSTANCE = new EOLanguage();
 
     /**

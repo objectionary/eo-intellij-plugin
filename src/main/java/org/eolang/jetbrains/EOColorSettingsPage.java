@@ -36,10 +36,10 @@ import org.jetbrains.annotations.Nullable;
 
 /**
  * Class drawing settings page in IDE
+ * @since 0.0.0
  * @see <a href="https://plugins.jetbrains.com/docs/intellij/syntax-highlighter-and-color-settings-page.html">
- *     documentation</a>
+ * documentation</a>
  */
-
 public class EOColorSettingsPage implements ColorSettingsPage {
     private static final AttributesDescriptor[] DESCRIPTORS =
         new AttributesDescriptor[] {
@@ -49,7 +49,7 @@ public class EOColorSettingsPage implements ColorSettingsPage {
             new AttributesDescriptor("Strings", EOSyntaxHighlighter.STRING),
             new AttributesDescriptor("Metas", EOSyntaxHighlighter.META),
             new AttributesDescriptor("Constants", EOSyntaxHighlighter.NUMBERS),
-            new AttributesDescriptor("Braces", EOSyntaxHighlighter.BRACES)
+            new AttributesDescriptor("Braces", EOSyntaxHighlighter.BRACES),
         };
 
     @Nullable
@@ -73,21 +73,21 @@ public class EOColorSettingsPage implements ColorSettingsPage {
     @NotNull
     @Override
     public String getDemoText() {
-        return "+alias org.eolang.io.stdout\n" +
-                "+alias org.eolang.txt.sprintf\n\n" +
-                "# is year leap?\n\n" +
-                "[args...] > main\n" +
-                "  [y] > leap\n" +
-                "    or. > @\n" +
-                "      and.\n" +
-                "        eq. (mod. y 4) 0\n" +
-                "        not. (eq. (mod. y 100) 0)\n" +
-                "      eq. (mod. y 400) 0\n" +
-                "  stdout > @\n" +
-                "    sprintf\n" +
-                "    \"%d is %sa leap year!\"\n" +
-                "    (args.get 0).as-int > year!\n" +
-                "  if. (leap year:y) \"\" \"not \"\n";
+        return "+alias org.eolang.io.stdout\n"
+                + "+alias org.eolang.txt.sprintf\n\n"
+                + "# is year leap?\n\n"
+                + "[args...] > main\n"
+                + "  [y] > leap\n"
+                + "    or. > @\n"
+                + "      and.\n"
+                + "        eq. (mod. y 4) 0\n"
+                + "        not. (eq. (mod. y 100) 0)\n"
+                + "      eq. (mod. y 400) 0\n"
+                + "  stdout > @\n"
+                + "    sprintf\n"
+                + "    \"%d is %sa leap year!\"\n"
+                + "    (args.get 0).as-int > year!\n"
+                + "  if. (leap year:y) \"\" \"not \"\n";
     }
 
     @NotNull

@@ -48,6 +48,9 @@ import org.eolang.jetbrains.parser.EOParser;
 import org.eolang.jetbrains.psi.EOPSIFileRoot;
 import org.jetbrains.annotations.NotNull;
 
+/**
+ * Let's define a parser for EO language
+ */
 public class EOParserDefinition implements ParserDefinition {
     public static final IFileElementType FILE = new IFileElementType(EOLanguage.INSTANCE);
 
@@ -55,9 +58,10 @@ public class EOParserDefinition implements ParserDefinition {
 
     static {
         PSIElementTypeFactory.defineLanguageIElementTypes(
-                EOLanguage.INSTANCE, EOParser.tokenNames, EOParser.ruleNames);
+            EOLanguage.INSTANCE, EOParser.tokenNames, EOParser.ruleNames
+        );
         final List<TokenIElementType> tokenIElementTypes =
-                PSIElementTypeFactory.getTokenIElementTypes(EOLanguage.INSTANCE);
+            PSIElementTypeFactory.getTokenIElementTypes(EOLanguage.INSTANCE);
         EOParserDefinition.ID = tokenIElementTypes.get(EOLexer.AT);
     }
 
@@ -120,15 +124,17 @@ public class EOParserDefinition implements ParserDefinition {
     }
 
     /**
-     * Convert from *NON-LEAF* parse node (AST they call it) to PSI node. Leaves are created in the
-     * AST factory. Rename re-factoring can cause this to be called on a TokenIElementType since we
-     * want to rename ID nodes. In that case, this method is called to create the root node but with
-     * ID type. Kind of strange, but we can simply create a ASTWrapperPsiElement to make everything
+     * Convert from *NON-LEAF* parse node (AST they call it) to PSI node. Leaves are
+     * created in the AST factory. Rename re-factoring can cause this to be called
+     * on a TokenIElementType since we want to rename ID nodes. In that case, this
+     * method is called to create the root node but with ID type. Kind of strange,
+     * but we can simply create a ASTWrapperPsiElement to make everything
      * work correctly.
      *
-     * <p>RuleIElementType. Ah! It's that ID is the root IElementType requested to parse, which means
-     * that the root node returned from parsetree->PSI conversion. But, it must be a CompositeElement!
-     * The adaptor calls rootMarker.done(root) to finish off the PSI conversion.
+     * <p>RuleIElementType. Ah! It's that ID is the root IElementType requested to parse,
+     * which means that the root node returned from parsetree->PSI conversion. But, it
+     * must be a CompositeElement! The adaptor calls rootMarker.done(root) to finish off
+     * the PSI conversion.
      *
      * <p>If you don't care to distinguish PSI nodes by type, it is sufficient to create a {@link
      * ANTLRPsiNode} around the parse tree node
