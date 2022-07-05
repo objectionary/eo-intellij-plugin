@@ -51,6 +51,8 @@ import org.jetbrains.annotations.NotNull;
 /**
  * Let's define a parser for EO language.
  * @since 0.0.0
+ * @checkstyle MultilineJavadocTagsCheck (200 lines)
+ * @checkstyle VisibilityModifierCheck (200 lines)
  */
 public class EoParserDefinition implements ParserDefinition {
     /**
@@ -67,9 +69,9 @@ public class EoParserDefinition implements ParserDefinition {
         PSIElementTypeFactory.defineLanguageIElementTypes(
             EoLanguage.INSTANCE, EOParser.tokenNames, EOParser.ruleNames
         );
-        final List<TokenIElementType> tokenElementTypes =
+        final List<TokenIElementType> tokentypes =
             PSIElementTypeFactory.getTokenIElementTypes(EoLanguage.INSTANCE);
-        EoParserDefinition.id = tokenElementTypes.get(EOLexer.AT);
+        EoParserDefinition.id = tokentypes.get(EOLexer.AT);
     }
 
     @NotNull
@@ -126,8 +128,8 @@ public class EoParserDefinition implements ParserDefinition {
      * eventually becomes a PsiFile. From PsiFile, we can get it back via: {@link PsiFile#getNode}.
      */
     @Override
-    public final PsiFile createFile(final FileViewProvider viewProvider) {
-        return new EoPsiFileRoot(viewProvider);
+    public final PsiFile createFile(final FileViewProvider viewprovider) {
+        return new EoPsiFileRoot(viewprovider);
     }
 
     /*

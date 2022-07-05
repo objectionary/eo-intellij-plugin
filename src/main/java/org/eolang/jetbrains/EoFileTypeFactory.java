@@ -31,10 +31,11 @@ import org.jetbrains.annotations.NotNull;
 /**
  * Class for definition of FileType.
  * @since 0.0.0
+ * @checkstyle ParameterNameCheck (100 lines)
  */
 public class EoFileTypeFactory extends FileTypeFactory {
     @Override
-    public void createFileTypes(@NotNull final FileTypeConsumer fileTypeConsumer) {
+    public final void createFileTypes(@NotNull final FileTypeConsumer fileTypeConsumer) {
         fileTypeConsumer.consume(EoFileType.INSTANCE, EoFileType.FILE_EXTENSION);
     }
 }

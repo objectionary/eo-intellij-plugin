@@ -25,5 +25,6 @@
 /**
  * Test classes package.
  * @since 0.0.0
+ * @checkstyle HeaderCheck (1000 lines)
  */
 package org.eolang.jetbrains.test;

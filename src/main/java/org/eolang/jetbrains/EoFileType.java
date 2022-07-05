@@ -25,9 +25,8 @@
 package org.eolang.jetbrains;
 
 import com.intellij.openapi.fileTypes.LanguageFileType;
-import javax.swing.*;
+import javax.swing.Icon;
 import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
 
 /**
  * Description of EO language files.

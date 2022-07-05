@@ -36,6 +36,8 @@ import org.jetbrains.annotations.NotNull;
  * Start class of project.
  * Contains instructions what to do after opening project etc
  * @since 0.0.0
+ * @checkstyle MultilineJavadocTagsCheck (200 lines)
+ * @checkstyle LocalFinalVariableNameCheck (200 lines)
  */
 public class EoPluginController implements ProjectComponent {
     /**
@@ -47,7 +49,6 @@ public class EoPluginController implements ProjectComponent {
      * Project instance.
      */
     private final Project project;
-    // public boolean projectIsClosed = false;
 
     /**
      * Constructor.
@@ -57,22 +58,26 @@ public class EoPluginController implements ProjectComponent {
         this.project = project;
     }
 
-    /**
-     * Accessor.
-     * @return Project opened project
-     */
-    final Project getProject() {
-        return this.project;
+    @Override
+    public final void projectOpened() {
+        if (LOG.isDebugEnabled()) {
+            LOG.debug("Project opened");
+        }
     }
 
     @Override
     public final void projectClosed() {
-        LOG.info("projectClosed " + project.getName());
+        if (LOG.isDebugEnabled()) {
+            LOG.debug("Project closed ".concat(this.project.getName()));
+        }
     }
 
+    // public final void disposeComponent() { }
+
+    @NotNull
     @Override
-    public final void projectOpened() {
-        LOG.info("Project opened");
+    public final String getComponentName() {
+        return "eo.ProjectComponent";
     }
 
     @Override
@@ -88,13 +93,11 @@ public class EoPluginController implements ProjectComponent {
         WriteCommandAction.runWriteCommandAction(this.getProject(), runnableAssociate);
     }
 
-    /*
-    public final void disposeComponent() { }
-    */
-
-    @NotNull
-    @Override
-    public final String getComponentName() {
-        return "eo.ProjectComponent";
+    /**
+     * Accessor.
+     * @return Project opened project
+     */
+    final Project getProject() {
+        return this.project;
     }
 }

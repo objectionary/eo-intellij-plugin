@@ -46,6 +46,7 @@ public class EoParsingTest1 extends ParsingTestCase {
     /**
      * Setting checking result.
      */
+    @Test
     public void testParsingTestData() {
         doTest(true);
     }

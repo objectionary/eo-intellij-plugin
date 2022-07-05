@@ -26,9 +26,9 @@ package org.eolang.jetbrains;
 
 import static com.intellij.openapi.editor.colors.TextAttributesKey.createTextAttributesKey;
 import com.intellij.lexer.Lexer;
+import com.intellij.openapi.editor.colors.TextAttributesKey;
 import com.intellij.openapi.editor.DefaultLanguageHighlighterColors;
 import com.intellij.openapi.editor.HighlighterColors;
-import com.intellij.openapi.editor.colors.TextAttributesKey;
 import com.intellij.openapi.fileTypes.SyntaxHighlighterBase;
 import com.intellij.psi.tree.IElementType;
 import org.antlr.intellij.adaptor.lexer.ANTLRLexerAdaptor;
@@ -40,8 +40,10 @@ import org.jetbrains.annotations.NotNull;
  * Class for declaration groups of tokens and highlighting colors.
  * We will highlight all tokens with one of colors below. One group - one color.
  * @since 0.0.0
+ * @checkstyle LocalFinalVariableNameCheck (100 lines), CyclomaticComplexity (150 lines)
+ * @checkstyle CyclomaticComplexity (150 lines)
+ * @checkstyle NcssCount (150 lines)
  */
-
 public class EoSyntaxHighlighter extends SyntaxHighlighterBase {
     /**
      * Code below is description of token groups.
@@ -71,7 +73,10 @@ public class EoSyntaxHighlighter extends SyntaxHighlighterBase {
      * Define space.
      */
     public static final TextAttributesKey SPACE =
-        createTextAttributesKey("EO_SPACE", DefaultLanguageHighlighterColors.TEMPLATE_LANGUAGE_COLOR);
+        createTextAttributesKey(
+            "EO_SPACE",
+            DefaultLanguageHighlighterColors.TEMPLATE_LANGUAGE_COLOR
+        );
 
     /**
      * Define dot.
@@ -129,11 +134,11 @@ public class EoSyntaxHighlighter extends SyntaxHighlighterBase {
 
     // @checkstyle CyclomaticComplexity (100 lines)
     @Override
-    public final TextAttributesKey[] getTokenHighlights(final IElementType tokenType) {
-        if (!(tokenType instanceof TokenIElementType)) {
+    public final TextAttributesKey[] getTokenHighlights(final IElementType tokentype) {
+        if (!(tokentype instanceof TokenIElementType)) {
             return EoSyntaxHighlighter.EMPTY_KEYS;
         }
-        final TokenIElementType myType = (TokenIElementType) tokenType;
+        final TokenIElementType myType = (TokenIElementType) tokentype;
         final int ttype = myType.getANTLRTokenType();
         final TextAttributesKey attrKey;
         switch (ttype) {

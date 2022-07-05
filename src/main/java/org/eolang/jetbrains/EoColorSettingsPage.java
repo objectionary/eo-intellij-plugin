@@ -30,7 +30,7 @@ import com.intellij.openapi.options.colors.AttributesDescriptor;
 import com.intellij.openapi.options.colors.ColorDescriptor;
 import com.intellij.openapi.options.colors.ColorSettingsPage;
 import java.util.Map;
-import javax.swing.*;
+import javax.swing.Icon;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -74,24 +74,21 @@ public class EoColorSettingsPage implements ColorSettingsPage {
     @Override
     public final String getDemoText() {
         return "+alias org.eolang.io.stdout\n"
-            + "+alias org.eolang.txt.sprintf\n\n"
-            + "# is year leap?\n\n"
-            + "[args...] > main\n"
-            + "  [y] > leap\n"
-            + "    or. > @\n"
-            + "      and.\n"
-            + "        eq. (mod. y 4) 0\n"
-            + "        not. (eq. (mod. y 100) 0)\n"
-            + "      eq. (mod. y 400) 0\n"
-            + "  stdout > @\n"
-            + "    sprintf\n"
-            + "    \"%d is %sa leap year!\"\n"
-            + "    (args.get 0).as-int > year!\n"
-            + "  if. (leap year:y) \""
-            + "\" "
-            + "\"not "
-            + "\""
-            + "\n";
+            .concat("+alias org.eolang.txt.sprintf\n\n")
+            .concat("# is year leap?\n\n")
+            .concat("[args...] > main\n")
+            .concat("  [y] > leap\n")
+            .concat("    or. > @\n")
+            .concat("      and.\n")
+            .concat("        eq. (mod. y 4) 0\n")
+            .concat("        not. (eq. (mod. y 100) 0)\n")
+            .concat("      eq. (mod. y 400) 0\n")
+            .concat("  stdout > @\n")
+            .concat("    sprintf\n")
+            .concat("    \"%d is %sa leap year!\"\n")
+            .concat("    (args.get 0).as-int > year!\n")
+            .concat("  if. (leap year:y) \"")
+            .concat("\" \"not \"\\n\"");
     }
 
     @NotNull
