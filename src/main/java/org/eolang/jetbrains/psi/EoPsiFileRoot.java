@@ -24,8 +24,8 @@ import com.intellij.psi.PsiNamedElement;
 import javax.swing.*;
 import org.antlr.intellij.adaptor.SymtabUtils;
 import org.antlr.intellij.adaptor.psi.ScopeNode;
-import org.eolang.jetbrains.EOFileType;
-import org.eolang.jetbrains.EOLanguage;
+import org.eolang.jetbrains.EoFileType;
+import org.eolang.jetbrains.EoLanguage;
 import org.eolang.jetbrains.Icons;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -34,40 +34,40 @@ import org.jetbrains.annotations.Nullable;
  * Describing PSIFileRoot.
  * @since 0.0.0
  */
-public class EOPSIFileRoot extends PsiFileBase implements ScopeNode {
+public class EoPsiFileRoot extends PsiFileBase implements ScopeNode {
     /**
-     * Definition of PsiFileRoot
+     * Definition of PsiFileRoot.
      * @param viewProvider FileViewProvider
      */
-    public EOPSIFileRoot(@NotNull final FileViewProvider viewProvider) {
-        super(viewProvider, EOLanguage.INSTANCE);
+    public EoPsiFileRoot(@NotNull final FileViewProvider viewProvider) {
+        super(viewProvider, EoLanguage.INSTANCE);
     }
 
     @NotNull
     @Override
-    public FileType getFileType() {
-        return EOFileType.INSTANCE;
+    public final FileType getFileType() {
+        return EoFileType.INSTANCE;
     }
 
     @Override
-    public String toString() {
+    public final String toString() {
         return "EO Language file";
     }
 
     @Override
-    public Icon getIcon(final int flags) {
+    public final Icon getIcon(final int flags) {
         return Icons.EO_ICON;
     }
 
     /** Return null since a file scope has no enclosing scope. It is not itself in a scope. */
     @Override
-    public ScopeNode getContext() {
+    public final ScopeNode getContext() {
         return null;
     }
 
     @Nullable
     @Override
-    public PsiElement resolve(final PsiNamedElement element) {
-        return SymtabUtils.resolve(this, EOLanguage.INSTANCE, element, "/script/vardef/ID");
+    public final PsiElement resolve(final PsiNamedElement element) {
+        return SymtabUtils.resolve(this, EoLanguage.INSTANCE, element, "/script/vardef/ID");
     }
 }

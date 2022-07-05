@@ -32,56 +32,69 @@ import com.intellij.openapi.fileTypes.FileTypes;
 import com.intellij.openapi.project.Project;
 import org.jetbrains.annotations.NotNull;
 
-
 /**
  * Start class of project.
  * Contains instructions what to do after opening project etc
  * @since 0.0.0
  */
-public class EOPluginController implements ProjectComponent {
-    public static final String PLUGIN_ID = "org.eolang.jetbrains";
+public class EoPluginController implements ProjectComponent {
+    /**
+     * Log prefix.
+     */
     public static final Logger LOG = Logger.getInstance("EOPluginController");
 
-    public Project project;
+    /**
+     * Project instance.
+     */
+    private final Project project;
     // public boolean projectIsClosed = false;
 
     /**
-     * Constructor
-     * @param project opened project
+     * Constructor.
+     * @param project Opened project
      */
-    public EOPluginController(final Project project) {
+    public EoPluginController(final Project project) {
         this.project = project;
     }
 
+    /**
+     * Accessor.
+     * @return Project opened project
+     */
+    final Project getProject() {
+        return this.project;
+    }
+
     @Override
-    public void projectClosed() {
+    public final void projectClosed() {
         LOG.info("projectClosed " + project.getName());
     }
 
     @Override
-    public void projectOpened() {
+    public final void projectOpened() {
         LOG.info("Project opened");
     }
 
     @Override
-    public void initComponent() {
+    public final void initComponent() {
         final FileTypeManager fileTypeManager = FileTypeManager.getInstance();
         final Runnable runnableRemove = () -> fileTypeManager.removeAssociatedExtension(
-                FileTypes.PLAIN_TEXT, "eo"
+            FileTypes.PLAIN_TEXT, "eo"
         );
         final Runnable runnableAssociate = () -> fileTypeManager.associateExtension(
-                EOFileType.INSTANCE, "eo"
+            EoFileType.INSTANCE, "eo"
         );
-        WriteCommandAction.runWriteCommandAction(project, runnableRemove);
-        WriteCommandAction.runWriteCommandAction(project, runnableAssociate);
+        WriteCommandAction.runWriteCommandAction(this.getProject(), runnableRemove);
+        WriteCommandAction.runWriteCommandAction(this.getProject(), runnableAssociate);
     }
 
-    @Override
-    public void disposeComponent() {}
+    /*
+    public final void disposeComponent() { }
+    */
 
     @NotNull
     @Override
-    public String getComponentName() {
+    public final String getComponentName() {
         return "eo.ProjectComponent";
     }
 }

@@ -1,7 +1,7 @@
 /*
  * The MIT License (MIT)
  *
- * Copyright (c) 2021-2022 Stepan Strunkov
+ * Copyright (c) 2022 Strunkov Stepan
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -21,57 +21,44 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
+// @checkstyle PackageNameCheck (1 line)
+package org.eolang.jetbrains.test;
 
-package org.eolang.jetbrains;
-
-import com.intellij.openapi.fileTypes.LanguageFileType;
-import javax.swing.*;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
+import com.intellij.testFramework.ParsingTestCase;
+import org.eolang.jetbrains.EoParserDefinition;
 
 /**
- * Description of *.eo files.
+ * Test class @ParsingTestCase.
  * @since 0.0.0
  */
-public class EOFileType extends LanguageFileType {
-    /**
-     * EO language file extension.
-     */
-    public static final String FILE_EXTENSION = "eo";
+public class EoParsingTestComments extends ParsingTestCase {
 
     /**
-     * Creating instance.
+     * Parser initialization.
      */
-    public static final EOFileType INSTANCE = new EOFileType();
+    public EoParsingTestComments() {
+        super("", "eo", new EoParserDefinition());
+    }
 
     /**
-     * Call constructor of super class.
+     * Setting checking result.
      */
-    protected EOFileType() {
-        super(EOLanguage.INSTANCE);
+    public void testParsingTestData() {
+        doTest(true);
     }
 
-    @NotNull
     @Override
-    public String getName() {
-        return "EO";
+    protected final String getTestDataPath() {
+        return "src/test/testData_2";
     }
 
-    @NotNull
     @Override
-    public String getDescription() {
-        return "EO";
+    protected final boolean skipSpaces() {
+        return false;
     }
 
-    @NotNull
     @Override
-    public String getDefaultExtension() {
-        return EOFileType.FILE_EXTENSION;
-    }
-
-    @Nullable
-    @Override
-    public Icon getIcon() {
-        return Icons.EO_ICON;
+    protected final boolean includeRanges() {
+        return true;
     }
 }

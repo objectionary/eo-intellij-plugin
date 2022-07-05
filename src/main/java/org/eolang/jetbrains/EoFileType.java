@@ -21,46 +21,56 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-// @checkstyle PackageNameCheck (1 line)
-package org.eolang.jetbrains.test;
 
-import com.intellij.testFramework.ParsingTestCase;
-import org.eolang.jetbrains.EOParserDefinition;
+package org.eolang.jetbrains;
+
+import com.intellij.openapi.fileTypes.LanguageFileType;
+import javax.swing.*;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 /**
- * Test class @ParsingTestCase.
+ * Description of EO language files.
  * @since 0.0.0
  */
-public class EOParsingTest1 extends ParsingTestCase {
+public class EoFileType extends LanguageFileType {
+    /**
+     * Define EO language file extension.
+     */
+    public static final String FILE_EXTENSION = "eo";
 
     /**
-     * Parser initialization.
+     * Creating instance of class.
      */
-    public EOParsingTest1() {
-        super("", "eo", new EOParserDefinition());
-    }
+    public static final EoFileType INSTANCE = new EoFileType();
 
     /**
-     * Setting checking result.
+     * Call constructor of super class.
      */
-    public void testParsingTestData() {
-        doTest(true);
+    protected EoFileType() {
+        super(EoLanguage.INSTANCE);
+    }
+
+    @NotNull
+    @Override
+    public final String getName() {
+        return "EO";
+    }
+
+    @NotNull
+    @Override
+    public final String getDescription() {
+        return "EO";
+    }
+
+    @NotNull
+    @Override
+    public final String getDefaultExtension() {
+        return EoFileType.FILE_EXTENSION;
     }
 
     @Override
-    protected final String getTestDataPath() {
-        return "src/test/testData_1";
-    }
-
-    // @checkstyle DesignForExtensionCheck (3 lines)
-    @Override
-    protected boolean skipSpaces() {
-        return false;
-    }
-
-    // @checkstyle DesignForExtensionCheck (3 lines)
-    @Override
-    protected boolean includeRanges() {
-        return true;
+    public final Icon getIcon() {
+        return Icons.EO_ICON;
     }
 }

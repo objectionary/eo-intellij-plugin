@@ -35,76 +35,80 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 /**
- * Class drawing settings page in IDE
+ * Class for drawing settings page in IDE.
  * @since 0.0.0
- * @see <a href="https://plugins.jetbrains.com/docs/intellij/syntax-highlighter-and-color-settings-page.html">
- * documentation</a>
  */
-public class EOColorSettingsPage implements ColorSettingsPage {
+public class EoColorSettingsPage implements ColorSettingsPage {
+    /**
+     * Here we describe tokens for display them in settings page.
+     */
     private static final AttributesDescriptor[] DESCRIPTORS =
         new AttributesDescriptor[] {
-            new AttributesDescriptor("Keywords", EOSyntaxHighlighter.KEYWORD),
-            new AttributesDescriptor("Comments", EOSyntaxHighlighter.COMMENT),
-            new AttributesDescriptor("Identifiers", EOSyntaxHighlighter.NAME),
-            new AttributesDescriptor("Strings", EOSyntaxHighlighter.STRING),
-            new AttributesDescriptor("Metas", EOSyntaxHighlighter.META),
-            new AttributesDescriptor("Constants", EOSyntaxHighlighter.NUMBERS),
-            new AttributesDescriptor("Braces", EOSyntaxHighlighter.BRACES),
+            new AttributesDescriptor("Keywords", EoSyntaxHighlighter.KEYWORD),
+            new AttributesDescriptor("Comments", EoSyntaxHighlighter.COMMENT),
+            new AttributesDescriptor("Identifiers", EoSyntaxHighlighter.NAME),
+            new AttributesDescriptor("Strings", EoSyntaxHighlighter.STRING),
+            new AttributesDescriptor("Metas", EoSyntaxHighlighter.META),
+            new AttributesDescriptor("Constants", EoSyntaxHighlighter.NUMBERS),
+            new AttributesDescriptor("Braces", EoSyntaxHighlighter.BRACES),
         };
 
     @Nullable
     @Override
-    public Map<String, TextAttributesKey> getAdditionalHighlightingTagToDescriptorMap() {
+    public final Map<String, TextAttributesKey> getAdditionalHighlightingTagToDescriptorMap() {
         return null;
     }
 
-    @Nullable
     @Override
-    public Icon getIcon() {
+    public final Icon getIcon() {
         return Icons.EO_ICON;
     }
 
     @NotNull
     @Override
-    public SyntaxHighlighter getHighlighter() {
-        return new EOSyntaxHighlighter();
+    public final SyntaxHighlighter getHighlighter() {
+        return new EoSyntaxHighlighter();
     }
 
     @NotNull
     @Override
-    public String getDemoText() {
+    public final String getDemoText() {
         return "+alias org.eolang.io.stdout\n"
-                + "+alias org.eolang.txt.sprintf\n\n"
-                + "# is year leap?\n\n"
-                + "[args...] > main\n"
-                + "  [y] > leap\n"
-                + "    or. > @\n"
-                + "      and.\n"
-                + "        eq. (mod. y 4) 0\n"
-                + "        not. (eq. (mod. y 100) 0)\n"
-                + "      eq. (mod. y 400) 0\n"
-                + "  stdout > @\n"
-                + "    sprintf\n"
-                + "    \"%d is %sa leap year!\"\n"
-                + "    (args.get 0).as-int > year!\n"
-                + "  if. (leap year:y) \"\" \"not \"\n";
+            + "+alias org.eolang.txt.sprintf\n\n"
+            + "# is year leap?\n\n"
+            + "[args...] > main\n"
+            + "  [y] > leap\n"
+            + "    or. > @\n"
+            + "      and.\n"
+            + "        eq. (mod. y 4) 0\n"
+            + "        not. (eq. (mod. y 100) 0)\n"
+            + "      eq. (mod. y 400) 0\n"
+            + "  stdout > @\n"
+            + "    sprintf\n"
+            + "    \"%d is %sa leap year!\"\n"
+            + "    (args.get 0).as-int > year!\n"
+            + "  if. (leap year:y) \""
+            + "\" "
+            + "\"not "
+            + "\""
+            + "\n";
     }
 
     @NotNull
     @Override
-    public AttributesDescriptor[] getAttributeDescriptors() {
-        return EOColorSettingsPage.DESCRIPTORS;
+    public final AttributesDescriptor[] getAttributeDescriptors() {
+        return EoColorSettingsPage.DESCRIPTORS;
     }
 
     @NotNull
     @Override
-    public ColorDescriptor[] getColorDescriptors() {
+    public final ColorDescriptor[] getColorDescriptors() {
         return ColorDescriptor.EMPTY_ARRAY;
     }
 
     @NotNull
     @Override
-    public String getDisplayName() {
+    public final String getDisplayName() {
         return "EO";
     }
 }

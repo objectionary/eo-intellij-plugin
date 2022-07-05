@@ -21,44 +21,20 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-// @checkstyle PackageNameCheck (1 line)
-package org.eolang.jetbrains.test;
 
-import com.intellij.testFramework.ParsingTestCase;
-import org.eolang.jetbrains.EOParserDefinition;
+package org.eolang.jetbrains;
+
+import com.intellij.openapi.fileTypes.FileTypeConsumer;
+import com.intellij.openapi.fileTypes.FileTypeFactory;
+import org.jetbrains.annotations.NotNull;
 
 /**
- * Test class @ParsingTestCase.
+ * Class for definition of FileType.
  * @since 0.0.0
  */
-public class EOParsingTestComments extends ParsingTestCase {
-
-    /**
-     * Parser initialization.
-     */
-    public EOParsingTestComments() {
-        super("", "eo", new EOParserDefinition());
-    }
-
-    /**
-     * Setting checking result.
-     */
-    public void testParsingTestData() {
-        doTest(true);
-    }
-
+public class EoFileTypeFactory extends FileTypeFactory {
     @Override
-    protected final String getTestDataPath() {
-        return "src/test/testData_2";
-    }
-
-    @Override
-    protected final boolean skipSpaces() {
-        return false;
-    }
-
-    @Override
-    protected boolean includeRanges() {
-        return true;
+    public void createFileTypes(@NotNull final FileTypeConsumer fileTypeConsumer) {
+        fileTypeConsumer.consume(EoFileType.INSTANCE, EoFileType.FILE_EXTENSION);
     }
 }

@@ -25,7 +25,6 @@
 package org.eolang.jetbrains;
 
 import static com.intellij.openapi.editor.colors.TextAttributesKey.createTextAttributesKey;
-
 import com.intellij.lexer.Lexer;
 import com.intellij.openapi.editor.DefaultLanguageHighlighterColors;
 import com.intellij.openapi.editor.HighlighterColors;
@@ -43,7 +42,7 @@ import org.jetbrains.annotations.NotNull;
  * @since 0.0.0
  */
 
-public class EOSyntaxHighlighter extends SyntaxHighlighterBase {
+public class EoSyntaxHighlighter extends SyntaxHighlighterBase {
     /**
      * Code below is description of token groups.
      */
@@ -123,16 +122,16 @@ public class EOSyntaxHighlighter extends SyntaxHighlighterBase {
 
     @NotNull
     @Override
-    public Lexer getHighlightingLexer() {
+    public final Lexer getHighlightingLexer() {
         final EOLexer lexer = new EOLexer(null);
-        return new ANTLRLexerAdaptor(EOLanguage.INSTANCE, lexer);
+        return new ANTLRLexerAdaptor(EoLanguage.INSTANCE, lexer);
     }
 
     // @checkstyle CyclomaticComplexity (100 lines)
     @Override
-    public TextAttributesKey[] getTokenHighlights(final IElementType tokenType) {
+    public final TextAttributesKey[] getTokenHighlights(final IElementType tokenType) {
         if (!(tokenType instanceof TokenIElementType)) {
-            return EOSyntaxHighlighter.EMPTY_KEYS;
+            return EoSyntaxHighlighter.EMPTY_KEYS;
         }
         final TokenIElementType myType = (TokenIElementType) tokenType;
         final int ttype = myType.getANTLRTokenType();
@@ -153,50 +152,49 @@ public class EOSyntaxHighlighter extends SyntaxHighlighterBase {
             case EOLexer.MINUS:
             case EOLexer.QUESTION:
             case EOLexer.STAR:
-                attrKey = EOSyntaxHighlighter.KEYWORD;
+                attrKey = EoSyntaxHighlighter.KEYWORD;
                 break;
             case EOLexer.BOOL:
             case EOLexer.INT:
             case EOLexer.FLOAT:
             case EOLexer.HEX:
             case EOLexer.BYTES:
-                attrKey = EOSyntaxHighlighter.NUMBERS;
+                attrKey = EoSyntaxHighlighter.NUMBERS;
                 break;
             case EOLexer.LB:
             case EOLexer.RB:
-                attrKey = EOSyntaxHighlighter.BRACES;
+                attrKey = EoSyntaxHighlighter.BRACES;
                 break;
             case EOLexer.STRING:
             case EOLexer.TEXT:
-                attrKey = EOSyntaxHighlighter.STRING;
+                attrKey = EoSyntaxHighlighter.STRING;
                 break;
             case EOLexer.SPACE:
-                attrKey = EOSyntaxHighlighter.SPACE;
+                attrKey = EoSyntaxHighlighter.SPACE;
                 break;
             case EOLexer.DOT:
-                attrKey = EOSyntaxHighlighter.DOT;
+                attrKey = EoSyntaxHighlighter.DOT;
                 break;
             case EOLexer.COMMENT:
-                attrKey = EOSyntaxHighlighter.COMMENT;
+                attrKey = EoSyntaxHighlighter.COMMENT;
                 break;
             case EOLexer.HASH:
-                attrKey = EOSyntaxHighlighter.HASH;
+                attrKey = EoSyntaxHighlighter.HASH;
                 break;
             case EOLexer.EOL:
-                attrKey = EOSyntaxHighlighter.EOL;
+                attrKey = EoSyntaxHighlighter.EOL;
                 break;
             case EOLexer.NAME:
-                attrKey = EOSyntaxHighlighter.NAME;
+                attrKey = EoSyntaxHighlighter.NAME;
                 break;
             case EOLexer.META:
-                attrKey = EOSyntaxHighlighter.META;
+                attrKey = EoSyntaxHighlighter.META;
                 break;
             case EOLexer.BAD_CHARACTER:
-                attrKey = EOSyntaxHighlighter.BAD_CHARACTER;
+                attrKey = EoSyntaxHighlighter.BAD_CHARACTER;
                 break;
-            // checkstyle OnlyOneReturn (5 lines)
             default:
-                return EOSyntaxHighlighter.EMPTY_KEYS;
+                return EoSyntaxHighlighter.EMPTY_KEYS;
         }
         return new TextAttributesKey[] {attrKey};
     }

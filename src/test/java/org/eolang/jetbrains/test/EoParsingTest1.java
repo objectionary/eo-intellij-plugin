@@ -1,7 +1,7 @@
 /*
  * The MIT License (MIT)
  *
- * Copyright (c) 2021-2022 Stepan Strunkov
+ * Copyright (c) 2016-2022 Strunkov Stepan
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -22,24 +22,48 @@
  * SOFTWARE.
  */
 
-package org.eolang.jetbrains;
+// @checkstyle JavadocPackageCheck (1 lines)
+package org.eolang.jetbrains.test;
 
-import com.intellij.openapi.fileTypes.SyntaxHighlighter;
-import com.intellij.openapi.fileTypes.SyntaxHighlighterFactory;
-import com.intellij.openapi.project.Project;
-import com.intellij.openapi.vfs.VirtualFile;
-import org.jetbrains.annotations.NotNull;
+import com.intellij.testFramework.ParsingTestCase;
+import org.eolang.jetbrains.EoParserDefinition;
+import org.junit.Test;
 
 /**
- * Definition of SyntaxHighlighter.
+ * Test class @ParsingTestCase.
  * @since 0.0.0
  */
-public class EOSyntaxHighlighterFactory extends SyntaxHighlighterFactory {
-    @NotNull
+public class EoParsingTest1 extends ParsingTestCase {
+
+    /**
+     * Parser initialization.
+     */
+    public EoParsingTest1() {
+        super("", "eo", new EoParserDefinition());
+    }
+
+    // @checkstyle NonStaticMethodCheck (6 lines)
+    /**
+     * Setting checking result.
+     */
+    public void testParsingTestData() {
+        doTest(true);
+    }
+
     @Override
-    public SyntaxHighlighter getSyntaxHighlighter(
-        final Project project,
-        final VirtualFile virtualFile) {
-            return new EOSyntaxHighlighter();
+    protected final String getTestDataPath() {
+        return "src/test/testData_1";
+    }
+
+    // @checkstyle DesignForExtensionCheck (3 lines)
+    @Override
+    protected boolean skipSpaces() {
+        return false;
+    }
+
+    // @checkstyle DesignForExtensionCheck (3 lines)
+    @Override
+    protected boolean includeRanges() {
+        return true;
     }
 }

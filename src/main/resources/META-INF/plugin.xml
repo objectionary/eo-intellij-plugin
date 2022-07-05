@@ -40,18 +40,18 @@ SOFTWARE.
     </application-components>
     <project-components>
         <component>
-            <implementation-class>org.eolang.jetbrains.EOPluginController</implementation-class>
+            <implementation-class>org.eolang.jetbrains.EoPluginController</implementation-class>
         </component>
     </project-components>
     <actions>
     </actions>
     <extensions defaultExtensionNs="com.intellij">
-        <fileTypeFactory implementation="org.eolang.jetbrains.EOFileTypeFactory"/>
-        <lang.syntaxHighlighterFactory language="EO" implementationClass="org.eolang.jetbrains.EOSyntaxHighlighterFactory"/>
-        <lang.parserDefinition language="EO" implementationClass="org.eolang.jetbrains.EOParserDefinition"/>
-        <lang.psiStructureViewFactory language="EO" implementationClass="org.eolang.jetbrains.structview.EOStructureViewFactory"/>
-        <colorSettingsPage implementation="org.eolang.jetbrains.EOColorSettingsPage"/>
-        <externalAnnotator language="EO" implementationClass="org.eolang.jetbrains.EOExternalAnnotator"/>
+        <fileTypeFactory implementation="org.eolang.jetbrains.EoFileTypeFactory"/>
+        <lang.syntaxHighlighterFactory language="EO" implementationClass="org.eolang.jetbrains.EoSyntaxHighlighterFactory"/>
+        <lang.parserDefinition language="EO" implementationClass="org.eolang.jetbrains.EoParserDefinition"/>
+        <!-- <lang.psiStructureViewFactory language="EO" implementationClass="org.eolang.jetbrains.structview.EOStructureViewFactory"/> -->
+        <colorSettingsPage implementation="org.eolang.jetbrains.EoColorSettingsPage"/>
+        <externalAnnotator language="EO" implementationClass="org.eolang.jetbrains.EoExternalAnnotator"/>
         <!-- <lang.findUsagesProvider language="EO" implementationClass="org.eolang.jetbrains.EOFindUsagesProvider"/> -->
         <!-- <completion.contributor language="EO" implementationClass="org.eolang.jetbrains.EOCompletionContributor"/> -->
     </extensions>

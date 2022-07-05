@@ -1,7 +1,7 @@
 /*
  * The MIT License (MIT)
  *
- * Copyright (c) 2021-2022 Stepan Strunkov
+ * Copyright (c) 2022 Stepan Strunkov
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -22,25 +22,8 @@
  * SOFTWARE.
  */
 
-/*package org.eolang.jetbrains;
-
-import com.intellij.codeInsight.completion.*;
-import com.intellij.patterns.PlatformPatterns;
-import com.intellij.util.ProcessingContext;
-import org.jetbrains.annotations.NotNull;
-
-public class EOCompletionContributor extends CompletionContributor {
-    public EOCompletionContributor() {
-        extend(
-            CompletionType.BASIC,
-            PlatformPatterns.psiElement(),
-            new CompletionProvider<CompletionParameters>() {
-                @Override
-                public void addCompletions(
-                    @NotNull final CompletionParameters parameters,
-                    @NotNull final ProcessingContext context,
-                    @NotNull final CompletionResultSet resultSet) {
-                    }
-        });
-    }
-}*/
+/**
+ * Test classes package.
+ * @since 0.0.0
+ */
+package org.eolang.jetbrains.test;

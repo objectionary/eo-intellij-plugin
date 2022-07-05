@@ -39,47 +39,81 @@ import org.jetbrains.annotations.Nullable;
  * elements with errors or warnings. Because such analysis can be expensive, we don't want it in the
  * GUI event loop. Jetbrains provides this external annotator mechanism to run these analyzers out
  * of band.
+ * @since 0.0.0
  */
-public class EOExternalAnnotator
-        extends ExternalAnnotator<PsiFile, List<EOExternalAnnotator.Issue>> {
+public class EoExternalAnnotator
+    extends ExternalAnnotator<PsiFile, List<EoExternalAnnotator.Issue>> {
     // NOTE: can't use instance vars as only 1 instance
 
+    /**
+     * Issue report.
+     * @since 0.0.0
+     */
     public static class Issue {
-        final String msg;
-        final PsiElement offendingNode;
 
+        /**
+         * Message.
+         */
+        private final String msg;
+
+        /**
+         * Node.
+         */
+        private final PsiElement offendingNode;
+
+        /**
+         * Issue init.
+         * @param msg String
+         * @param node PsiElement
+         */
         public Issue(final String msg, final PsiElement node) {
             this.msg = msg;
             this.offendingNode = node;
         }
+        /**
+         * Accessor.
+         * @return String message
+         */
+        final String getMsg() {
+            return this.msg;
+        }
+
+        /**
+         * Accessor.
+         * @return Offending node
+         */
+        final PsiElement getOffendingNode() {
+            return this.offendingNode;
+        }
     }
 
-    /** Called first; in our case, just return file and do nothing */
+    // Called first; in our case, just return file and do nothing.
     @Override
     @Nullable
-    public PsiFile collectInformation(@NotNull final PsiFile file) {
+    public final PsiFile collectInformation(@NotNull final PsiFile file) {
         return file;
     }
 
-    /**
+    /*
      * Called 2nd; look for trouble in file and return list of issues.
      *
      * <p>For most custom languages, you would not reimplement your semantic analyzer using PSI trees.
      * Instead, here is where you would call out to your custom languages compiler or interpreter to
      * get error messages or other bits of information you'd like to annotate the document with.
      */
-    @Nullable
+
     @Override
-    public List<Issue> doAnnotate(final PsiFile file) {
+    public final List<Issue> doAnnotate(final PsiFile file) {
         return new ArrayList<>();
     }
 
-    /** Called 3rd to actually annotate the editor window */
+    // Called 3rd to actually annotate the editor window.
     @Override
-    public void apply(@NotNull final PsiFile file, final List<Issue> issues, @NotNull final AnnotationHolder holder) {
+    public final void apply(@NotNull final PsiFile file, final List<Issue> issues,
+        @NotNull final AnnotationHolder holder) {
         for (final Issue issue : issues) {
-            final TextRange range = issue.offendingNode.getTextRange();
-            holder.createErrorAnnotation(range, issue.msg);
+            final TextRange range = issue.getOffendingNode().getTextRange();
+            holder.createErrorAnnotation(range, issue.getMsg());
         }
     }
 }

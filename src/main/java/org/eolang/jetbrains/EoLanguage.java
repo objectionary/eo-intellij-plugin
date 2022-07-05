@@ -24,17 +24,22 @@
 
 package org.eolang.jetbrains;
 
-import com.intellij.openapi.fileTypes.FileTypeConsumer;
-import com.intellij.openapi.fileTypes.FileTypeFactory;
-import org.jetbrains.annotations.NotNull;
+import com.intellij.lang.Language;
 
 /**
- * Class for definition of FileType.
+ * Language Definition.
  * @since 0.0.0
  */
-public class EOFileTypeFactory extends FileTypeFactory {
-    @Override
-    public void createFileTypes(@NotNull final FileTypeConsumer fileTypeConsumer) {
-        fileTypeConsumer.consume(EOFileType.INSTANCE, EOFileType.FILE_EXTENSION);
+public final class EoLanguage extends Language {
+    /**
+     * Creating instance.
+     */
+    public static final EoLanguage INSTANCE = new EoLanguage();
+
+    /**
+     * Constructor.
+     */
+    private EoLanguage() {
+        super("EO");
     }
 }

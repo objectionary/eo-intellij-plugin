@@ -45,37 +45,45 @@ import org.antlr.v4.runtime.Parser;
 import org.antlr.v4.runtime.tree.ParseTree;
 import org.eolang.jetbrains.parser.EOLexer;
 import org.eolang.jetbrains.parser.EOParser;
-import org.eolang.jetbrains.psi.EOPSIFileRoot;
+import org.eolang.jetbrains.psi.EoPsiFileRoot;
 import org.jetbrains.annotations.NotNull;
 
 /**
- * Let's define a parser for EO language
+ * Let's define a parser for EO language.
+ * @since 0.0.0
  */
-public class EOParserDefinition implements ParserDefinition {
-    public static final IFileElementType FILE = new IFileElementType(EOLanguage.INSTANCE);
+public class EoParserDefinition implements ParserDefinition {
+    /**
+     * Instance of EO language.
+     */
+    public static final IFileElementType FILE = new IFileElementType(EoLanguage.INSTANCE);
 
-    public static TokenIElementType ID;
+    /**
+     * ID of token element type.
+     */
+    public static TokenIElementType id;
 
     static {
         PSIElementTypeFactory.defineLanguageIElementTypes(
-            EOLanguage.INSTANCE, EOParser.tokenNames, EOParser.ruleNames
+            EoLanguage.INSTANCE, EOParser.tokenNames, EOParser.ruleNames
         );
-        final List<TokenIElementType> tokenIElementTypes =
-            PSIElementTypeFactory.getTokenIElementTypes(EOLanguage.INSTANCE);
-        EOParserDefinition.ID = tokenIElementTypes.get(EOLexer.AT);
+        final List<TokenIElementType> tokenElementTypes =
+            PSIElementTypeFactory.getTokenIElementTypes(EoLanguage.INSTANCE);
+        EoParserDefinition.id = tokenElementTypes.get(EOLexer.AT);
     }
 
     @NotNull
     @Override
-    public Lexer createLexer(final Project project) {
+    public final Lexer createLexer(final Project project) {
         final EOLexer lexer = new EOLexer(null);
-        return new ANTLRLexerAdaptor(EOLanguage.INSTANCE, lexer);
+        return new ANTLRLexerAdaptor(EoLanguage.INSTANCE, lexer);
     }
 
     @NotNull
-    public PsiParser createParser(final Project project) {
+    @Override
+    public final PsiParser createParser(final Project project) {
         final EOParser parser = new EOParser(null);
-        return new ANTLRParserAdaptor(EOLanguage.INSTANCE, parser) {
+        return new ANTLRParserAdaptor(EoLanguage.INSTANCE, parser) {
             @Override
             protected ParseTree parse(final Parser parser, final IElementType root) {
                 return ((EOParser) parser).program();
@@ -83,47 +91,46 @@ public class EOParserDefinition implements ParserDefinition {
         };
     }
 
-    /** "Tokens of those types are automatically skipped by PsiBuilder." */
+    // Tokens of those types are automatically skipped by PsiBuilder.
     @NotNull
-    public TokenSet getWhitespaceTokens() {
-        return TokenSet.EMPTY;
-    }
-
-    @NotNull
-    public TokenSet getCommentTokens() {
-        return TokenSet.EMPTY;
-    }
-
-    @NotNull
-    public TokenSet getStringLiteralElements() {
-        return TokenSet.EMPTY;
-    }
-
-    /**
-     * What is the IFileElementType of the root parse tree node? It is called from {@link
-     * #createFile(FileViewProvider)} at least.
-     */
     @Override
-    public IFileElementType getFileNodeType() {
-        return EOParserDefinition.FILE;
+    public final TokenSet getWhitespaceTokens() {
+        return TokenSet.EMPTY;
     }
 
-    /**
+    @NotNull
+    @Override
+    public final TokenSet getCommentTokens() {
+        return TokenSet.EMPTY;
+    }
+
+    @NotNull
+    @Override
+    public final TokenSet getStringLiteralElements() {
+        return TokenSet.EMPTY;
+    }
+
+    @Override
+    public final IFileElementType getFileNodeType() {
+        return EoParserDefinition.FILE;
+    }
+
+    /*
      * Create the root of your PSI tree (a PsiFile).
      *
-     * <p>From IntelliJ IDEA Architectural Overview: "A PSI (Program Structure Interface) file is the
-     * root of a structure representing the contents of a file as a hierarchy of elements in a
-     * particular programming language."
+     * <p>From IntelliJ IDEA Architectural Overview: "A PSI (Program Structure Interface)
+     * file is the root of a structure representing the contents of a file as a hierarchy
+     *  of elements in a particular programming language."
      *
      * <p>PsiFile is to be distinguished from a FileASTNode, which is a parse tree node that
      * eventually becomes a PsiFile. From PsiFile, we can get it back via: {@link PsiFile#getNode}.
      */
     @Override
-    public PsiFile createFile(final FileViewProvider viewProvider) {
-        return new EOPSIFileRoot(viewProvider);
+    public final PsiFile createFile(final FileViewProvider viewProvider) {
+        return new EoPsiFileRoot(viewProvider);
     }
 
-    /**
+    /*
      * Convert from *NON-LEAF* parse node (AST they call it) to PSI node. Leaves are
      * created in the AST factory. Rename re-factoring can cause this to be called
      * on a TokenIElementType since we want to rename ID nodes. In that case, this
@@ -140,7 +147,8 @@ public class EOParserDefinition implements ParserDefinition {
      * ANTLRPsiNode} around the parse tree node
      */
     @NotNull
-    public PsiElement createElement(final ASTNode node) {
+    @Override
+    public final PsiElement createElement(final ASTNode node) {
         return new ANTLRPsiNode(node);
     }
 }
