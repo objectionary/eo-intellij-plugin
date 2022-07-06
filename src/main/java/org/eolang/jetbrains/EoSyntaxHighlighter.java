@@ -136,12 +136,13 @@ public class EoSyntaxHighlighter extends SyntaxHighlighterBase {
     // @checkstyle JavaNCSSCheck (100 lines)
     // @checkstyle ReturnCountCheck (100 lines)
     @Override
+    @SuppressWarnings({"PMD.OnlyOneReturn", "PMD.CyclomaticComplexity", "PMD.NcssCount"})
     public final TextAttributesKey[] getTokenHighlights(final IElementType tokentype) {
         if (!(tokentype instanceof TokenIElementType)) {
             return EoSyntaxHighlighter.EMPTY_KEYS;
         }
-        final TokenIElementType myType = (TokenIElementType) tokentype;
-        final int ttype = myType.getANTLRTokenType();
+        final TokenIElementType mytype = (TokenIElementType) tokentype;
+        final int ttype = mytype.getANTLRTokenType();
         final TextAttributesKey key;
         switch (ttype) {
             case EOLexer.LSQ:

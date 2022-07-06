@@ -1,63 +1,48 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0"
-         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-
-    <modelVersion>4.0.0</modelVersion>
-    <groupId>org.eolang</groupId>
-    <artifactId>org.eolang.jetbrains</artifactId>
-    <version>0.0.0</version>
-
-    <name>eo-intellij-plugin</name>
-    <description>Plugin for EO lang</description>
+<?xml version="1.0"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>org.eolang</groupId>
+  <artifactId>org.eolang.jetbrains</artifactId>
+  <version>0.0.0</version>
+  <name>eo-intellij-plugin</name>
+  <description>Plugin for EO lang</description>
+  <url>https://github.com/objectionary/eo-intellij-plugin</url>
+  <inceptionYear>2022</inceptionYear>
+  <organization>
+    <name>EO</name>
     <url>https://github.com/objectionary/eo-intellij-plugin</url>
-    <inceptionYear>2022</inceptionYear>
-    <organization>
-        <name>EO</name>
-        <url>https://github.com/objectionary/eo-intellij-plugin</url>
-    </organization>
-    <licenses>
-        <license>
-            <name>MIT</name>
-            <url>https://www.eolang.org/LICENSE.txt</url>
-            <distribution>site</distribution>
-        </license>
-    </licenses>
-    <developers>
-        <developer>
-            <id>1</id>
-            <name>Stepan Strunkov</name>
-            <email>stepa.strunkov@gmail.com</email>
-            <roles>
-                <role>Developer</role>
-            </roles>
-            <timezone>-7</timezone>
-        </developer>
-    </developers>
-    <profiles>
-        <profile>
-            <id>qulice</id>
-            <build>
-                <plugins>
-                    <plugin>
-                        <groupId>com.qulice</groupId>
-                        <artifactId>qulice-maven-plugin</artifactId>
-                        <goals>
-                            <goal>check</goal>
-                        </goals>
-                        <configuration>
-                            <license>file:${basedir}/LICENSE.txt</license>
-                            <excludes combine.children="append">
-                                <exclude>pmd:.*</exclude>
-                            </excludes>
-                        </configuration>
-                    </plugin>
-                </plugins>
-            </build>
-        </profile>
-    </profiles>
-    <properties>
-        <maven.compiler.source>1.8</maven.compiler.source>
-        <maven.compiler.target>1.8</maven.compiler.target>
-    </properties>
-
+  </organization>
+  <licenses>
+    <license>
+      <name>MIT</name>
+      <url>https://www.eolang.org/LICENSE.txt</url>
+      <distribution>site</distribution>
+    </license>
+  </licenses>
+  <developers>
+    <developer>
+      <id>1</id>
+      <name>Stepan Strunkov</name>
+      <email>stepa.strunkov@gmail.com</email>
+      <roles>
+        <role>Developer</role>
+      </roles>
+      <timezone>-7</timezone>
+    </developer>
+  </developers>
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>com.qulice</groupId>
+        <artifactId>qulice-maven-plugin</artifactId>
+        <configuration>
+          <license>file:LICENSE.txt</license>
+          <excludes combine.children="append">
+            <exclude>pmd:/src/main/java/org/eolang/jetbrains/parser/.*</exclude>
+            <exclude>checkstyle:/src/main/java/org/eolang/jetbrains/parser/.*</exclude>
+          </excludes>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
 </project>

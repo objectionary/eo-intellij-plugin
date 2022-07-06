@@ -29,8 +29,15 @@ before sending us your pull request please run full gradle build:
 ```bash
 $ gradle build
 ```
+For checking code quality we use [Qulice](https://www.qulice.com/index.html)
 
-You will need [Gradle](https://gradle.org/guides/) and Java 14+ installed.
+```bash
+$ gradle qulice
+```
+
+You will need [Gradle](https://gradle.org/guides/), [Maven](https://maven.apache.org/) and Java 14+ installed.
+
+
 
 ## Structure
 
