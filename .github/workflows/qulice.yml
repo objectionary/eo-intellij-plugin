@@ -1,4 +1,4 @@
-name: Code qulity
+name: Code quality
 on: [push]
 jobs:
   run:
