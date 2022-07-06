@@ -1,13 +1,45 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<!--
+The MIT License (MIT)
+
+Copyright (c) 2022 Stepan Strunkov
+
+aaa
+-->
     <modelVersion>4.0.0</modelVersion>
     <groupId>org.eolang</groupId>
     <artifactId>org.eolang.jetbrains</artifactId>
-    <version>1</version>
+    <version>0.0.0</version>
     <dependencies>
-
     </dependencies>
+    <name>eo-intellij-plugin</name>
+    <description>Plugin for EO lang</description>
+    <url>https://github.com/objectionary/eo-intellij-plugin</url>
+    <inceptionYear>2022</inceptionYear>
+    <organization>
+        <name>EO</name>
+        <url>https://github.com/objectionary/eo-intellij-plugin</url>
+    </organization>
+    <licenses>
+        <license>
+            <name>MIT</name>
+            <url>https://www.eolang.org/LICENSE.txt</url>
+            <distribution>site</distribution>
+        </license>
+    </licenses>
+    <developers>
+        <developer>
+            <id>1</id>
+            <name>Stepan Strunkov</name>
+            <email>stepa.strunkov@gmail.com</email>
+            <roles>
+                <role>Developer</role>
+            </roles>
+            <timezone>-7</timezone>
+        </developer>
+    </developers>
     <profiles>
         <profile>
             <id>qulice</id>
@@ -17,19 +49,10 @@
                         <groupId>com.qulice</groupId>
                         <artifactId>qulice-maven-plugin</artifactId>
                         <configuration>
+                            <license>file:${basedir}/LICENSE.txt</license>
                             <excludes combine.children="append">
-                                <exclude>checkstyle:/src/site/resources/.*</exclude>
-                                <exclude>duplicatefinder:.*</exclude>
+                                <exclude>pmd:.*</exclude>
                             </excludes>
-                        </configuration>
-                    </plugin>
-                    <plugin>
-                        <groupId>org.apache.maven.plugins</groupId>
-                        <artifactId>maven-compiler-plugin</artifactId>
-                        <version>3.1</version>
-                        <configuration>
-                            <source>1.7</source>
-                            <target>1.7</target>
                         </configuration>
                     </plugin>
                 </plugins>

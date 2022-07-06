@@ -21,20 +21,20 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-
+// @checkstyle AvoidStaticImportCheck (15 lines)
 package org.eolang.jetbrains;
 
-import static com.intellij.openapi.editor.colors.TextAttributesKey.createTextAttributesKey;
 import com.intellij.lexer.Lexer;
-import com.intellij.openapi.editor.colors.TextAttributesKey;
 import com.intellij.openapi.editor.DefaultLanguageHighlighterColors;
 import com.intellij.openapi.editor.HighlighterColors;
+import com.intellij.openapi.editor.colors.TextAttributesKey;
 import com.intellij.openapi.fileTypes.SyntaxHighlighterBase;
 import com.intellij.psi.tree.IElementType;
 import org.antlr.intellij.adaptor.lexer.ANTLRLexerAdaptor;
 import org.antlr.intellij.adaptor.lexer.TokenIElementType;
 import org.eolang.jetbrains.parser.EOLexer;
 import org.jetbrains.annotations.NotNull;
+import static com.intellij.openapi.editor.colors.TextAttributesKey.createTextAttributesKey;
 
 /**
  * Class for declaration groups of tokens and highlighting colors.
@@ -133,6 +133,8 @@ public class EoSyntaxHighlighter extends SyntaxHighlighterBase {
     }
 
     // @checkstyle CyclomaticComplexity (100 lines)
+    // @checkstyle JavaNCSSCheck (100 lines)
+    // @checkstyle ReturnCountCheck (100 lines)
     @Override
     public final TextAttributesKey[] getTokenHighlights(final IElementType tokentype) {
         if (!(tokentype instanceof TokenIElementType)) {
@@ -140,7 +142,7 @@ public class EoSyntaxHighlighter extends SyntaxHighlighterBase {
         }
         final TokenIElementType myType = (TokenIElementType) tokentype;
         final int ttype = myType.getANTLRTokenType();
-        final TextAttributesKey attrKey;
+        final TextAttributesKey key;
         switch (ttype) {
             case EOLexer.LSQ:
             case EOLexer.RSQ:
@@ -157,50 +159,50 @@ public class EoSyntaxHighlighter extends SyntaxHighlighterBase {
             case EOLexer.MINUS:
             case EOLexer.QUESTION:
             case EOLexer.STAR:
-                attrKey = EoSyntaxHighlighter.KEYWORD;
+                key = EoSyntaxHighlighter.KEYWORD;
                 break;
             case EOLexer.BOOL:
             case EOLexer.INT:
             case EOLexer.FLOAT:
             case EOLexer.HEX:
             case EOLexer.BYTES:
-                attrKey = EoSyntaxHighlighter.NUMBERS;
+                key = EoSyntaxHighlighter.NUMBERS;
                 break;
             case EOLexer.LB:
             case EOLexer.RB:
-                attrKey = EoSyntaxHighlighter.BRACES;
+                key = EoSyntaxHighlighter.BRACES;
                 break;
             case EOLexer.STRING:
             case EOLexer.TEXT:
-                attrKey = EoSyntaxHighlighter.STRING;
+                key = EoSyntaxHighlighter.STRING;
                 break;
             case EOLexer.SPACE:
-                attrKey = EoSyntaxHighlighter.SPACE;
+                key = EoSyntaxHighlighter.SPACE;
                 break;
             case EOLexer.DOT:
-                attrKey = EoSyntaxHighlighter.DOT;
+                key = EoSyntaxHighlighter.DOT;
                 break;
             case EOLexer.COMMENT:
-                attrKey = EoSyntaxHighlighter.COMMENT;
+                key = EoSyntaxHighlighter.COMMENT;
                 break;
             case EOLexer.HASH:
-                attrKey = EoSyntaxHighlighter.HASH;
+                key = EoSyntaxHighlighter.HASH;
                 break;
             case EOLexer.EOL:
-                attrKey = EoSyntaxHighlighter.EOL;
+                key = EoSyntaxHighlighter.EOL;
                 break;
             case EOLexer.NAME:
-                attrKey = EoSyntaxHighlighter.NAME;
+                key = EoSyntaxHighlighter.NAME;
                 break;
             case EOLexer.META:
-                attrKey = EoSyntaxHighlighter.META;
+                key = EoSyntaxHighlighter.META;
                 break;
             case EOLexer.BAD_CHARACTER:
-                attrKey = EoSyntaxHighlighter.BAD_CHARACTER;
+                key = EoSyntaxHighlighter.BAD_CHARACTER;
                 break;
             default:
                 return EoSyntaxHighlighter.EMPTY_KEYS;
         }
-        return new TextAttributesKey[] {attrKey};
+        return new TextAttributesKey[] {key};
     }
 }

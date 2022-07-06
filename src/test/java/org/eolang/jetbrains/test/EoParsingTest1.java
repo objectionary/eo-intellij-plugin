@@ -1,7 +1,7 @@
 /*
  * The MIT License (MIT)
  *
- * Copyright (c) 2016-2022 Strunkov Stepan
+ * Copyright (c) 2021-2022 Stepan Strunkov
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -22,7 +22,6 @@
  * SOFTWARE.
  */
 
-// @checkstyle JavadocPackageCheck (1 lines)
 package org.eolang.jetbrains.test;
 
 import com.intellij.testFramework.ParsingTestCase;
