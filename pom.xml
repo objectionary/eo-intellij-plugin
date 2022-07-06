@@ -1,19 +1,12 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-<!--
-The MIT License (MIT)
 
-Copyright (c) 2022 Stepan Strunkov
-
-aaa
--->
     <modelVersion>4.0.0</modelVersion>
     <groupId>org.eolang</groupId>
     <artifactId>org.eolang.jetbrains</artifactId>
     <version>0.0.0</version>
-    <dependencies>
-    </dependencies>
+
     <name>eo-intellij-plugin</name>
     <description>Plugin for EO lang</description>
     <url>https://github.com/objectionary/eo-intellij-plugin</url>
@@ -48,6 +41,9 @@ aaa
                     <plugin>
                         <groupId>com.qulice</groupId>
                         <artifactId>qulice-maven-plugin</artifactId>
+                        <goals>
+                            <goal>check</goal>
+                        </goals>
                         <configuration>
                             <license>file:${basedir}/LICENSE.txt</license>
                             <excludes combine.children="append">
