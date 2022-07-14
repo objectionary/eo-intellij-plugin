@@ -156,6 +156,8 @@ public class EoSyntaxHighlighter extends SyntaxHighlighterBase {
             case EOLexer.VERTEX:
             case EOLexer.SIGMA:
             case EOLexer.XI:
+            case EOLexer.AT:
+            case EOLexer.RHO:
             case EOLexer.PLUS:
             case EOLexer.MINUS:
             case EOLexer.QUESTION:
