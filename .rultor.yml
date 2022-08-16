@@ -14,5 +14,7 @@ merge:
 release:
   script: |
     source ../tokenscript.txt
+    sed -i -e "s/0.0.0/${tag}/" src/main/resources/META-INF/plugin.xml
+    sed -i -e "s/0.0.0/${tag}/" gradle.properties
     gradle wrapper
     gradle publishPlugin --console=plain | perl -pe 's/\x1b\[[0-9;]*[mG]//g'
