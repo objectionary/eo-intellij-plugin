@@ -58,3 +58,26 @@ We use [Rultor](https://github.com/yegor256/rultor) for publishing (see `.rultor
 Plugin is implemented in Java and ANTLR4 grammar.
 
 [ANTLR4 adapter](https://github.com/antlr/antlr4-intellij-adaptor) is used for generating `EOLexer` and `EOParser` classes.
+
+## Compiling EO sources using plugin
+
+In order to compile eo sources withing the project it must be maven project.
+Its `pom` file should contain `eo-maven-plugin` configuration as follows:
+```xml
+<build>
+    <plugins>
+      <plugin>
+        <groupId>org.eolang</groupId>
+        <artifactId>eo-maven-plugin</artifactId>
+        <version>0.27.0</version>
+        <configuration>
+          <foreign>${project.basedir}/target/eo/foreign.csv</foreign>
+          <foreignFormat>csv</foreignFormat>
+          <hash>master</hash>
+          <failOnWarning>true</failOnWarning>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
+```
+Having this set up compilation can be triggered by `Build -> EO compile` menu action.
