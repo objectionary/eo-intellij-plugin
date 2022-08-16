@@ -44,30 +44,58 @@ import org.jetbrains.idea.maven.utils.actions.MavenActionUtil;
  * Compile EO sources.
  * @since 1.0
  * @todo #20:30min Make compile action complete adding remaining compile actions
- *   (assemble, transpile etc.)
- *
+ *  (assemble, transpile etc.)
  * @todo #20:30min Create tests for the action
  */
-public class EoCompileAction extends AnAction {
+public final class EoCompileAction extends AnAction {
     @Override
-    public void actionPerformed(@NotNull final AnActionEvent anActionEvent) {
-        final DataContext context = anActionEvent.getDataContext();
+    public void actionPerformed(@NotNull final AnActionEvent action) {
+        final DataContext context = action.getDataContext();
         final Project project = MavenActionUtil.getProject(context);
-        if (project == null) return;
-        final MavenProject mavenProject = MavenActionUtil.getMavenProject(context);
-        if (mavenProject == null) {
+        MavenProject maven = null;
+        String name = "";
+        if (project != null) {
+            maven = MavenActionUtil.getMavenProject(context);
+            name = project.getName();
+        }
+        if (maven == null) {
             Notifications.Bus.notify(
                 new Notification(
                     Notifications.SYSTEM_MESSAGES_GROUP_ID,
                     "Cannot compile EO",
-                    "Noе a maven project: " + project.getName(),
+                    String.format("Not a maven project: %s", name),
                     NotificationType.WARNING
                 )
             );
             return;
         }
-        final MavenPlugin eo = mavenProject.findPlugin("org.eolang", "eo-maven-plugin");
-        if (eo == null) {
+        final MavenPlugin plugin = EoCompileAction.eoPlugin(maven);
+        final MavenProjectsManager manager = MavenActionUtil.getProjectsManager(context);
+        if (manager != null && plugin != null) {
+            final String version = plugin.getVersion();
+            final MavenExplicitProfiles profiles = manager.getExplicitProfiles();
+            final MavenRunnerParameters params = new MavenRunnerParameters(
+                true,
+                maven.getDirectory(),
+                maven.getFile().getName(),
+                Collections.singletonList(
+                    String.format("org.eolang:eo-maven-plugin:%s:register", version)
+                ),
+                profiles.getEnabledProfiles(),
+                profiles.getDisabledProfiles()
+            );
+            MavenRunConfigurationType.runConfiguration(project, params, null);
+        }
+    }
+
+    /**
+     * Try to find EO Maven plugin.
+     * @param maven Maven project
+     * @return Found plugin or null
+     */
+    private static MavenPlugin eoPlugin(final MavenProject maven) {
+        final MavenPlugin plugin = maven.findPlugin("org.eolang", "eo-maven-plugin");
+        if (plugin == null) {
             Notifications.Bus.notify(
                 new Notification(
                     Notifications.SYSTEM_MESSAGES_GROUP_ID,
@@ -76,24 +104,7 @@ public class EoCompileAction extends AnAction {
                     NotificationType.WARNING
                 )
             );
-            return;
         }
-        final MavenProjectsManager projectsManager = MavenActionUtil.getProjectsManager(context);
-        if (projectsManager == null) return;
-        final String version = eo.getVersion();
-        final MavenExplicitProfiles explicitProfiles = projectsManager.getExplicitProfiles();
-        final MavenRunnerParameters params = new MavenRunnerParameters(
-            true,
-            mavenProject.getDirectory(),
-            mavenProject.getFile().getName(),
-            Collections.singletonList(String.format("org.eolang:eo-maven-plugin:%s:register", version)),
-            explicitProfiles.getEnabledProfiles(),
-            explicitProfiles.getDisabledProfiles());
-        MavenRunConfigurationType.runConfiguration(project, params, null);
-    }
-
-    @Override
-    public void update(@NotNull final AnActionEvent e) {
-        super.update(e);
+        return plugin;
     }
 }

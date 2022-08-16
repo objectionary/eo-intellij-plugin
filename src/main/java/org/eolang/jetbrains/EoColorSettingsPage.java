@@ -29,6 +29,7 @@ import com.intellij.openapi.fileTypes.SyntaxHighlighter;
 import com.intellij.openapi.options.colors.AttributesDescriptor;
 import com.intellij.openapi.options.colors.ColorDescriptor;
 import com.intellij.openapi.options.colors.ColorSettingsPage;
+import java.util.Collections;
 import java.util.Map;
 import javax.swing.Icon;
 import org.jetbrains.annotations.NotNull;
@@ -56,7 +57,7 @@ public class EoColorSettingsPage implements ColorSettingsPage {
     @Nullable
     @Override
     public final Map<String, TextAttributesKey> getAdditionalHighlightingTagToDescriptorMap() {
-        return null;
+        return Collections.emptyMap();
     }
 
     @Override
