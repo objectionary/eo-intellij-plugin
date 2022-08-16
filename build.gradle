@@ -129,6 +129,9 @@ dependencies {
     testImplementation group: 'junit', name: 'junit', version: '4.11'
 }
 
+build {
+    dependsOn(qulice)
+}
 
 sourceCompatibility = JavaVersion.VERSION_1_9
 targetCompatibility = JavaVersion.VERSION_1_9
