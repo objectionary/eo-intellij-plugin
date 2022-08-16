@@ -36,6 +36,7 @@ SOFTWARE.
     <change-notes>bug fixes</change-notes>
     <idea-version since-build="182"/>
     <depends>com.intellij.modules.lang</depends>
+    <depends>org.jetbrains.idea.maven</depends>
     <application-components>
     </application-components>
     <project-components>
@@ -44,6 +45,14 @@ SOFTWARE.
         </component>
     </project-components>
     <actions>
+        <action
+            id="org.eolang.jetbrains.EoCompileAction"
+            class="org.eolang.jetbrains.EoCompileAction"
+            text="EO Compile"
+            description="Compile EO files"
+            icon="org.eolang.jetbrains.Icons.EO_ICON">
+            <add-to-group group-id="BuildMenu" anchor="first"/>
+        </action>
     </actions>
     <extensions defaultExtensionNs="com.intellij">
         <fileTypeFactory implementation="org.eolang.jetbrains.EoFileTypeFactory"/>

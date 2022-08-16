@@ -11,8 +11,7 @@ buildscript {
 
 
 plugins {
-    id "org.jetbrains.intellij" version "1.5.3"
-    // id "com.github.dkorotych.gradle-maven-exec" version "2.2.1"
+    id "org.jetbrains.intellij" version "1.8.0"
 }
 
 java {
@@ -25,7 +24,6 @@ wrapper {
     doLast {
         println "WRAPPER"
     }
-    // gradleVersion = '6.3.0'
     gradleVersion = '7.4.2'
 }
 
@@ -100,6 +98,7 @@ intellij {
     pluginName = 'eo-intellij'
     downloadSources = false
     updateSinceUntilBuild = false
+    plugins = ['org.jetbrains.idea.maven']
 }
 
 
