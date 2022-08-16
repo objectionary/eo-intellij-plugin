@@ -31,6 +31,7 @@ import com.intellij.openapi.actionSystem.AnActionEvent;
 import com.intellij.openapi.actionSystem.DataContext;
 import com.intellij.openapi.project.Project;
 import java.util.Collections;
+import java.util.function.Supplier;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.idea.maven.execution.MavenRunConfigurationType;
 import org.jetbrains.idea.maven.execution.MavenRunnerParameters;
@@ -46,65 +47,82 @@ import org.jetbrains.idea.maven.utils.actions.MavenActionUtil;
  * @todo #20:30min Make compile action complete adding remaining compile actions
  *  (assemble, transpile etc.)
  * @todo #20:30min Create tests for the action
+ * @checkstyle LineLengthCheck (30 lines)
  */
 public final class EoCompileAction extends AnAction {
     @Override
     public void actionPerformed(@NotNull final AnActionEvent action) {
         final DataContext context = action.getDataContext();
-        final Project project = MavenActionUtil.getProject(context);
-        MavenProject maven = null;
-        String name = "";
-        if (project != null) {
-            maven = MavenActionUtil.getMavenProject(context);
-            name = project.getName();
-        }
-        if (maven == null) {
-            Notifications.Bus.notify(
-                new Notification(
-                    Notifications.SYSTEM_MESSAGES_GROUP_ID,
-                    "Cannot compile EO",
-                    String.format("Not a maven project: %s", name),
-                    NotificationType.WARNING
+        try {
+            final Project project = EoCompileAction.supplyNoNull(
+                () -> MavenActionUtil.getProject(context),
+                () -> EoCompileAction.notifyCannotCompile("Select Idea project")
+            );
+            final MavenProject maven = EoCompileAction.supplyNoNull(
+                () -> MavenActionUtil.getMavenProject(context),
+                () -> EoCompileAction.notifyCannotCompile(
+                    String.format("Set up Maven project for %s", project.getName())
                 )
             );
-            return;
-        }
-        final MavenPlugin plugin = EoCompileAction.eoPlugin(maven);
-        final MavenProjectsManager manager = MavenActionUtil.getProjectsManager(context);
-        if (manager != null && plugin != null) {
-            final String version = plugin.getVersion();
-            final MavenExplicitProfiles profiles = manager.getExplicitProfiles();
-            final MavenRunnerParameters params = new MavenRunnerParameters(
-                true,
-                maven.getDirectory(),
-                maven.getFile().getName(),
-                Collections.singletonList(
-                    String.format("org.eolang:eo-maven-plugin:%s:register", version)
-                ),
-                profiles.getEnabledProfiles(),
-                profiles.getDisabledProfiles()
+            final MavenPlugin plugin = EoCompileAction.supplyNoNull(
+                () -> maven.findPlugin("org.eolang", "eo-maven-plugin"),
+                () -> EoCompileAction.notifyCannotCompile(
+                    "eo-maven-plugin is not configured in your pom.xml, see https://github.com/objectionary/eo/tree/master/eo-maven-plugin"
+                )
             );
-            MavenRunConfigurationType.runConfiguration(project, params, null);
+            final MavenProjectsManager manager = EoCompileAction.supplyNoNull(
+                () -> MavenActionUtil.getProjectsManager(context),
+                () -> {
+                }
+            );
+            final MavenExplicitProfiles profiles = manager.getExplicitProfiles();
+            MavenRunConfigurationType.runConfiguration(
+                project,
+                new MavenRunnerParameters(
+                    true,
+                    maven.getDirectory(),
+                    maven.getFile().getName(),
+                    Collections.singletonList(
+                        String.format("org.eolang:eo-maven-plugin:%s:register", plugin.getVersion())
+                    ),
+                    profiles.getEnabledProfiles(),
+                    profiles.getDisabledProfiles()
+                ),
+                null
+            );
+        } catch (final IllegalStateException ignored) {
         }
     }
 
     /**
-     * Try to find EO Maven plugin.
-     * @param maven Maven project
-     * @return Found plugin or null
+     * Supply an object throwing exception in case null is supplied.
+     * @param supplier Supply function
+     * @param action Action to perform in case of null
+     * @param <T> Type of supplied object
+     * @return Supplied object
+     * @throws IllegalStateException In case supplied object is null
      */
-    private static MavenPlugin eoPlugin(final MavenProject maven) {
-        final MavenPlugin plugin = maven.findPlugin("org.eolang", "eo-maven-plugin");
-        if (plugin == null) {
-            Notifications.Bus.notify(
-                new Notification(
-                    Notifications.SYSTEM_MESSAGES_GROUP_ID,
-                    "Cannot compile EO",
-                    "Eo-maven plugin is not configured",
-                    NotificationType.WARNING
-                )
-            );
+    private static <T> T supplyNoNull(final Supplier<T> supplier, final Runnable action) {
+        final T raw = supplier.get();
+        if (raw == null) {
+            action.run();
+            throw new IllegalStateException("null is supplied");
         }
-        return plugin;
+        return raw;
+    }
+
+    /**
+     * Send compilation notification.
+     * @param reason Reason
+     */
+    private static void notifyCannotCompile(final String reason) {
+        Notifications.Bus.notify(
+            new Notification(
+                Notifications.SYSTEM_MESSAGES_GROUP_ID,
+                "Cannot compile EO",
+                reason,
+                NotificationType.WARNING
+            )
+        );
     }
 }
