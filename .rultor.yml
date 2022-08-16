@@ -1,7 +1,14 @@
 assets:
   tokenscript.txt: yegor256/objectionary-secrets#marketplace.token.sh
 
-
+merge:
+  script: |
+    curl -s "https://get.sdkman.io" | bash
+    source "$HOME/.sdkman/bin/sdkman-init.sh"
+    sdk version
+    sdk install gradle 7.4.2
+    gradle wrapper
+    gradle build
 release:
   script: |
     source ../tokenscript.txt
