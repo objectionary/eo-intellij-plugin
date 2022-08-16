@@ -45,6 +45,8 @@ import org.jetbrains.idea.maven.utils.actions.MavenActionUtil;
  * @since 1.0
  * @todo #20:30min Make compile action complete adding remaining compile actions
  *   (assemble, transpile etc.)
+ *
+ * @todo #20:30min Create tests for the action
  */
 public class EoCompileAction extends AnAction {
     @Override
