@@ -1,15 +1,20 @@
+docker:
+  image: yegor256/rultor-image:1.9.1
 assets:
   tokenscript.txt: yegor256/objectionary-secrets#marketplace.token.sh
-
-
+install: |
+  curl -s "https://get.sdkman.io" | bash
+  source "$HOME/.sdkman/bin/sdkman-init.sh"
+  sdk version
+  sdk install gradle 7.4.2
+merge:
+  script: |
+    gradle wrapper
+    gradle build
 release:
   script: |
     source ../tokenscript.txt
     sed -i -e "s/0.0.0/${tag}/" src/main/resources/META-INF/plugin.xml
     sed -i -e "s/0.0.0/${tag}/" gradle.properties
-    curl -s "https://get.sdkman.io" | bash
-    source "$HOME/.sdkman/bin/sdkman-init.sh"
-    sdk version
-    sdk install gradle 7.4.2
     gradle wrapper
     gradle publishPlugin --console=plain | perl -pe 's/\x1b\[[0-9;]*[mG]//g'

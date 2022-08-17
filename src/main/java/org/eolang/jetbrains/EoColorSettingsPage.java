@@ -57,7 +57,7 @@ public class EoColorSettingsPage implements ColorSettingsPage {
     @Nullable
     @Override
     public final Map<String, TextAttributesKey> getAdditionalHighlightingTagToDescriptorMap() {
-        return Collections.emptyMap();
+        return Collections.<String, TextAttributesKey>emptyMap();
     }
 
     @Override
