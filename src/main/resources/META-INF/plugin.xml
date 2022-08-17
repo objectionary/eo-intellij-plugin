@@ -44,6 +44,20 @@ SOFTWARE.
         </component>
     </project-components>
     <actions>
+        <action
+            class="org.eolang.jetbrains.CommentAction"
+            text="Comment Selected Text"
+            description="Comment selected text">
+            <add-to-group group-id="ToolsMenu" anchor="first"/>
+            <keyboard-shortcut keymap="$default"  first-keystroke="ctrl SLASH" second-keystroke="ctrl K"/>
+        </action>
+        <action
+                class="org.eolang.jetbrains.UnCommentAction"
+                text="Comment Selected Text"
+                description="Comment selected text">
+            <add-to-group group-id="ToolsMenu" anchor="first"/>
+            <keyboard-shortcut keymap="$default"  first-keystroke="ctrl SLASH" second-keystroke="ctrl shift K"/>
+        </action>
     </actions>
     <extensions defaultExtensionNs="com.intellij">
         <fileTypeFactory implementation="org.eolang.jetbrains.EoFileTypeFactory"/>
