@@ -61,6 +61,7 @@ SOFTWARE.
         <!-- <lang.psiStructureViewFactory language="EO" implementationClass="org.eolang.jetbrains.structview.EOStructureViewFactory"/> -->
         <colorSettingsPage implementation="org.eolang.jetbrains.EoColorSettingsPage"/>
         <externalAnnotator language="EO" implementationClass="org.eolang.jetbrains.EoExternalAnnotator"/>
+        <lang.commenter language="EO" implementationClass="org.eolang.jetbrains.EoCommenter"/>
         <!-- <lang.findUsagesProvider language="EO" implementationClass="org.eolang.jetbrains.EOFindUsagesProvider"/> -->
         <!-- <completion.contributor language="EO" implementationClass="org.eolang.jetbrains.EOCompletionContributor"/> -->
     </extensions>
