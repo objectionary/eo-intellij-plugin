@@ -43,22 +43,6 @@ SOFTWARE.
             <implementation-class>org.eolang.jetbrains.EoPluginController</implementation-class>
         </component>
     </project-components>
-    <actions>
-        <action
-            class="org.eolang.jetbrains.CommentAction"
-            text="Comment Selected Text"
-            description="Comment selected text">
-            <add-to-group group-id="ToolsMenu" anchor="first"/>
-            <keyboard-shortcut keymap="$default"  first-keystroke="ctrl SLASH" second-keystroke="ctrl K"/>
-        </action>
-        <action
-                class="org.eolang.jetbrains.UnCommentAction"
-                text="Comment Selected Text"
-                description="Comment selected text">
-            <add-to-group group-id="ToolsMenu" anchor="first"/>
-            <keyboard-shortcut keymap="$default"  first-keystroke="ctrl SLASH" second-keystroke="ctrl shift K"/>
-        </action>
-    </actions>
     <extensions defaultExtensionNs="com.intellij">
         <fileTypeFactory implementation="org.eolang.jetbrains.EoFileTypeFactory"/>
         <lang.syntaxHighlighterFactory language="EO" implementationClass="org.eolang.jetbrains.EoSyntaxHighlighterFactory"/>
@@ -66,6 +50,7 @@ SOFTWARE.
         <!-- <lang.psiStructureViewFactory language="EO" implementationClass="org.eolang.jetbrains.structview.EOStructureViewFactory"/> -->
         <colorSettingsPage implementation="org.eolang.jetbrains.EoColorSettingsPage"/>
         <externalAnnotator language="EO" implementationClass="org.eolang.jetbrains.EoExternalAnnotator"/>
+        <lang.commenter language="EO" implementationClass="org.eolang.jetbrains.EoCommenter"/>
         <!-- <lang.findUsagesProvider language="EO" implementationClass="org.eolang.jetbrains.EOFindUsagesProvider"/> -->
         <!-- <completion.contributor language="EO" implementationClass="org.eolang.jetbrains.EOCompletionContributor"/> -->
     </extensions>
