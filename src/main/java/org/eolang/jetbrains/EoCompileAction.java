@@ -52,29 +52,37 @@ import org.jetbrains.idea.maven.utils.actions.MavenActionUtil;
 public final class EoCompileAction extends AnAction {
     @Override
     public void actionPerformed(@NotNull final AnActionEvent action) {
-        final DataContext context = action.getDataContext();
         try {
-            final Project project = EoCompileAction.supplyNoNull(
-                () -> MavenActionUtil.getProject(context),
-                () -> EoCompileAction.notifyCannotCompile("Select Idea project")
+            EoCompileAction.performUnsafe(action);
+        } catch (final IllegalStateException exception) {
+            EoCompileAction.notifyCannotCompile(exception.getMessage());
+        }
+    }
+
+    /**
+     * Perform execution throwing exceptions.
+     * @param action Action to perform
+     */
+    private static void performUnsafe(final AnActionEvent action) {
+        final DataContext context = action.getDataContext();
+        final Project project = MavenActionUtil.getProject(context);
+        if (project == null) {
+            throw new IllegalStateException("Select Idea project");
+        }
+        final MavenProject maven = MavenActionUtil.getMavenProject(context);
+        if (maven == null) {
+            throw new IllegalStateException(
+                String.format("Set up Maven project for %s", project.getName())
             );
-            final MavenProject maven = EoCompileAction.supplyNoNull(
-                () -> MavenActionUtil.getMavenProject(context),
-                () -> EoCompileAction.notifyCannotCompile(
-                    String.format("Set up Maven project for %s", project.getName())
-                )
+        }
+        final MavenPlugin plugin = maven.findPlugin("org.eolang", "eo-maven-plugin");
+        if (plugin == null) {
+            throw new IllegalStateException(
+                "eo-maven-plugin is not configured in your pom.xml, see https://github.com/objectionary/eo/tree/master/eo-maven-plugin"
             );
-            final MavenPlugin plugin = EoCompileAction.supplyNoNull(
-                () -> maven.findPlugin("org.eolang", "eo-maven-plugin"),
-                () -> EoCompileAction.notifyCannotCompile(
-                    "eo-maven-plugin is not configured in your pom.xml, see https://github.com/objectionary/eo/tree/master/eo-maven-plugin"
-                )
-            );
-            final MavenProjectsManager manager = EoCompileAction.supplyNoNull(
-                () -> MavenActionUtil.getProjectsManager(context),
-                () -> {
-                }
-            );
+        }
+        final MavenProjectsManager manager = MavenActionUtil.getProjectsManager(context);
+        if (manager != null) {
             final MavenExplicitProfiles profiles = manager.getExplicitProfiles();
             MavenRunConfigurationType.runConfiguration(
                 project,
@@ -90,25 +98,7 @@ public final class EoCompileAction extends AnAction {
                 ),
                 null
             );
-        } catch (final IllegalStateException ignored) {
         }
-    }
-
-    /**
-     * Supply an object throwing exception in case null is supplied.
-     * @param supplier Supply function
-     * @param action Action to perform in case of null
-     * @param <T> Type of supplied object
-     * @return Supplied object
-     * @throws IllegalStateException In case supplied object is null
-     */
-    private static <T> T supplyNoNull(final Supplier<T> supplier, final Runnable action) {
-        final T raw = supplier.get();
-        if (raw == null) {
-            action.run();
-            throw new IllegalStateException("null is supplied");
-        }
-        return raw;
     }
 
     /**
