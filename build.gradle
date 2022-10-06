@@ -77,7 +77,7 @@ jacocoTestReport {
 
 task qulice (type: Exec) {
     workingDir "${projectDir}"
-    commandLine 'mvn', 'com.qulice:qulice-maven-plugin:check'
+    commandLine 'mvn', 'com.qulice:qulice-maven-plugin:0.22.0'
 }
 
 compileJava {
