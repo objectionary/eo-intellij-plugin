@@ -27,7 +27,7 @@ package org.eolang.jetbrains.test;
 import com.intellij.codeInsight.generation.actions.CommentByLineCommentAction;
 import com.intellij.testFramework.fixtures.CodeInsightFixtureTestCase;
 import org.eolang.jetbrains.EoFileType;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 /**
  * Commenter test.

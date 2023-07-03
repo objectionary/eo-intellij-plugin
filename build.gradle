@@ -11,7 +11,8 @@ buildscript {
 
 
 plugins {
-    id "org.jetbrains.intellij" version "1.8.0"
+    id "java"
+    id "org.jetbrains.intellij" version "1.14.2"
 }
 
 java {
@@ -31,8 +32,6 @@ apply plugin: 'java'
 apply plugin: 'org.jetbrains.intellij'
 apply plugin: 'antlr'
 apply plugin: 'jacoco'
-
-
 
 task getGrammar {
     doFirst {
@@ -95,7 +94,7 @@ intellij {
     pluginName = 'eo-intellij'
     downloadSources = false
     updateSinceUntilBuild = false
-    plugins = ['org.jetbrains.idea.maven']
+    plugins = ["com.intellij.java", "org.jetbrains.idea.maven"]
 }
 
 
@@ -117,16 +116,14 @@ repositories {
 }
 
 dependencies {
+    testImplementation 'org.junit.jupiter:junit-jupiter:5.8.1'
     antlr("org.antlr:antlr4:$antlr4Version") {
         exclude group:'com.ibm.icu', module:'icu4j'
     }
     implementation 'org.antlr:antlr4-intellij-adaptor:0.1'
-    testImplementation group: 'junit', name: 'junit', version: '4.11'
+//    testImplementation group: 'junit', name: 'junit', version: '4.13.2'
 }
 
 build {
     dependsOn(qulice)
 }
-
-sourceCompatibility = JavaVersion.VERSION_1_9
-targetCompatibility = JavaVersion.VERSION_1_9
