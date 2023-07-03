@@ -26,8 +26,7 @@ package org.eolang.jetbrains.test;
 
 import com.intellij.testFramework.ParsingTestCase;
 import org.eolang.jetbrains.EoParserDefinition;
-import org.junit.jupiter.api.Disabled;
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
 
 /**
  * Test class @ParsingTestCase.
@@ -46,9 +45,8 @@ public class EoParsingTestComments extends ParsingTestCase {
      * Setting checking result.
      */
     @Test
-    @Disabled
     public void testParsingTestData() {
-//        this.doTest(true);
+        this.doTest(true);
     }
 
     @Override

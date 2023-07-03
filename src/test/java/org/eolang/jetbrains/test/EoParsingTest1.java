@@ -26,19 +26,18 @@ package org.eolang.jetbrains.test;
 
 import com.intellij.testFramework.ParsingTestCase;
 import org.eolang.jetbrains.EoParserDefinition;
-import org.junit.jupiter.api.Disabled;
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
 
 /**
  * Test class @ParsingTestCase.
  * @since 0.0.0
  */
-public class EoParsingTest extends ParsingTestCase {
+public class EoParsingTest1 extends ParsingTestCase {
 
     /**
      * Parser initialization.
      */
-    public EoParsingTest() {
+    public EoParsingTest1() {
         super("", "eo", new EoParserDefinition());
     }
 
@@ -47,9 +46,8 @@ public class EoParsingTest extends ParsingTestCase {
      * Setting checking result.
      */
     @Test
-    @Disabled
     public void testParsingTestData() {
-//        doTest(true);
+        doTest(true);
     }
 
     @Override

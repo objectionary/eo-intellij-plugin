@@ -191,7 +191,7 @@ public class EoSyntaxHighlighter extends SyntaxHighlighterBase {
             case EOLexer.HASH:
                 key = EoSyntaxHighlighter.HASH;
                 break;
-            case EOLexer.SINGLE_EOL:
+            case EOLexer.EOL:
                 key = EoSyntaxHighlighter.EOL;
                 break;
             case EOLexer.NAME:
