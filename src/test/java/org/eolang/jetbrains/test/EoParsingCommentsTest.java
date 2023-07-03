@@ -26,18 +26,19 @@ package org.eolang.jetbrains.test;
 
 import com.intellij.testFramework.ParsingTestCase;
 import org.eolang.jetbrains.EoParserDefinition;
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
 
 /**
  * Test class @ParsingTestCase.
  * @since 0.0.0
  */
-public class EoParsingTestComments extends ParsingTestCase {
+@SuppressWarnings("PMD.JUnit5TestShouldBePackagePrivate")
+public class EoParsingCommentsTest extends ParsingTestCase {
 
     /**
      * Parser initialization.
      */
-    public EoParsingTestComments() {
+    public EoParsingCommentsTest() {
         super("", "eo", new EoParserDefinition());
     }
 
@@ -46,7 +47,7 @@ public class EoParsingTestComments extends ParsingTestCase {
      */
     @Test
     public void testParsingTestData() {
-//        this.doTest(true);
+        this.doTest(false);
     }
 
     @Override

@@ -27,12 +27,13 @@ package org.eolang.jetbrains.test;
 import com.intellij.codeInsight.generation.actions.CommentByLineCommentAction;
 import com.intellij.testFramework.fixtures.CodeInsightFixtureTestCase;
 import org.eolang.jetbrains.EoFileType;
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
 
 /**
  * Commenter test.
  * @since 0.0.5
  */
+@SuppressWarnings("PMD.JUnit5TestShouldBePackagePrivate")
 public final class EoCommenterTest extends CodeInsightFixtureTestCase {
     /**
      * Simple test.

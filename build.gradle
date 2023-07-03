@@ -116,12 +116,11 @@ repositories {
 }
 
 dependencies {
-    testImplementation 'org.junit.jupiter:junit-jupiter:5.8.1'
     antlr("org.antlr:antlr4:$antlr4Version") {
         exclude group:'com.ibm.icu', module:'icu4j'
     }
     implementation 'org.antlr:antlr4-intellij-adaptor:0.1'
-//    testImplementation group: 'junit', name: 'junit', version: '4.13.2'
+    testImplementation group: 'junit', name: 'junit', version: '4.13.2'
 }
 
 build {

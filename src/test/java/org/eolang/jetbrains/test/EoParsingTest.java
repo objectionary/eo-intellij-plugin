@@ -26,12 +26,13 @@ package org.eolang.jetbrains.test;
 
 import com.intellij.testFramework.ParsingTestCase;
 import org.eolang.jetbrains.EoParserDefinition;
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
 
 /**
  * Test class @ParsingTestCase.
  * @since 0.0.0
  */
+@SuppressWarnings("PMD.JUnit5TestShouldBePackagePrivate")
 public class EoParsingTest extends ParsingTestCase {
 
     /**
@@ -47,7 +48,7 @@ public class EoParsingTest extends ParsingTestCase {
      */
     @Test
     public void testParsingTestData() {
-//        doTest(true);
+        doTest(false);
     }
 
     @Override
