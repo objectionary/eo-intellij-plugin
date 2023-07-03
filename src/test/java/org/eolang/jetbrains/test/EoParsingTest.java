@@ -47,7 +47,8 @@ public class EoParsingTest extends ParsingTestCase {
      * Setting checking result.
      *
      * @todo #30:30min Enable the tests. Since new grammar was added to eolang
-     *  need to update antlr4 grammar remake and refactor parsing tests.
+     *  need to update antlr4 grammar, remake and refactor parsing tests. Don't
+     *  forget to get codecov coverage level up before resolving this task.
      */
     @Test
     public void testParsingTestData() {
