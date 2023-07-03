@@ -45,6 +45,9 @@ public class EoParsingTest extends ParsingTestCase {
     // @checkstyle NonStaticMethodCheck (6 lines)
     /**
      * Setting checking result.
+     *
+     * @todo #30:30min Enable the tests. Since new grammar was added to eolang
+     *  need to update antlr4 grammar remake and refactor parsing tests.
      */
     @Test
     public void testParsingTestData() {
