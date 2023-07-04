@@ -16,12 +16,12 @@ plugins {
 
 java {
     toolchain {
-        languageVersion = JavaLanguageVersion.of(19)
+        languageVersion = JavaLanguageVersion.of(14)
     }
 }
 
 wrapper {
-    gradleVersion = '7.4.2'
+    gradleVersion("7.4.2")
 }
 
 group 'antlr'
