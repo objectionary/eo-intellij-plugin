@@ -11,13 +11,12 @@ buildscript {
 
 
 plugins {
-    id "java"
     id "org.jetbrains.intellij" version "1.14.2"
 }
 
 java {
     toolchain {
-        languageVersion = JavaLanguageVersion.of(14)
+        languageVersion = JavaLanguageVersion.of(19)
     }
 }
 
@@ -126,3 +125,6 @@ dependencies {
 build {
     dependsOn(qulice)
 }
+
+sourceCompatibility = JavaVersion.VERSION_1_9
+targetCompatibility = JavaVersion.VERSION_1_9
