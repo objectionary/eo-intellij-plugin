@@ -32,9 +32,9 @@ apply plugin: 'jacoco'
 
 task getGrammar {
     doFirst {
-        def f = new File('src/main/antlr/org/jetbrains/eolang/parser/EO.g4')
+        def f = new File('src/main/antlr/org/jetbrains/eolang/parser/Eo.g4')
         if (!f.exists())
-            println("Created destination file: src/main/antlr/org/jetbrains/eolang/parser/EO.g4")
+            println("Created destination file: src/main/antlr/org/jetbrains/eolang/parser/Eo.g4")
         else {
             println("File already exists. Delete it and rerun task")
             return
@@ -51,8 +51,8 @@ task getGrammar {
         if (f.exists())
             println("Grammar downloading is completed")
 
-        ant.replaceregexp(match: 'Program', replace: 'EO', flags: 'g', byline: true) {
-            fileset(dir: 'src/main/antlr/org/jetbrains/eolang/parser', includes: 'EO.g4')
+        ant.replaceregexp(match: 'Program', replace: 'Eo', flags: 'g', byline: true) {
+            fileset(dir: 'src/main/antlr/org/jetbrains/eolang/parser', includes: 'Eo.g4')
         }
     }
 }
@@ -75,7 +75,7 @@ task qulice(type: Exec) {
     workingDir "${projectDir}"
     // Определяем имя исполняемого файла в зависимости от платформы:
     def mvnExecutable = System.properties['os.name'].toLowerCase().contains('windows') ? 'mvn.cmd' : 'mvn'
-    commandLine mvnExecutable, 'com.qulice:qulice-maven-plugin:check', '-X'
+    commandLine mvnExecutable, 'com.qulice:qulice-maven-plugin:check'
 }
 
 
