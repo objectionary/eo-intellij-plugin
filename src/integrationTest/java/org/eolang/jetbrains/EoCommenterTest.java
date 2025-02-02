@@ -22,41 +22,56 @@
  * SOFTWARE.
  */
 
-package org.eolang.jetbrains.test;
+package org.eolang.jetbrains;
 
 import com.intellij.codeInsight.generation.actions.CommentByLineCommentAction;
-import com.intellij.testFramework.fixtures.CodeInsightFixtureTestCase;
+import com.intellij.testFramework.fixtures.BasePlatformTestCase;
 import org.eolang.jetbrains.EoFileType;
 import org.junit.Test;
 
 /**
- * Commenter test.
+ * Тесты для {@link org.eolang.jetbrains.EoCommenter}.
  * @since 0.0.5
  */
 @SuppressWarnings("PMD.JUnit5TestShouldBePackagePrivate")
-public final class EoCommenterTest extends CodeInsightFixtureTestCase {
+public final class EoCommenterTest extends BasePlatformTestCase {
+
     /**
-     * Simple test.
+     * Проверяет добавление и удаление однострочного комментария.
      */
     @Test
     public void testLineCommenter() {
+        // Настройка текста с курсором в начале строки
         myFixture.configureByText(EoFileType.INSTANCE, "<caret>[] > main");
+
+        // Создаем экземпляр действия для добавления/удаления комментариев
         final CommentByLineCommentAction action = new CommentByLineCommentAction();
+
+        // Добавляем комментарий
         action.actionPerformedImpl(getProject(), myFixture.getEditor());
         myFixture.checkResult("#[] > main");
+
+        // Удаляем комментарий
         action.actionPerformedImpl(getProject(), myFixture.getEditor());
         myFixture.checkResult("[] > main");
     }
 
     /**
-     * Test with indent.
+     * Проверяет добавление и удаление однострочного комментария с отступом.
      */
     @Test
     public void testLineWithIndentCommenter() {
+        // Настройка текста с отступом и курсором в начале строки
         myFixture.configureByText(EoFileType.INSTANCE, "  <caret>[] > main");
+
+        // Создаем экземпляр действия для добавления/удаления комментариев
         final CommentByLineCommentAction action = new CommentByLineCommentAction();
+
+        // Добавляем комментарий
         action.actionPerformedImpl(getProject(), myFixture.getEditor());
         myFixture.checkResult("#  [] > main");
+
+        // Удаляем комментарий
         action.actionPerformedImpl(getProject(), myFixture.getEditor());
         myFixture.checkResult("  [] > main");
     }

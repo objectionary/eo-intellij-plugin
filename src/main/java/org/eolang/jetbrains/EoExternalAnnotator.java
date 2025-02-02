@@ -31,8 +31,9 @@ import com.intellij.psi.PsiElement;
 import com.intellij.psi.PsiFile;
 import java.util.ArrayList;
 import java.util.List;
+
+import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
 
 /**
  * An external annotator is an object that analyzes code in a document and annotates the PSI
@@ -44,12 +45,11 @@ import org.jetbrains.annotations.Nullable;
  * @checkstyle MemberNameCheck (200 lines)
  */
 public class EoExternalAnnotator
-    extends ExternalAnnotator<PsiFile, List<EoExternalAnnotator.Issue>> {
+        extends ExternalAnnotator<PsiFile, List<EoExternalAnnotator.Issue>> {
 
     // Called first; in our case, just return file and do nothing.
     @Override
-    @Nullable
-    public final PsiFile collectInformation(@NotNull final PsiFile file) {
+    public final @NotNull PsiFile collectInformation(@NotNull final PsiFile file) {
         return file;
     }
 
@@ -61,18 +61,23 @@ public class EoExternalAnnotator
      * compiler or interpreter to get error messages or other bits of information you'd
      * like to annotate the document with.
      */
+    @Contract(value = "_ -> new", pure = true)
     @Override
-    public final List<Issue> doAnnotate(final PsiFile file) {
+    public final @NotNull List<Issue> doAnnotate(final PsiFile file) {
         return new ArrayList<>(0);
     }
 
     // Called 3rd to actually annotate the editor window.
     @Override
-    public final void apply(@NotNull final PsiFile file, final List<Issue> issues,
+    public final void apply(@NotNull final PsiFile file, final @NotNull List<Issue> issues,
         @NotNull final AnnotationHolder holder) {
         for (final Issue issue : issues) {
             final TextRange range = issue.getOffendingNode().getTextRange();
-            holder.createErrorAnnotation(range, issue.getMsg());
+            if (range.getStartOffset() > range.getEndOffset()) {
+                System.err.println("Invalid TextRange: " + range);
+                continue;
+            }
+                holder.createErrorAnnotation(range, issue.getMsg());
         }
     }
 

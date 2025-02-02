@@ -43,8 +43,8 @@ import org.antlr.intellij.adaptor.parser.ANTLRParserAdaptor;
 import org.antlr.intellij.adaptor.psi.ANTLRPsiNode;
 import org.antlr.v4.runtime.Parser;
 import org.antlr.v4.runtime.tree.ParseTree;
-import org.eolang.jetbrains.parser.EOLexer;
-import org.eolang.jetbrains.parser.EOParser;
+import org.eolang.jetbrains.parser.EoLexer;
+import org.eolang.jetbrains.parser.EoParser;
 import org.eolang.jetbrains.psi.EoPsiFileRoot;
 import org.jetbrains.annotations.NotNull;
 
@@ -67,28 +67,28 @@ public class EoParserDefinition implements ParserDefinition {
 
     static {
         PSIElementTypeFactory.defineLanguageIElementTypes(
-            EoLanguage.INSTANCE, EOParser.tokenNames, EOParser.ruleNames
+            EoLanguage.INSTANCE, EoParser.tokenNames, EoParser.ruleNames
         );
         final List<TokenIElementType> tokentypes =
             PSIElementTypeFactory.getTokenIElementTypes(EoLanguage.INSTANCE);
-        EoParserDefinition.id = tokentypes.get(EOLexer.AT);
+        //EoParserDefinition.id = tokentypes.get(EoLexer.AT);
     }
 
     @NotNull
     @Override
     public final Lexer createLexer(final Project project) {
-        final EOLexer lexer = new EOLexer(null);
+        final EoLexer lexer = new EoLexer(null);
         return new ANTLRLexerAdaptor(EoLanguage.INSTANCE, lexer);
     }
 
     @NotNull
     @Override
     public final PsiParser createParser(final Project project) {
-        final EOParser parser = new EOParser(null);
+        final EoParser parser = new EoParser(null);
         return new ANTLRParserAdaptor(EoLanguage.INSTANCE, parser) {
             @Override
             protected ParseTree parse(final Parser parser, final IElementType root) {
-                return ((EOParser) parser).program();
+                return ((EoParser) parser).program();
             }
         };
     }

@@ -2,7 +2,8 @@ buildscript {
     repositories {
         mavenCentral()
         repositories {
-            maven { url "https://maven.pkg.jetbrains.space/public/p/kotlinx-html/maven" }
+            maven { url "https://maven.pkg.jetbrains.space/public/p/kotlinx-html/maven/" }
+
         }
     }
     dependencies {
@@ -22,6 +23,7 @@ java {
 
 group 'antlr'
 version pluginVersion
+
 
 apply plugin: 'java'
 apply plugin: 'org.jetbrains.intellij'
@@ -69,10 +71,13 @@ jacocoTestReport {
     }
 }
 
-task qulice (type: Exec) {
+task qulice(type: Exec) {
     workingDir "${projectDir}"
-    commandLine 'mvn', 'com.qulice:qulice-maven-plugin:check'
+    // Определяем имя исполняемого файла в зависимости от платформы:
+    def mvnExecutable = System.properties['os.name'].toLowerCase().contains('windows') ? 'mvn.cmd' : 'mvn'
+    commandLine mvnExecutable, 'com.qulice:qulice-maven-plugin:check', '-X'
 }
+
 
 compileJava {
     sourceCompatibility = '1.8'
@@ -92,6 +97,9 @@ intellij {
     plugins = ["com.intellij.java", "org.jetbrains.idea.maven"]
 }
 
+test {
+    useJUnitPlatform()  // Указывает использовать JUnit 5
+}
 
 publishPlugin {
     dependsOn(test)
@@ -116,6 +124,9 @@ dependencies {
     }
     implementation 'org.antlr:antlr4-intellij-adaptor:0.1'
     testImplementation group: 'junit', name: 'junit', version: '4.13.2'
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.2'
+    testImplementation 'org.junit.jupiter:junit-jupiter-engine:5.8.2'
+    implementation 'org.jetbrains:annotations:13.0'
 }
 
 build {

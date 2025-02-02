@@ -32,7 +32,7 @@ import com.intellij.openapi.fileTypes.SyntaxHighlighterBase;
 import com.intellij.psi.tree.IElementType;
 import org.antlr.intellij.adaptor.lexer.ANTLRLexerAdaptor;
 import org.antlr.intellij.adaptor.lexer.TokenIElementType;
-import org.eolang.jetbrains.parser.EOLexer;
+import org.eolang.jetbrains.parser.EoLexer;
 import org.jetbrains.annotations.NotNull;
 import static com.intellij.openapi.editor.colors.TextAttributesKey.createTextAttributesKey;
 
@@ -128,7 +128,7 @@ public class EoSyntaxHighlighter extends SyntaxHighlighterBase {
     @NotNull
     @Override
     public final Lexer getHighlightingLexer() {
-        final EOLexer lexer = new EOLexer(null);
+        final EoLexer lexer = new EoLexer(null);
         return new ANTLRLexerAdaptor(EoLanguage.INSTANCE, lexer);
     }
 
@@ -145,59 +145,60 @@ public class EoSyntaxHighlighter extends SyntaxHighlighterBase {
         final int ttype = mytype.getANTLRTokenType();
         final TextAttributesKey key;
         switch (ttype) {
-            case EOLexer.LSQ:
-            case EOLexer.RSQ:
-            case EOLexer.SLASH:
-            case EOLexer.CONST:
-            case EOLexer.DOTS:
-            case EOLexer.COLON:
-            case EOLexer.COPY:
-            case EOLexer.ARROW:
-            case EOLexer.VERTEX:
-            case EOLexer.SIGMA:
-            case EOLexer.XI:
-            case EOLexer.AT:
-            case EOLexer.RHO:
-            case EOLexer.PLUS:
-            case EOLexer.MINUS:
-            case EOLexer.QUESTION:
-            case EOLexer.STAR:
+            case EoLexer.LSQ:
+            case EoLexer.RSQ:
+            case EoLexer.SLASH:
+            case EoLexer.CONST:
+            //case EoLexer.DOTS:
+            case EoLexer.COLON:
+            //case EoLexer.COPY:
+            case EoLexer.ARROW:
+            //case EoLexer.VERTEX:
+            //case EoLexer.SIGMA:
+            case EoLexer.XI:
+            //case EoLexer.AT:
+            case EoLexer.RHO:
+            case EoLexer.PLUS:
+            case EoLexer.MINUS:
+            case EoLexer.QUESTION:
+            case EoLexer.STAR:
                 key = EoSyntaxHighlighter.KEYWORD;
                 break;
-            case EOLexer.BOOL:
-            case EOLexer.INT:
-            case EOLexer.FLOAT:
-            case EOLexer.HEX:
-            case EOLexer.BYTES:
+            //case EoLexer.BOOL:
+            case EoLexer.INT:
+            case EoLexer.FLOAT:
+            case EoLexer.HEX:
+            case EoLexer.BYTES:
                 key = EoSyntaxHighlighter.NUMBERS;
                 break;
-            case EOLexer.LB:
-            case EOLexer.RB:
+            case EoLexer.LB:
+            case EoLexer.RB:
                 key = EoSyntaxHighlighter.BRACES;
                 break;
-            case EOLexer.STRING:
-            case EOLexer.TEXT:
+            case EoLexer.STRING:
+            case EoLexer.TEXT:
                 key = EoSyntaxHighlighter.STRING;
                 break;
-            case EOLexer.SPACE:
+            case EoLexer.SPACE:
                 key = EoSyntaxHighlighter.SPACE;
                 break;
-            case EOLexer.DOT:
+            case EoLexer.DOT:
                 key = EoSyntaxHighlighter.DOT;
                 break;
-            case EOLexer.COMMENT:
+            /*case EoLexer.COMMENT:
                 key = EoSyntaxHighlighter.COMMENT;
-                break;
-            case EOLexer.HASH:
+              break;
+            */
+            case EoLexer.HASH:
                 key = EoSyntaxHighlighter.HASH;
                 break;
-            case EOLexer.NAME:
+            case EoLexer.NAME:
                 key = EoSyntaxHighlighter.NAME;
                 break;
-            case EOLexer.META:
+            case EoLexer.META:
                 key = EoSyntaxHighlighter.META;
                 break;
-            case EOLexer.BAD_CHARACTER:
+            case EoLexer.BAD_CHARACTER:
                 key = EoSyntaxHighlighter.BAD_CHARACTER;
                 break;
             default:

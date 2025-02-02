@@ -21,10 +21,47 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
+// @checkstyle PackageNameCheck (1 line)
+package org.eolang.jetbrains;
+
+import com.intellij.testFramework.ParsingTestCase;
+import org.eolang.jetbrains.EoParserDefinition;
+import org.junit.Test;
 
 /**
- * Test classes package.
+ * Test class @ParsingTestCase.
  * @since 0.0.0
- * @checkstyle HeaderCheck (1000 lines)
  */
-package org.eolang.jetbrains.test;
+@SuppressWarnings("PMD.JUnit5TestShouldBePackagePrivate")
+public class EoParsingCommentsTest extends ParsingTestCase {
+
+    /**
+     * Parser initialization.
+     */
+    public EoParsingCommentsTest() {
+        super("", "eo", new EoParserDefinition());
+    }
+
+    /**
+     * Setting checking result.
+     */
+    @Test
+    public void testParsingTestData() {
+        this.doTest(false);
+    }
+
+    @Override
+    protected final String getTestDataPath() {
+        return "src/integrationTest/testData_2";
+    }
+
+    @Override
+    protected final boolean skipSpaces() {
+        return false;
+    }
+
+    @Override
+    protected final boolean includeRanges() {
+        return true;
+    }
+}
