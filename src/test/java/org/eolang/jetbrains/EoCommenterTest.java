@@ -1,56 +1,82 @@
+/*
+ * The MIT License (MIT)
+ *
+ *
+ *
+ * Copyright (c) 2021-2022 Stepan Strunkov
+ *
+ *
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ *
+ * of this software and associated documentation files (the "Software"), to deal
+ *
+ * in the Software without restriction, including without limitation the rights
+ *
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ *
+ * copies of the Software, and to permit persons to whom the Software is
+ *
+ * furnished to do so, subject to the following conditions:
+ *
+ *
+ *
+ * The above copyright notice and this permission notice shall be included
+ *
+ * in all copies or substantial portions of the Software.
+ *
+ *
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ *
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ *
+ * FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT. IN NO EVENT SHALL THE
+ *
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ *
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ *
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ *
+ * SOFTWARE.
+ */
+
 package org.eolang.jetbrains;
 
-import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.*;
+import com.intellij.codeInsight.generation.actions.CommentByLineCommentAction;
+import com.intellij.testFramework.fixtures.BasePlatformTestCase;
+import org.junit.Test;
 
 /**
- * Тесты для класса {@link EoCommenter}.
+ * Tests for {@link org.eolang.jetbrains.EoCommenter}.
  * @since 0.0.5
  */
-class EoCommenterTest {
-
+@SuppressWarnings("PMD.JUnit5TestShouldBePackagePrivate")
+public final class EoCommenterTest extends BasePlatformTestCase {
     /**
-     * Проверяет, что префикс для однострочного комментария возвращается корректно.
+     * Test addition and deletion of single-line comment
      */
     @Test
-    void testLineCommentPrefix() {
-        final EoCommenter commenter = new EoCommenter();
-        assertEquals("#", commenter.getLineCommentPrefix(), "Префикс однострочного комментария должен быть '#'");
+    public void testLineCommenter() {
+        myFixture.configureByText(EoFileType.INSTANCE, "<caret>[] > main");
+        final CommentByLineCommentAction action = new CommentByLineCommentAction();
+        action.actionPerformedImpl(getProject(), myFixture.getEditor());
+        myFixture.checkResult("#[] > main");
+        action.actionPerformedImpl(getProject(), myFixture.getEditor());
+        myFixture.checkResult("[] > main");
     }
 
     /**
-     * Проверяет, что префикс для блочного комментария возвращается корректно.
+     * Checks for the addition and removal of a single-line indented comment.
      */
     @Test
-    void testBlockCommentPrefix() {
-        final EoCommenter commenter = new EoCommenter();
-        assertEquals("", commenter.getBlockCommentPrefix(), "Префикс блочного комментария должен быть пустой строкой");
-    }
-
-    /**
-     * Проверяет, что суффикс для блочного комментария возвращается корректно.
-     */
-    @Test
-    void testBlockCommentSuffix() {
-        final EoCommenter commenter = new EoCommenter();
-        assertNull(commenter.getBlockCommentSuffix(), "Суффикс блочного комментария должен быть null");
-    }
-
-    /**
-     * Проверяет, что префикс для закомментированного блочного комментария возвращается корректно.
-     */
-    @Test
-    void testCommentedBlockCommentPrefix() {
-        final EoCommenter commenter = new EoCommenter();
-        assertEquals("", commenter.getCommentedBlockCommentPrefix(), "Префикс закомментированного блочного комментария должен быть пустой строкой");
-    }
-
-    /**
-     * Проверяет, что суффикс для закомментированного блочного комментария возвращается корректно.
-     */
-    @Test
-    void testCommentedBlockCommentSuffix() {
-        final EoCommenter commenter = new EoCommenter();
-        assertNull(commenter.getCommentedBlockCommentSuffix(), "Суффикс закомментированного блочного комментария должен быть null");
+    public void testLineWithIndentCommenter() {
+        myFixture.configureByText(EoFileType.INSTANCE, "  <caret>[] > main");
+        final CommentByLineCommentAction action = new CommentByLineCommentAction();
+        action.actionPerformedImpl(getProject(), myFixture.getEditor());
+        myFixture.checkResult("#  [] > main");
+        action.actionPerformedImpl(getProject(), myFixture.getEditor());
+        myFixture.checkResult("  [] > main");
     }
 }

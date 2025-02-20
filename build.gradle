@@ -30,6 +30,17 @@ apply plugin: 'org.jetbrains.intellij'
 apply plugin: 'antlr'
 apply plugin: 'jacoco'
 
+task qulice(type: Exec) {
+    workingDir "${projectDir}"
+    // Define the name of executable on different platforms
+    def mvnExecutable = System.properties['os.name'].toLowerCase().contains('windows') ? 'mvn.cmd' : 'mvn'
+    commandLine mvnExecutable, 'com.qulice:qulice-maven-plugin:check', '-e', '-X'
+
+    // Запись вывода в файл
+    standardOutput = new FileOutputStream("qulice.log")
+    errorOutput = new FileOutputStream("qulice-error.log")
+}
+
 task getGrammar {
     doFirst {
         def f = new File('src/main/antlr/org/jetbrains/eolang/parser/Eo.g4')
@@ -71,12 +82,7 @@ jacocoTestReport {
     }
 }
 
-task qulice(type: Exec) {
-    workingDir "${projectDir}"
-    // Определяем имя исполняемого файла в зависимости от платформы:
-    def mvnExecutable = System.properties['os.name'].toLowerCase().contains('windows') ? 'mvn.cmd' : 'mvn'
-    commandLine mvnExecutable, 'com.qulice:qulice-maven-plugin:check'
-}
+
 
 
 compileJava {
@@ -98,7 +104,7 @@ intellij {
 }
 
 test {
-    useJUnitPlatform()  // Указывает использовать JUnit 5
+    useJUnitPlatform()  // Sign to use JUnit 5
 }
 
 publishPlugin {
