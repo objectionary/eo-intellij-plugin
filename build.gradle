@@ -142,7 +142,7 @@ dependencies {
 
 
 build {
-    dependsOn(qulice)
+    dependsOn(jacocoTestReport)
 }
 
 
