@@ -5,11 +5,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-        with:
-          token: ${{ secrets.CODECOV_TOKEN }}
       - uses: actions/setup-java@v1
         with:
-          token: ${{ secrets.CODECOV_TOKEN }}
           java-version: 17
       - run: |
           gradle wrapper;
