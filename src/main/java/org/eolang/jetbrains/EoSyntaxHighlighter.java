@@ -147,7 +147,6 @@ public class EoSyntaxHighlighter extends SyntaxHighlighterBase {
         switch (ttype) {
             case EoLexer.LSQ:
             case EoLexer.RSQ:
-            case EoLexer.SLASH:
             case EoLexer.CONST:
             case EoLexer.COLON:
             case EoLexer.ARROW:

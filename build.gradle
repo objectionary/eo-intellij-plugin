@@ -32,11 +32,10 @@ apply plugin: 'jacoco'
 
 task qulice(type: Exec) {
     workingDir "${projectDir}"
-    // Define the name of executable on different platforms
     def mvnExecutable = System.properties['os.name'].toLowerCase().contains('windows') ? 'mvn.cmd' : 'mvn'
-    commandLine mvnExecutable, 'com.qulice:qulice-maven-plugin:check', '-e', '-X'
+    commandLine mvnExecutable, 'com.qulice:qulice-maven-plugin:check', '-e', '-X',
+            '-Dqulice.excludes=src/main/java/org/eolang/jetbrains/parser/**'
 
-    // Запись вывода в файл
     standardOutput = new FileOutputStream("qulice.log")
     errorOutput = new FileOutputStream("qulice-error.log")
 }
@@ -114,6 +113,7 @@ publishPlugin {
 
 generateGrammarSource {
     dependsOn(getGrammar)
+    dependsOn(qulice)
     outputDirectory = new File("src/main/java/org/eolang/jetbrains/parser".toString())
     arguments += ["-package", "org.eolang.jetbrains.parser", "-Xexact-output-dir"]
 }
@@ -135,9 +135,13 @@ dependencies {
     implementation 'org.jetbrains:annotations:13.0'
 }
 
+
+
 build {
     dependsOn(qulice)
 }
+
+
 
 sourceCompatibility = JavaVersion.VERSION_1_9
 targetCompatibility = JavaVersion.VERSION_1_9
