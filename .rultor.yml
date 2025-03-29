@@ -1,3 +1,7 @@
+# SPDX-FileCopyrightText: Copyright (c) 2021-2025 Stepan Strunkov
+# SPDX-License-Identifier: MIT
+---
+# yamllint disable rule:line-length
 docker:
   image: yegor256/rultor-image:1.9.1
 assets:
@@ -12,6 +16,7 @@ merge:
     gradle wrapper
     gradle build
 release:
+  pre: false
   script: |
     source ../tokenscript.txt
     sed -i -e "s/0.0.0/${tag}/" src/main/resources/META-INF/plugin.xml

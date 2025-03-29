@@ -1,0 +1,14 @@
+# SPDX-FileCopyrightText: Copyright (c) 2021-2025 Stepan Strunkov
+# SPDX-License-Identifier: MIT
+---
+name: copyrights
+'on':
+  push:
+  pull_request:
+jobs:
+  copyrights:
+    timeout-minutes: 15
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: yegor256/copyrights-action@0.0.8
