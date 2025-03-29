@@ -31,7 +31,7 @@ apply plugin: 'antlr'
 apply plugin: 'jacoco'
 
 task cleanParser(type: Delete) {
-    delete fileTree("src/main/java/org/eolang/jetbrains/parser") // Удаляет папку с парсером
+    delete fileTree("src/main/java/org/eolang/jetbrains/parser") //Deletes antlr auto-generated classes
 }
 
 task qulice(type: Exec) {
