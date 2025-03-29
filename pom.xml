@@ -7,7 +7,7 @@
   <name>eo-intellij-plugin</name>
   <description>Plugin for EO lang</description>
   <url>https://github.com/objectionary/eo-intellij-plugin</url>
-  <inceptionYear>2022</inceptionYear>
+  <inceptionYear>2025</inceptionYear>
   <organization>
     <name>EO</name>
     <url>https://github.com/objectionary/eo-intellij-plugin</url>
@@ -35,13 +35,17 @@
       <plugin>
         <groupId>com.qulice</groupId>
         <artifactId>qulice-maven-plugin</artifactId>
+        <version>0.24.0</version>
         <configuration>
-          <license>file:LICENSE.txt</license>
-          <excludes combine.children="append">
-            <exclude>pmd:/src/main/java/org/eolang/jetbrains/parser/.*</exclude>
-            <exclude>checkstyle:/src/main/java/org/eolang/jetbrains/parser/.*</exclude>
-          </excludes>
+          <license>file:${basedir}/LICENSE.txt</license>
         </configuration>
+        <executions>
+          <execution>
+            <goals>
+              <goal>check</goal>
+            </goals>
+          </execution>
+        </executions>
       </plugin>
     </plugins>
   </build>

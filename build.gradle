@@ -2,7 +2,8 @@ buildscript {
     repositories {
         mavenCentral()
         repositories {
-            maven { url "https://maven.pkg.jetbrains.space/public/p/kotlinx-html/maven" }
+            maven { url "https://maven.pkg.jetbrains.space/public/p/kotlinx-html/maven/" }
+
         }
     }
     dependencies {
@@ -11,7 +12,7 @@ buildscript {
 
 
 plugins {
-    id "org.jetbrains.intellij" version "1.14.2"
+    id "org.jetbrains.intellij" version "1.17.4"
 }
 
 java {
@@ -23,25 +24,39 @@ java {
 group 'antlr'
 version pluginVersion
 
+
 apply plugin: 'java'
 apply plugin: 'org.jetbrains.intellij'
 apply plugin: 'antlr'
 apply plugin: 'jacoco'
 
+task cleanParser(type: Delete) {
+    delete fileTree("src/main/java/org/eolang/jetbrains/parser") //Deletes antlr auto-generated classes
+}
+
+task qulice(type: Exec) {
+    workingDir "${projectDir}"
+    def mvnExecutable = System.properties['os.name'].toLowerCase().contains('windows') ? 'mvn.cmd' : 'mvn'
+    commandLine mvnExecutable, 'com.qulice:qulice-maven-plugin:check', '-e', '-X'
+
+    standardOutput = new FileOutputStream("qulice.log")
+    errorOutput = new FileOutputStream("qulice-error.log")
+}
+
 task getGrammar {
     doFirst {
-        def f = new File('src/main/antlr/org/jetbrains/eolang/parser/EO.g4')
+        def f = new File('src/main/antlr/org/jetbrains/eolang/parser/Eo.g4')
         if (!f.exists())
-            println("Created destination file: src/main/antlr/org/jetbrains/eolang/parser/EO.g4")
+            println("Created destination file: src/main/antlr/org/jetbrains/eolang/parser/Eo.g4")
         else {
             println("File already exists. Delete it and rerun task")
             return
         }
         println("Creating and downloading grammar file from " +
                 "https://raw.githubusercontent.com/objectionary/" +
-                "eo/master/eo-parser/src/main/antlr4/org/eolang/parser/Program.g4")
+                "eo/refs/heads/master/eo-parser/src/main/antlr4/org/eolang/parser/Eo.g4")
 
-        new URL('https://raw.githubusercontent.com/objectionary/eo/master/eo-parser/src/main/antlr4/org/eolang/parser/Program.g4').
+        new URL('https://raw.githubusercontent.com/objectionary/eo/refs/heads/master/eo-parser/src/main/antlr4/org/eolang/parser/Eo.g4').
                 withInputStream { i -> f.withOutputStream { it << i } }
         f.append('\n\nBAD_CHARACTER\n' +
                 '\t:\t.\t-> channel(HIDDEN)\n' +
@@ -49,8 +64,8 @@ task getGrammar {
         if (f.exists())
             println("Grammar downloading is completed")
 
-        ant.replaceregexp(match: 'Program', replace: 'EO', flags: 'g', byline: true) {
-            fileset(dir: 'src/main/antlr/org/jetbrains/eolang/parser', includes: 'EO.g4')
+        ant.replaceregexp(match: 'Program', replace: 'Eo', flags: 'g', byline: true) {
+            fileset(dir: 'src/main/antlr/org/jetbrains/eolang/parser', includes: 'Eo.g4')
         }
     }
 }
@@ -69,10 +84,8 @@ jacocoTestReport {
     }
 }
 
-task qulice (type: Exec) {
-    workingDir "${projectDir}"
-    commandLine 'mvn', 'com.qulice:qulice-maven-plugin:check'
-}
+
+
 
 compileJava {
     sourceCompatibility = '1.8'
@@ -92,6 +105,9 @@ intellij {
     plugins = ["com.intellij.java", "org.jetbrains.idea.maven"]
 }
 
+test {
+    useJUnitPlatform()  // Sign to use JUnit 5
+}
 
 publishPlugin {
     dependsOn(test)
@@ -100,6 +116,8 @@ publishPlugin {
 
 generateGrammarSource {
     dependsOn(getGrammar)
+    dependsOn(qulice)
+    dependsOn(cleanParser)
     outputDirectory = new File("src/main/java/org/eolang/jetbrains/parser".toString())
     arguments += ["-package", "org.eolang.jetbrains.parser", "-Xexact-output-dir"]
 }
@@ -116,11 +134,18 @@ dependencies {
     }
     implementation 'org.antlr:antlr4-intellij-adaptor:0.1'
     testImplementation group: 'junit', name: 'junit', version: '4.13.2'
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.2'
+    testImplementation 'org.junit.jupiter:junit-jupiter-engine:5.8.2'
+    implementation 'org.jetbrains:annotations:13.0'
 }
 
+
+
 build {
-    dependsOn(qulice)
+    dependsOn(jacocoTestReport)
 }
+
+
 
 sourceCompatibility = JavaVersion.VERSION_1_9
 targetCompatibility = JavaVersion.VERSION_1_9

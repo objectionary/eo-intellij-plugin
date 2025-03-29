@@ -23,9 +23,8 @@
  */
 package org.eolang.jetbrains;
 
-import com.intellij.notification.Notification;
+import com.intellij.notification.NotificationGroupManager;
 import com.intellij.notification.NotificationType;
-import com.intellij.notification.Notifications;
 import com.intellij.openapi.actionSystem.AnAction;
 import com.intellij.openapi.actionSystem.AnActionEvent;
 import com.intellij.openapi.actionSystem.DataContext;
@@ -105,13 +104,9 @@ public final class EoCompileAction extends AnAction {
      * @param reason Reason
      */
     private static void notifyCannotCompile(final String reason) {
-        Notifications.Bus.notify(
-            new Notification(
-                Notifications.SYSTEM_MESSAGES_GROUP_ID,
-                "Cannot compile EO",
-                reason,
-                NotificationType.WARNING
-            )
-        );
+        NotificationGroupManager.getInstance()
+            .getNotificationGroup("System Messages")
+            .createNotification("Cannot compile EO", reason, NotificationType.WARNING)
+            .notifyAll();
     }
 }

@@ -43,16 +43,15 @@ public class EoColorSettingsPage implements ColorSettingsPage {
     /**
      * Here we describe tokens for display them in settings page.
      */
-    private static final AttributesDescriptor[] DESCRIPTORS =
-        new AttributesDescriptor[] {
-            new AttributesDescriptor("Keywords", EoSyntaxHighlighter.KEYWORD),
-            new AttributesDescriptor("Comments", EoSyntaxHighlighter.COMMENT),
-            new AttributesDescriptor("Identifiers", EoSyntaxHighlighter.NAME),
-            new AttributesDescriptor("Strings", EoSyntaxHighlighter.STRING),
-            new AttributesDescriptor("Metas", EoSyntaxHighlighter.META),
-            new AttributesDescriptor("Constants", EoSyntaxHighlighter.NUMBERS),
-            new AttributesDescriptor("Braces", EoSyntaxHighlighter.BRACES),
-        };
+    private static final AttributesDescriptor[] DESCRIPTORS = {
+        new AttributesDescriptor("Keywords", EoSyntaxHighlighter.KEYWORD),
+        new AttributesDescriptor("Comments", EoSyntaxHighlighter.COMMENT),
+        new AttributesDescriptor("Identifiers", EoSyntaxHighlighter.NAME),
+        new AttributesDescriptor("Strings", EoSyntaxHighlighter.STRING),
+        new AttributesDescriptor("Metas", EoSyntaxHighlighter.META),
+        new AttributesDescriptor("Constants", EoSyntaxHighlighter.NUMBERS),
+        new AttributesDescriptor("Braces", EoSyntaxHighlighter.BRACES),
+    };
 
     @Nullable
     @Override

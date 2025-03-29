@@ -21,22 +21,20 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-
-package org.eolang.jetbrains.test;
+package org.eolang.jetbrains;
 
 import com.intellij.codeInsight.generation.actions.CommentByLineCommentAction;
-import com.intellij.testFramework.fixtures.CodeInsightFixtureTestCase;
-import org.eolang.jetbrains.EoFileType;
+import com.intellij.testFramework.fixtures.BasePlatformTestCase;
 import org.junit.Test;
 
 /**
- * Commenter test.
+ * Tests for {@link org.eolang.jetbrains.EoCommenter}.
  * @since 0.0.5
  */
 @SuppressWarnings("PMD.JUnit5TestShouldBePackagePrivate")
-public final class EoCommenterTest extends CodeInsightFixtureTestCase {
+public final class EoCommenterTest extends BasePlatformTestCase {
     /**
-     * Simple test.
+     * Test addition and deletion of single-line comment.
      */
     @Test
     public void testLineCommenter() {
@@ -49,7 +47,7 @@ public final class EoCommenterTest extends CodeInsightFixtureTestCase {
     }
 
     /**
-     * Test with indent.
+     * Checks for the addition and removal of a single-line indented comment.
      */
     @Test
     public void testLineWithIndentCommenter() {
