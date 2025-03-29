@@ -1,14 +1,22 @@
 # SPDX-FileCopyrightText: Copyright (c) 2021-2025 Stepan Strunkov
 # SPDX-License-Identifier: MIT
 ---
-name: Code quality
-on: [push, pull_request]
+# yamllint disable rule:line-length
+name: qulice
+'on':
+  push:
+    branches:
+      - master
+  pull_request:
+    branches:
+      - master
 jobs:
-  run:
-    runs-on: ubuntu-latest
+  qulice:
+    timeout-minutes: 15
+    runs-on: ubuntu-24.04
     steps:
       - uses: actions/checkout@v4
-      - uses: actions/setup-java@v1
+      - uses: actions/setup-java@v4
         with:
           java-version: 17
       - run: |
