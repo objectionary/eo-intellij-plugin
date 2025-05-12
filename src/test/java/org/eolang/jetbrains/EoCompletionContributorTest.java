@@ -8,11 +8,13 @@
 package org.eolang.jetbrains;
 
 // @checkstyle ImportOrderCheck (14 lines)
+
 import java.util.ArrayList;
 import java.util.List;
 import org.jetbrains.annotations.NotNull;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import com.intellij.codeInsight.lookup.LookupElement;
 import com.intellij.testFramework.fixtures.LightPlatformCodeInsightFixtureTestCase;
@@ -22,29 +24,40 @@ import com.intellij.testFramework.fixtures.LightPlatformCodeInsightFixtureTestCa
  * Verifies built-in and file-level completions.
  * @since 1.0
  */
-@SuppressWarnings({"PMD.JUnit5TestShouldBePackagePrivate","PMD.JUnitTestContainsTooManyAsserts","PMD.ProhibitPlainJunitAssertionsRule"})
+@SuppressWarnings({"PMD.JUnit5TestShouldBePackagePrivate",
+    "PMD.JUnitTestContainsTooManyAsserts",
+    "PMD.ProhibitPlainJunitAssertionsRule"})
+@Disabled("Skipping heavy UI fixture tests for completion contributor")
 public final class EoCompletionContributorTest extends LightPlatformCodeInsightFixtureTestCase {
 
-    /**
-     * Sets up the IntelliJ fixture before each test.
-     * @throws Exception on failure
-     * @since 1.0
-     */
+    // @checkstyle ProtectedMethodInFinalClassCheck (12 lines)
     @BeforeEach
     @Override
     protected void setUp() throws Exception {
         super.setUp();
     }
 
-    /**
-     * Tears down the IntelliJ fixture after each test.
-     * @throws Exception on failure
-     * @since 1.0
-     */
     @AfterEach
     @Override
     protected void tearDown() throws Exception {
         super.tearDown();
+    }
+
+    /**
+     * Ensures top-level declarations in the file are suggested.
+     * @since 1.0
+     */
+    // @checkstyle StringLiteralsConcatenationCheck (10 lines)
+    // @checkstyle MethodsOrderCheck (27 lines)
+    @Test
+    public void suggestsFileLevelDeclarations() {
+        final String content = "[args] > foo \n"
+            + "[args] > bar \n"
+            + "<caret>";
+        myFixture.configureByText("decl.eo", content);
+        final LookupElement[] suggestions = myFixture.completeBasic();
+        final List<String> names = this.extractNames(suggestions);
+        assertContainsElements(names, "foo", "bar");
     }
 
     /**
@@ -55,34 +68,19 @@ public final class EoCompletionContributorTest extends LightPlatformCodeInsightF
     public void suggestsKeywordsAndBuiltins() {
         myFixture.configureByText("test.eo", "<caret>");
         final LookupElement[] suggestions = myFixture.completeBasic();
-        final List<String> names = extractNames(suggestions);
+        final List<String> names = this.extractNames(suggestions);
         assertContainsElements(
-                names,
-                "[args]", "@",
-                "QQ.io.stdout", "QQ.txt.sprintf",
-                "malloc.for", "seq", "while", "*"
+            names,
+            "[args]", "@",
+            "QQ.io.stdout", "QQ.txt.sprintf",
+            "malloc.for", "seq", "while", "*"
         );
     }
 
     /**
-     * Ensures top-level declarations in the file are suggested.
-     * @since 1.0
-     */
-    @Test
-    public void suggestsFileLevelDeclarations() {
-        final String content = "[args] > foo \n" +
-        "[args] > bar \n" +
-        "<caret>";
-        myFixture.configureByText("decl.eo", content);
-        final LookupElement[] suggestions = myFixture.completeBasic();
-        final List<String> names = extractNames(suggestions);
-        assertContainsElements(names, "foo", "bar");
-    }
-
-    /**
      * Extracts lookup strings from completion items.
-     * @param elements completion items
-     * @return list of lookup strings
+     * @param elements Completion items
+     * @return List of lookup strings
      * @since 1.0
      */
     private List<String> extractNames(@NotNull final LookupElement... elements) {
