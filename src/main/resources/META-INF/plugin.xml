@@ -39,11 +39,11 @@
         <fileTypeFactory implementation="org.eolang.jetbrains.EoFileTypeFactory"/>
         <lang.syntaxHighlighterFactory language="EO" implementationClass="org.eolang.jetbrains.EoSyntaxHighlighterFactory"/>
         <lang.parserDefinition language="EO" implementationClass="org.eolang.jetbrains.EoParserDefinition"/>
-        <!-- <lang.psiStructureViewFactory language="EO" implementationClass="org.eolang.jetbrains.structview.EOStructureViewFactory"/> -->
+        <!-- <lang.psiStructureViewFactory language="EO" implementationClass="org.eolang.jetbrains.structview.EoStructureViewFactory"/> -->
         <colorSettingsPage implementation="org.eolang.jetbrains.EoColorSettingsPage"/>
         <externalAnnotator language="EO" implementationClass="org.eolang.jetbrains.EoExternalAnnotator"/>
         <lang.commenter language="EO" implementationClass="org.eolang.jetbrains.EoCommenter"/>
-        <!-- <lang.findUsagesProvider language="EO" implementationClass="org.eolang.jetbrains.EOFindUsagesProvider"/> -->
-        <!-- <completion.contributor language="EO" implementationClass="org.eolang.jetbrains.EOCompletionContributor"/> -->
+        <!-- <lang.findUsagesProvider language="EO" implementationClass="org.eolang.jetbrains.EoFindUsagesProvider"/> -->
+        <completion.contributor language="EO" implementationClass="org.eolang.jetbrains.EoCompletionContributor"/>
     </extensions>
 </idea-plugin>
