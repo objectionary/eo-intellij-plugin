@@ -11,7 +11,7 @@
     <description><![CDATA[
     Simple plugin for EO language with syntax highlighter.
     Just turn plugin on. It will show icons near .eo files and
-    highlight your code (comments, names, constants, etc). You may
+    highlight your code (comments, names, constants, e t.c.). You may
     set custom colors in preferences tab
     ]]></description>
     <change-notes>bug fixes</change-notes>
@@ -45,7 +45,7 @@
         <colorSettingsPage implementation="org.eolang.jetbrains.EoColorSettingsPage"/>
         <externalAnnotator language="EO" implementationClass="org.eolang.jetbrains.EoExternalAnnotator"/>
         <lang.commenter language="EO" implementationClass="org.eolang.jetbrains.EoCommenter"/>
-        <!-- <lang.findUsagesProvider language="EO" implementationClass="org.eolang.jetbrains.EoFindUsagesProvider"/> -->
+        <lang.findUsagesProvider language="EO" implementationClass="org.eolang.jetbrains.EoFindUsagesProvider"/>
         <completion.contributor language="EO" implementationClass="org.eolang.jetbrains.EoCompletionContributor"/>
     </extensions>
 </idea-plugin>
