@@ -17,9 +17,9 @@ import org.eolang.jetbrains.psi.EoAttributeDeclaration;
 
 /**
  * Structure view model for EO files:
- * - файл ─ корень,
- * - объекты ─ ветки,
- * - атрибуты ─ листья.
+ * - File ─ root,
+ * - Objects ─ branches,
+ * - Attributes ─ Leafs.
  * @since 1.0
  */
 public final class EoStructureViewModel
@@ -27,15 +27,14 @@ public final class EoStructureViewModel
         implements StructureViewModel.ElementInfoProvider {
 
     /**
-     * @param file   корневой PSI-файл EO
-     * @param editor редактор, в котором открыт файл
+     * @param file Root PSI-file EO
+     * @param editor Editor with opened file
      */
     public EoStructureViewModel(
             @NotNull final EoPsiFileRoot file,
             @NotNull final Editor editor
     ) {
         super(file, editor, new EoStructureViewElement(file));
-        // мы показываем только EoPsiFileRoot и их атрибуты
         withSuitableClasses(EoPsiFileRoot.class, EoAttributeDeclaration.class);
     }
 
@@ -43,7 +42,6 @@ public final class EoStructureViewModel
     public boolean isAlwaysShowsPlus(
             @NotNull final StructureViewTreeElement element
     ) {
-        // «+» показываем только на корневом узле (сам файл)
         return element.getValue() instanceof EoPsiFileRoot;
     }
 
@@ -51,7 +49,6 @@ public final class EoStructureViewModel
     public boolean isAlwaysLeaf(
             @NotNull final StructureViewTreeElement element
     ) {
-        // атрибуты – листья, у них нет «+»
         return element.getValue() instanceof EoAttributeDeclaration;
     }
 }

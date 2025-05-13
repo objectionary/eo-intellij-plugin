@@ -5,6 +5,7 @@
  * SPDX-FileCopyrightText: Copyright (c) 2025 George Osenchakov
  * SPDX-License-Identifier: MIT
  */
+
 package org.eolang.jetbrains.psi;
 
 import com.intellij.extapi.psi.ASTWrapperPsiElement;
