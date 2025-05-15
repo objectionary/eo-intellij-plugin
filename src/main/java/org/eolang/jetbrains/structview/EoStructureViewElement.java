@@ -7,6 +7,8 @@
  */
 package org.eolang.jetbrains.structview;
 
+// @checkstyle ImportOrderCheck (11 lines)
+
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -23,9 +25,10 @@ import org.eolang.jetbrains.psi.EoObjectDeclaration;
  * @since 1.0
  */
 public final class EoStructureViewElement
-        extends PsiTreeElementBase<EoPsiFileRoot> {
+    extends PsiTreeElementBase<EoPsiFileRoot> {
 
     /**
+     * EoStructureViewElement method.
      * @param file EO file root
      */
     public EoStructureViewElement(@NotNull final EoPsiFileRoot file) {
@@ -35,9 +38,9 @@ public final class EoStructureViewElement
     @Override
     public @NotNull Collection<StructureViewTreeElement> getChildrenBase() {
         final EoPsiFileRoot file = getElement();
-        final List<StructureViewTreeElement> children = new ArrayList<>();
+        final List<StructureViewTreeElement> children = new ArrayList<>(0);
         final List<EoObjectDeclaration> objects =
-                PsiTreeUtil.getChildrenOfTypeAsList(file, EoObjectDeclaration.class);
+            PsiTreeUtil.getChildrenOfTypeAsList(file, EoObjectDeclaration.class);
         for (final EoObjectDeclaration obj : objects) {
             children.add(new EoObjectStructureViewElement(obj));
         }

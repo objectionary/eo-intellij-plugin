@@ -7,6 +7,8 @@
  */
 package org.eolang.jetbrains.structview;
 
+// @checkstyle ImportOrderCheck (9 lines)
+
 import com.intellij.ide.structureView.StructureViewModelBase;
 import com.intellij.ide.structureView.StructureViewModel;
 import com.intellij.ide.structureView.StructureViewTreeElement;
@@ -22,17 +24,20 @@ import org.eolang.jetbrains.psi.EoAttributeDeclaration;
  * - Attributes ─ Leafs.
  * @since 1.0
  */
+// @checkstyle CascadeIndentationCheck (4 lines)
 public final class EoStructureViewModel
-        extends StructureViewModelBase
-        implements StructureViewModel.ElementInfoProvider {
+    extends StructureViewModelBase
+    implements StructureViewModel.ElementInfoProvider {
 
     /**
+     * EoStructureViewModel method.
      * @param file Root PSI-file EO
      * @param editor Editor with opened file
      */
+    @SuppressWarnings("PMD.ConstructorOnlyInitializesOrCallOtherConstructors")
     public EoStructureViewModel(
-            @NotNull final EoPsiFileRoot file,
-            @NotNull final Editor editor
+        @NotNull final EoPsiFileRoot file,
+        @NotNull final Editor editor
     ) {
         super(file, editor, new EoStructureViewElement(file));
         withSuitableClasses(EoPsiFileRoot.class, EoAttributeDeclaration.class);
@@ -40,14 +45,14 @@ public final class EoStructureViewModel
 
     @Override
     public boolean isAlwaysShowsPlus(
-            @NotNull final StructureViewTreeElement element
+        @NotNull final StructureViewTreeElement element
     ) {
         return element.getValue() instanceof EoPsiFileRoot;
     }
 
     @Override
     public boolean isAlwaysLeaf(
-            @NotNull final StructureViewTreeElement element
+        @NotNull final StructureViewTreeElement element
     ) {
         return element.getValue() instanceof EoAttributeDeclaration;
     }

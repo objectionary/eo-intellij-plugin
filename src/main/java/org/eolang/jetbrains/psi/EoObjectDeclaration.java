@@ -21,30 +21,34 @@ import org.jetbrains.annotations.Nullable;
  * @since 1.0
  */
 public class EoObjectDeclaration extends ASTWrapperPsiElement
-        implements PsiNameIdentifierOwner {
+    implements PsiNameIdentifierOwner {
 
     public EoObjectDeclaration(@NotNull final ASTNode node) {
         super(node);
     }
 
+    // @checkstyle DesignForExtensionCheck (20 lines)
     @Override
     public @Nullable PsiElement getNameIdentifier() {
         return findChildByClass(EoIdentifier.class);
     }
 
+    // @checkstyle AvoidInlineConditionalsCheck (7 lines)
     @Override
     public @Nullable String getName() {
-        final PsiElement id = getNameIdentifier();
+        final PsiElement id = this.getNameIdentifier();
         return id != null ? id.getText() : null;
     }
 
+    // @checkstyle LocalFinalVariableNameCheck (11 lines)
+    // @checkstyle ParameterNameCheck (10 lines)
     @Override
     public PsiElement setName(@NotNull final String newName)
-            throws IncorrectOperationException {
-        final PsiElement id = getNameIdentifier();
+        throws IncorrectOperationException {
+        final PsiElement id = this.getNameIdentifier();
         if (id != null) {
             final PsiElement newId = EoPsiElementFactory.createIdentifier(
-                    getProject(), newName
+                getProject(), newName
             );
             id.replace(newId);
         }

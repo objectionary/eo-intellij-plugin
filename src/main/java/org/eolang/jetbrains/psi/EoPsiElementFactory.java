@@ -8,6 +8,8 @@
 
 package org.eolang.jetbrains.psi;
 
+// @checkstyle ImportOrderCheck (10 lines)
+
 import com.intellij.openapi.project.Project;
 import com.intellij.psi.PsiElement;
 import com.intellij.psi.PsiFile;
@@ -20,6 +22,7 @@ import org.eolang.jetbrains.EoFileType;
  * Factory class for creating EO PSI elements programmatically.
  * @since 1.0
  */
+@SuppressWarnings("PMD.ProhibitPublicStaticMethods")
 public final class EoPsiElementFactory {
 
     private EoPsiElementFactory() {
@@ -28,21 +31,23 @@ public final class EoPsiElementFactory {
 
     /**
      * Creates a new EO identifier PSI element with the given name.
-     * @param project the current IntelliJ project
-     * @param name the identifier name
-     * @return a PSI element representing the identifier
+     * @param project The current IntelliJ project
+     * @param name The identifier name
+     * @return A PSI element representing the identifier
      */
+    // @checkstyle ReturnCountCheck (19 lines)
+    @SuppressWarnings("PMD.OnlyOneReturn")
     @NotNull
     public static PsiElement createIdentifier(
-            @NotNull final Project project,
-            @NotNull final String name
+        @NotNull final Project project,
+        @NotNull final String name
     ) {
         final String text = String.format("[args] > %s", name);
         final PsiFile file = PsiFileFactory
-                .getInstance(project)
-                .createFileFromText("_dummy_.eo", EoFileType.INSTANCE, text);
+            .getInstance(project)
+            .createFileFromText("_dummy_.eo", EoFileType.INSTANCE, text);
         final EoObjectDeclaration decl = PsiTreeUtil
-                .findChildOfType(file, EoObjectDeclaration.class);
+            .findChildOfType(file, EoObjectDeclaration.class);
         if (decl != null) {
             final PsiElement id = decl.getNameIdentifier();
             if (id != null) {
