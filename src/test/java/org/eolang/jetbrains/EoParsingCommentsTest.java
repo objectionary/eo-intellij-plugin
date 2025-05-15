@@ -1,3 +1,7 @@
+/*
+ * @checkstyle MultiLineCommentCheck (54 lines)
+ * @checkstyle MultilineJavadocTagsCheck (8 lines)
+ */
 // SPDX-FileCopyrightText: Copyright (c) 2021-2025 Stepan Strunkov
 // SPDX-License-Identifier: MIT
 
