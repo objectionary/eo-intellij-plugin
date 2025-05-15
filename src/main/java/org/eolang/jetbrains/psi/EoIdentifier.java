@@ -19,7 +19,10 @@ import org.jetbrains.annotations.NotNull;
  */
 public class EoIdentifier extends ASTWrapperPsiElement {
 
-    /** @param node AST node for identifier */
+    /**
+     * EoIdentifier method.
+     * @param node AST node for identifier
+     */
     public EoIdentifier(@NotNull final ASTNode node) {
         super(node);
     }

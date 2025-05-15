@@ -8,6 +8,12 @@
 
 package org.eolang.jetbrains.structview;
 
+// @checkstyle ImportOrderCheck (13 lines)
+
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
+import java.util.Objects;
 import com.intellij.ide.structureView.impl.common.PsiTreeElementBase;
 import com.intellij.ide.structureView.StructureViewTreeElement;
 import com.intellij.psi.util.PsiTreeUtil;
@@ -16,21 +22,17 @@ import org.eolang.jetbrains.psi.EoAttributeDeclaration;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
-import java.util.Objects;
-
 /**
  * Structure view element for EO object declarations:
  * object -> attribute declarations.
  * @since 1.0
  */
 public final class EoObjectStructureViewElement
-        extends PsiTreeElementBase<EoObjectDeclaration> {
+    extends PsiTreeElementBase<EoObjectDeclaration> {
 
     /**
-     * @param obj the EO object declaration
+     * EoObjectStructureViewElement method.
+     * @param obj The EO object declaration
      */
     public EoObjectStructureViewElement(@NotNull final EoObjectDeclaration obj) {
         super(obj);
@@ -39,7 +41,7 @@ public final class EoObjectStructureViewElement
     @Override
     public @NotNull Collection<StructureViewTreeElement> getChildrenBase() {
         final List<EoAttributeDeclaration> attrs = PsiTreeUtil
-                .getChildrenOfTypeAsList(getElement(), EoAttributeDeclaration.class);
+            .getChildrenOfTypeAsList(getElement(), EoAttributeDeclaration.class);
         final List<StructureViewTreeElement> children = new ArrayList<>(attrs.size());
         for (final EoAttributeDeclaration attr : attrs) {
             children.add(new EoAttributeStructureViewElement(attr));

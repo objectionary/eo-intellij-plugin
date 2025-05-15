@@ -8,35 +8,37 @@
 
 package org.eolang.jetbrains.structview;
 
-import com.intellij.ide.structureView.impl.common.PsiTreeElementBase;
-import com.intellij.ide.structureView.StructureViewTreeElement;
-import org.eolang.jetbrains.psi.EoAttributeDeclaration;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
+// @checkstyle ImportOrderCheck (9 lines)
 
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Objects;
+import com.intellij.ide.structureView.impl.common.PsiTreeElementBase;
+import com.intellij.ide.structureView.StructureViewTreeElement;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
+import org.eolang.jetbrains.psi.EoAttributeDeclaration;
 
 /**
  * Structure view element for EO attribute declarations (leaf nodes).
  * @since 1.0
  */
+// @checkstyle CascadeIndentationCheck (5 lines)
 public final class EoAttributeStructureViewElement
-        extends PsiTreeElementBase<EoAttributeDeclaration> {
+    extends PsiTreeElementBase<EoAttributeDeclaration> {
 
     /**
-     * @param attribute the EO attribute PSI element
+     * EoAttributeStructureViewElement method.
+     * @param attribute The EO attribute PSI element
      */
     public EoAttributeStructureViewElement(
-            @NotNull final EoAttributeDeclaration attribute
+        @NotNull final EoAttributeDeclaration attribute
     ) {
         super(attribute);
     }
 
     @Override
     public @NotNull Collection<StructureViewTreeElement> getChildrenBase() {
-        // Leaf nodes: no children
         return Collections.emptyList();
     }
 
