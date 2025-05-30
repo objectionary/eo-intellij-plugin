@@ -2,6 +2,7 @@
  * @checkstyle MultiLineCommentCheck (95 lines)
  * @checkstyle MultilineJavadocTagsCheck (8 lines)
  */
+
 // SPDX-FileCopyrightText: Copyright (c) 2025 George Osenchakov
 // SPDX-License-Identifier: MIT
 
@@ -24,7 +25,6 @@ import com.intellij.codeInsight.lookup.LookupElement;
 import com.intellij.testFramework.fixtures.LightPlatformCodeInsightFixtureTestCase;
 
 /**
- * @checkstyle MultiLineCommentCheck(85 lines)
  * Unit tests for EoCompletionContributor using JUnit 5.
  * Verifies built-in and file-level completions.
  * @since 1.0
