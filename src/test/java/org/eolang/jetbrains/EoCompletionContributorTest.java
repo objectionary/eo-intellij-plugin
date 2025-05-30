@@ -8,7 +8,6 @@
 package org.eolang.jetbrains;
 
 // @checkstyle ImportOrderCheck (14 lines)
-// @checkstyle MultiLineCommentCheck(85 lines)
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,6 +20,7 @@ import com.intellij.codeInsight.lookup.LookupElement;
 import com.intellij.testFramework.fixtures.LightPlatformCodeInsightFixtureTestCase;
 
 /**
+ * @checkstyle MultiLineCommentCheck(85 lines)
  * Unit tests for EoCompletionContributor using JUnit 5.
  * Verifies built-in and file-level completions.
  * @since 1.0
