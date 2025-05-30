@@ -1,7 +1,6 @@
 # SPDX-FileCopyrightText: Copyright (c) 2021-2025 Stepan Strunkov
 # SPDX-License-Identifier: MIT
 ---
-# yamllint disable rule:truthy,new-line-at-end-of-file, line-length
 name: qulice
 'on':
   push:
@@ -20,5 +19,6 @@ jobs:
         with:
           distribution: 'temurin'
           java-version: 21
+      # yamllint disable rule:line-length
       - run: |
           mvn com.qulice:qulice-maven-plugin:check -Dqulice.excludes=pmd:.* -Dqulice.license=file:LICENSE.txt

@@ -1,10 +1,12 @@
 # SPDX-FileCopyrightText: Copyright (c) 2021-2025 Stepan Strunkov
 # SPDX-License-Identifier: MIT
 ---
-# yamllint disable rule:line-length, truthy
+
 name: Java CI
 on:
+  # yamllint disable rule:truthy
   push:
+  # yamllint disable rule:truthy
   pull_request:
 
 jobs:
