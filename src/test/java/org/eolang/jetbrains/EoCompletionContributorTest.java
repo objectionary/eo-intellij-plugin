@@ -8,6 +8,7 @@
 package org.eolang.jetbrains;
 
 // @checkstyle ImportOrderCheck (14 lines)
+// @checkstyle MultiLineCommentCheck(85 lines)
 
 import java.util.ArrayList;
 import java.util.List;
