@@ -1,46 +1,26 @@
-# SPDX-FileCopyrightText: Copyright (c) 2021-2025 Stepan Strunkov
-# SPDX-License-Identifier: MIT
----
-# yamllint disable rule:line-length
-name: Build Plugin
-
+name: Java CI
 on:
-  push:
-    branches: [ master ]
-  pull_request:
-    branches: [ master ]
+  [push, pull_request]
 
 jobs:
   build:
     runs-on: ubuntu-latest
-
+    strategy:
+      matrix:
+        env:
+          # see https://www.jetbrains.com/idea/download/previous.html
+          # and https://www.jetbrains.com/intellij-repository/snapshots/
+          - IDEA_VERSION: IC-2020.3
+          - IDEA_VERSION: IC-2021.2.4
+          - IDEA_VERSION: IC-2021.3.3
+          - IDEA_VERSION: IC-2022.1.1
+          - IDEA_VERSION: IU-LATEST-EAP-SNAPSHOT
     steps:
-      # 1. Checkout your code
       - uses: actions/checkout@v4
-
-      # 2. Set up Java (use the version your plugin targets)
       - name: Set up JDK 17
-        uses: actions/setup-java@v3
+        uses: actions/setup-java@v4
         with:
-          distribution: temurin
-          java-version: '17'
-
-      # 3. Cache Gradle’s wrapper and dependencies
-      - name: Cache Gradle
-        uses: actions/cache@v3
-        with:
-          path: |
-            ~/.gradle/caches
-            ~/.gradle/wrapper
-          key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*', '**/gradle/wrapper/gradle-wrapper.properties') }}
-
-      # 4. Build the plugin ZIP
-      - name: Build IntelliJ Plugin
-        run: ./gradlew buildPlugin --no-daemon
-
-      # 5. Publish the generated ZIP as an artifact
-      - name: Upload Plugin Artifact
-        uses: actions/upload-artifact@v3
-        with:
-          name: eo-intellij-plugin
-          path: build/distributions/*.zip
+          java-version: 17
+      - name: Build with Gradle
+        run: gradle wrapper; gradle build
+        env: ${{ matrix.env }}
