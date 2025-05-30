@@ -41,8 +41,8 @@ task qulice(type: Exec) {
     def mvnExecutable = System.properties['os.name'].toLowerCase().contains('windows') ? 'mvn.cmd' : 'mvn'
     commandLine mvnExecutable, 'com.qulice:qulice-maven-plugin:check', '-e', '-X'
 
-    standardOutput = new FileOutputStream("qulice.log")
-    errorOutput = new FileOutputStream("qulice-error.log")
+    //standardOutput = new FileOutputStream("qulice.log")
+   // errorOutput = new FileOutputStream("qulice-error.log")
 }
 
 task getGrammar {
