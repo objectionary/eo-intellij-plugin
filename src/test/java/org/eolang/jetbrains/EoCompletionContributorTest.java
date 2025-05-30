@@ -3,13 +3,14 @@
  * @checkstyle MultilineJavadocTagsCheck (8 lines)
  */
 
-// SPDX-FileCopyrightText: Copyright (c) 2025 George Osenchakov
+// SPDX-FileCopyrightText: Copyright (c) 2021-2025 Stepan Strunkov
 // SPDX-License-Identifier: MIT
 
 /*
- * SPDX-FileCopyrightText: Copyright (c) 2025 George Osenchakov
+ * SPDX-FileCopyrightText: Copyright (c) 2021-2025 Stepan Strunkov
  * SPDX-License-Identifier: MIT
  */
+
 package org.eolang.jetbrains;
 
 // @checkstyle ImportOrderCheck (14 lines)
