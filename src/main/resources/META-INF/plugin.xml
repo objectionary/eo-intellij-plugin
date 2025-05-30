@@ -1,53 +1,43 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
-  SPDX-FileCopyrightText: Copyright (c) 2021-2025 Stepan Strunkov
-  SPDX-License-Identifier: MIT
+ * SPDX-FileCopyrightText: Copyright (c) 2021-2025 Stepan Strunkov
+ * SPDX-License-Identifier: MIT
 -->
 <idea-plugin>
     <id>org.eolang</id>
+    <!-- org.eolang.jetbrains -->
     <name>EO</name>
-    <version>0.0.6</version>
+    <version>0.0.0</version>
     <vendor email="team@eolang.org">eolang.org</vendor>
-
-    <description><![CDATA[
+    <description>
+        <![CDATA[
     Simple plugin for EO language with syntax highlighter.
     Just turn plugin on. It will show icons near .eo files and
-    highlight your code (comments, names, constants, etc.).
-    You may set custom colors in Preferences → Editor → Color Scheme.
-  ]]></description>
-    <change-notes>Bug fixes and improvements to New-Project wizard</change-notes>
-
+    highlight your code (comments, names, constants, e t.c.). You may
+    set custom colors in preferences tab
+    ]]>
+    </description>
+    <change-notes>bug fixes</change-notes>
     <idea-version since-build="182"/>
-
     <depends>com.intellij.modules.lang</depends>
     <depends>com.intellij.modules.platform</depends>
     <depends>com.intellij.modules.java</depends>
     <depends>org.jetbrains.idea.maven</depends>
-
     <project-components>
         <component>
             <implementation-class>org.eolang.jetbrains.EoPluginController</implementation-class>
         </component>
     </project-components>
-
     <actions>
         <action
                 id="org.eolang.jetbrains.EoCompileAction"
                 class="org.eolang.jetbrains.EoCompileAction"
                 text="EO Compile"
-                description="Compile EO sources via eo-maven-plugin"
-                icon="/icons/eo.svg">
+                description="Compile EO files"
+                icon="org.eolang.jetbrains.Icons.EO_ICON">
             <add-to-group group-id="BuildMenu" anchor="first"/>
         </action>
-        <action
-                id="org.eolang.jetbrains.EoRunAction"
-                class="org.eolang.jetbrains.EoRunAction"
-                text="Run EO"
-                description="Run EO program via eo-maven-plugin">
-            <add-to-group group-id="RunMenu" anchor="last"/>
-        </action>
     </actions>
-
     <extensions defaultExtensionNs="com.intellij">
         <fileTypeFactory implementation="org.eolang.jetbrains.EoFileTypeFactory"/>
         <lang.syntaxHighlighterFactory language="EO" implementationClass="org.eolang.jetbrains.EoSyntaxHighlighterFactory"/>
