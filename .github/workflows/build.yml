@@ -38,10 +38,10 @@ jobs:
           java-version: '11'
 
       - name: Setup IntelliJ IDEA ${{ matrix.idea-version }}
-        uses: JetBrains/setup-intellij@v1
+        uses: jetbrains/setup-intellij@v3
 
         with:
-          version: ${{ matrix.idea-version }}
+          version: '2024.3.4'
 
       - name: Grant execute permission for Gradlew
         run: chmod +x gradlew
