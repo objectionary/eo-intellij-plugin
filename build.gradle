@@ -41,8 +41,8 @@ task qulice(type: Exec) {
     def mvnExecutable = System.properties['os.name'].toLowerCase().contains('windows') ? 'mvn.cmd' : 'mvn'
     commandLine mvnExecutable, 'com.qulice:qulice-maven-plugin:check', '-e', '-X'
 
-    //standardOutput = new FileOutputStream("qulice.log")
-   // errorOutput = new FileOutputStream("qulice-error.log")
+    standardOutput = new FileOutputStream("qulice.log")
+    errorOutput = new FileOutputStream("qulice-error.log")
 }
 
 task getGrammar {
@@ -79,7 +79,7 @@ jacoco {
 jacocoTestReport {
     dependsOn test // tests are required to run before generating the report
     reports {
-        html.required = false
+        html.required = true
         xml.required = true
         csv.required = false
         xml.destination file("${buildDir}/reports/jacoco/report.xml")
@@ -108,7 +108,9 @@ intellij {
 }
 
 test {
-    useJUnitPlatform()  // Sign to use JUnit 5
+    useJUnitPlatform {
+        includeEngines 'junit-jupiter', 'junit-vintage'
+    }  // Sign to use JUnit 5
 }
 
 publishPlugin {
