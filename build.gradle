@@ -90,11 +90,12 @@ jacocoTestReport {
 
     sourceDirectories.setFrom(files("src/main/java"))
 
-    executionData.setFrom(fileTree(buildDir).include("/jacoco/*.exec"))
+    executionData.setFrom(fileTree(layout.buildDirectory).include("/jacoco/*.exec"))
 
     reports {
         html.required = true
         xml.required  = true
+        xml.destination file(layout.buildDirectory.dir("reports/jacoco/report.xml"))
     }
 }
 
