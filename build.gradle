@@ -80,17 +80,16 @@ jacoco {
 jacocoTestReport {
     dependsOn test
     classDirectories.setFrom(
-            files(
-                    layout.buildDirectory.dir("instrumented/instrumentCode"),
-                    layout.buildDirectory.dir("instrumented/instrumentTestCode")
-            ).asFileTree.matching {
-                exclude("**/icons/**", "**/generated/**")
-            }
+        files(
+            layout.buildDirectory.dir("instrumented/instrumentCode")
+        ).asFileTree.matching {
+            exclude("**/icons/**", "**/generated/**")
+        }
     )
 
     sourceDirectories.setFrom(files("src/main/java"))
 
-    executionData.setFrom(fileTree(layout.buildDirectory).include("/jacoco/*.exec"))
+    executionData.setFrom(fileTree(layout.buildDirectory).include("/jacoco/test.exec"))
 
     reports {
         html.required = true
@@ -123,9 +122,11 @@ intellij {
 test {
     useJUnitPlatform {
         includeEngines 'junit-jupiter', 'junit-vintage'
-    }  // Sign to use JUnit 5
+    }
     jacoco {
-        destinationFile = file("$buildDir/jacoco/test.exec")
+        destinationFile = file(layout.buildDirectory.dir("jacoco/test.exec"))
+        includeNoLocationClasses = true
+        excludes = ["jdk.internal.*"]
     }
     finalizedBy(jacocoTestReport)
 }
