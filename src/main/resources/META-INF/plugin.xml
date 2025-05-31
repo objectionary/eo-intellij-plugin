@@ -16,7 +16,7 @@
     set custom colors in preferences tab
     ]]></description>
   <change-notes>bug fixes</change-notes>
-  <idea-version since-build="182"/>
+  <idea-version since-build="233"/>
   <depends>com.intellij.modules.lang</depends>
   <depends>com.intellij.modules.platform</depends>
   <depends>com.intellij.modules.java</depends>

@@ -15,6 +15,7 @@ buildscript {
 
 plugins {
     id "org.jetbrains.intellij" version "1.17.4"
+    id 'jacoco'
 }
 
 java {
@@ -73,16 +74,27 @@ task getGrammar {
 }
 
 jacoco {
-    toolVersion = "0.8.7"
+    toolVersion = "0.8.10"
 }
 
 jacocoTestReport {
-    dependsOn test // tests are required to run before generating the report
+    dependsOn test
+    classDirectories.setFrom(
+            files(
+                    layout.buildDirectory.dir("instrumented/instrumentCode"),
+                    layout.buildDirectory.dir("instrumented/instrumentTestCode")
+            ).asFileTree.matching {
+                exclude("**/icons/**", "**/generated/**")
+            }
+    )
+
+    sourceDirectories.setFrom(files("src/main/java"))
+
+    executionData.setFrom(fileTree(buildDir).include("/jacoco/*.exec"))
+
     reports {
         html.required = true
-        xml.required = true
-        csv.required = false
-        xml.destination file("${buildDir}/reports/jacoco/report.xml")
+        xml.required  = true
     }
 }
 
@@ -111,6 +123,10 @@ test {
     useJUnitPlatform {
         includeEngines 'junit-jupiter', 'junit-vintage'
     }  // Sign to use JUnit 5
+    jacoco {
+        destinationFile = file("$buildDir/jacoco/test.exec")
+    }
+    finalizedBy(jacocoTestReport)
 }
 
 publishPlugin {
