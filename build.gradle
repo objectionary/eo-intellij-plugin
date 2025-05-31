@@ -83,7 +83,7 @@ jacocoTestReport {
         files(
             layout.buildDirectory.dir("instrumented/instrumentCode")
         ).asFileTree.matching {
-            exclude("**/icons/**", "**/generated/**")
+            exclude("**/icons/**", "**/generated/**", "**/parser/**")
         }
     )
 
