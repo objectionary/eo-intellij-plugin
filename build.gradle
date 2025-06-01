@@ -15,6 +15,7 @@ buildscript {
 
 plugins {
     id "org.jetbrains.intellij" version "1.17.4"
+    id 'jacoco'
 }
 
 java {
@@ -73,16 +74,27 @@ task getGrammar {
 }
 
 jacoco {
-    toolVersion = "0.8.7"
+    toolVersion = "0.8.10"
 }
 
 jacocoTestReport {
-    dependsOn test // tests are required to run before generating the report
+    dependsOn test
+    classDirectories.setFrom(
+        files(
+            layout.buildDirectory.dir("instrumented/instrumentCode")
+        ).asFileTree.matching {
+            exclude("**/icons/**", "**/generated/**", "**/parser/**", "**/psi/**", "**/EoSyntaxHighlighter.class", "**/EoColorSettingsPage.class", "**/structview/**")
+        }
+    )
+
+    sourceDirectories.setFrom(files("src/main/java"))
+
+    executionData.setFrom(fileTree(layout.buildDirectory).include("/jacoco/test.exec"))
+
     reports {
-        html.required = false
-        xml.required = true
-        csv.required = false
-        xml.destination file("${buildDir}/reports/jacoco/report.xml")
+        html.required = true
+        xml.required  = true
+        xml.destination file(layout.buildDirectory.dir("reports/jacoco/report.xml"))
     }
 }
 
@@ -108,7 +120,15 @@ intellij {
 }
 
 test {
-    useJUnitPlatform()  // Sign to use JUnit 5
+    useJUnitPlatform {
+        includeEngines 'junit-jupiter', 'junit-vintage'
+    }
+    jacoco {
+        destinationFile = file(layout.buildDirectory.dir("jacoco/test.exec"))
+        includeNoLocationClasses = true
+        excludes = ["jdk.internal.*"]
+    }
+    finalizedBy(jacocoTestReport)
 }
 
 publishPlugin {
@@ -138,6 +158,7 @@ dependencies {
     testImplementation group: 'junit', name: 'junit', version: '4.13.2'
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.2'
     testImplementation 'org.junit.jupiter:junit-jupiter-engine:5.8.2'
+    testImplementation "org.mockito:mockito-core:5.+"
     implementation 'org.jetbrains:annotations:13.0'
 }
 
