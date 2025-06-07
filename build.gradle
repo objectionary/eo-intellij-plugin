@@ -136,8 +136,8 @@ dependencies {
     }
     implementation 'org.antlr:antlr4-intellij-adaptor:0.1'
     testImplementation group: 'junit', name: 'junit', version: '4.13.2'
-    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.2'
-    testImplementation 'org.junit.jupiter:junit-jupiter-engine:5.8.2'
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.13.1'
+    testImplementation 'org.junit.jupiter:junit-jupiter-engine:5.13.1'
     implementation 'org.jetbrains:annotations:13.0'
 }
 
