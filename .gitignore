@@ -12,6 +12,7 @@
 *.zip
 .DS_Store
 .idea/
+.intellijPlatform/
 .mtj.tmp/
 /.git.bak/
 /.gradle/
