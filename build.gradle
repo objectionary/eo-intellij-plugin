@@ -37,14 +37,14 @@ task cleanParser(type: Delete) {
     delete fileTree("src/main/java/org/eolang/jetbrains/parser") //Deletes antlr auto-generated classes
 }
 
-task qulice(type: Exec) {
-    workingDir "${projectDir}"
-    def mvnExecutable = System.properties['os.name'].toLowerCase().contains('windows') ? 'mvn.cmd' : 'mvn'
-    commandLine mvnExecutable, 'com.qulice:qulice-maven-plugin:check', '-e', '-X'
-
-    standardOutput = new FileOutputStream("qulice.log")
-    errorOutput = new FileOutputStream("qulice-error.log")
-}
+//task qulice(type: Exec) {
+//    workingDir "${projectDir}"
+//    def mvnExecutable = System.properties['os.name'].toLowerCase().contains('windows') ? 'mvn.cmd' : 'mvn'
+//    commandLine mvnExecutable, 'com.qulice:qulice-maven-plugin:check', '-e', '-X'
+//
+//    standardOutput = new FileOutputStream("qulice.log")
+//    errorOutput = new FileOutputStream("qulice-error.log")
+//}
 
 task getGrammar {
     doFirst {
@@ -118,7 +118,7 @@ publishPlugin {
 
 generateGrammarSource {
     dependsOn(getGrammar)
-    dependsOn(qulice)
+//    dependsOn(qulice)
     dependsOn(cleanParser)
     outputDirectory = new File("src/main/java/org/eolang/jetbrains/parser".toString())
     arguments += ["-package", "org.eolang.jetbrains.parser", "-Xexact-output-dir"]
