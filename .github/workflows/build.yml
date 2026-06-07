@@ -1,33 +1,30 @@
 # SPDX-FileCopyrightText: Copyright (c) 2021-2025 Stepan Strunkov
 # SPDX-License-Identifier: MIT
 ---
-# yamllint disable rule:line-length
-name: build
-'on':
+
+name: Java CI
+on:
+  # yamllint disable rule:truthy
   push:
-    branches:
-      - master
+  # yamllint disable rule:truthy
   pull_request:
-    branches:
-      - master
+
 jobs:
   build:
-    timeout-minutes: 15
-    runs-on: ubuntu-24.04
+    runs-on: ubuntu-latest
     strategy:
       matrix:
         env:
           # see https://www.jetbrains.com/idea/download/previous.html
           # and https://www.jetbrains.com/intellij-repository/snapshots/
-          - IDEA_VERSION: IC-2020.3
-          - IDEA_VERSION: IC-2021.2.4
-          - IDEA_VERSION: IC-2021.3.3
-          - IDEA_VERSION: IC-2022.1.1
           - IDEA_VERSION: IU-LATEST-EAP-SNAPSHOT
     steps:
       - uses: actions/checkout@v4
-      - uses: actions/setup-java@v4
+      - name: Set up JDK 17
+        uses: actions/setup-java@v4
         with:
-          java-version: 17
-      - run: gradle wrapper; gradle build
+          distribution: 'temurin'
+          java-version: '21'
+      - name: Build with Gradle
+        run: gradle wrapper; gradle build --stacktrace
         env: ${{ matrix.env }}

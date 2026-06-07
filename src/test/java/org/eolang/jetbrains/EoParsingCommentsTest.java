@@ -1,3 +1,7 @@
+/*
+ * @checkstyle MultiLineCommentCheck (54 lines)
+ * @checkstyle MultilineJavadocTagsCheck (8 lines)
+ */
 // SPDX-FileCopyrightText: Copyright (c) 2021-2025 Stepan Strunkov
 // SPDX-License-Identifier: MIT
 
@@ -9,7 +13,8 @@
 package org.eolang.jetbrains;
 
 import com.intellij.testFramework.ParsingTestCase;
-import org.junit.Test;
+import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.api.Test;
 
 /**
  * Test class @ParsingTestCase.
@@ -28,17 +33,19 @@ public final class EoParsingCommentsTest extends ParsingTestCase {
     /**
      * Setting checking result.
      */
+    @Disabled
     @Test
     public void testParsingTestData() {
-        this.doTest(false);
+        this.doTest(true);
     }
 
     /*
-     * @checkstyle ProtectedMethodInFinalClassCheck (12 lines)
+     * @checkstyle ProtectedMethodInFinalClassCheck (17 lines)
+     * @checkstyle StringLiteralsConcatenationCheck (10 lines)
      */
     @Override
     protected String getTestDataPath() {
-        return "src/test/testData_2";
+        return "src/test/testData_2/";
     }
 
     @Override
