@@ -17,7 +17,7 @@ jobs:
           gradle wrapper;
           gradle build
           gradle jacocoTestReport
-      - uses: codecov/codecov-action@v5
+      - uses: codecov/codecov-action@v7
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
           file: build/reports/jacoco/report.xml
