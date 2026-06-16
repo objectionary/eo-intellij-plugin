@@ -5,7 +5,7 @@
 [![We recommend IntelliJ IDEA](https://www.elegantobjects.org/intellij-idea.svg)](https://www.jetbrains.com/idea/)
 
 [![Hits-of-Code](https://hitsofcode.com/github/objectionary/eo-intellij-plugin)](https://hitsofcode.com/view/github/objectionary/eo-intellij-plugin)
-[![build](https://img.shields.io/github/workflow/status/objectionary/eo-intellij-plugin/build)](https://github.com/yasamprom/eo-intellij-plugin/actions/workflows/build.yaml)
+[![build](https://img.shields.io/github/workflow/status/objectionary/eo-intellij-plugin/build)](https://github.com/objectionary/eo-intellij-plugin/actions/workflows/build.yml)
 [![codecov](https://codecov.io/gh/objectionary/eo-intellij-plugin/branch/master/graph/badge.svg)](https://codecov.io/gh/objectionary/eo-intellij-plugin)
 [![License](https://img.shields.io/badge/license-MIT-green.svg)](https://github.com/objectionary/eo/blob/master/LICENSE.txt)
 
