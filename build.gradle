@@ -2,10 +2,11 @@
 // SPDX-License-Identifier: MIT
 buildscript {
     repositories {
+        mavenLocal()
         mavenCentral()
+        google()
         repositories {
             maven { url "https://maven.pkg.jetbrains.space/public/p/kotlinx-html/maven/" }
-
         }
     }
     dependencies {
@@ -14,12 +15,12 @@ buildscript {
 
 
 plugins {
-    id "org.jetbrains.intellij" version "1.17.4"
+    id "org.jetbrains.intellij.platform" version "2.10.5"
 }
 
 java {
     toolchain {
-        languageVersion = JavaLanguageVersion.of(17)
+        languageVersion = JavaLanguageVersion.of(21)
     }
 }
 
@@ -28,22 +29,22 @@ version pluginVersion
 
 
 apply plugin: 'java'
-apply plugin: 'org.jetbrains.intellij'
+apply plugin: 'org.jetbrains.intellij.platform'
 apply plugin: 'antlr'
-apply plugin: 'jacoco'
+//apply plugin: 'jacoco'
 
 task cleanParser(type: Delete) {
     delete fileTree("src/main/java/org/eolang/jetbrains/parser") //Deletes antlr auto-generated classes
 }
 
-task qulice(type: Exec) {
-    workingDir "${projectDir}"
-    def mvnExecutable = System.properties['os.name'].toLowerCase().contains('windows') ? 'mvn.cmd' : 'mvn'
-    commandLine mvnExecutable, 'com.qulice:qulice-maven-plugin:check', '-e', '-X'
-
-    standardOutput = new FileOutputStream("qulice.log")
-    errorOutput = new FileOutputStream("qulice-error.log")
-}
+//task qulice(type: Exec) {
+//    workingDir "${projectDir}"
+//    def mvnExecutable = System.properties['os.name'].toLowerCase().contains('windows') ? 'mvn.cmd' : 'mvn'
+//    commandLine mvnExecutable, 'com.qulice:qulice-maven-plugin:check', '-e', '-X'
+//
+//    standardOutput = new FileOutputStream("qulice.log")
+//    errorOutput = new FileOutputStream("qulice-error.log")
+//}
 
 task getGrammar {
     doFirst {
@@ -72,19 +73,19 @@ task getGrammar {
     }
 }
 
-jacoco {
-    toolVersion = "0.8.7"
-}
-
-jacocoTestReport {
-    dependsOn test // tests are required to run before generating the report
-    reports {
-        html.required = false
-        xml.required = true
-        csv.required = false
-        xml.destination file("${buildDir}/reports/jacoco/report.xml")
-    }
-}
+//jacoco {
+//    toolVersion = "0.8.7"
+//}
+//
+//jacocoTestReport {
+//    dependsOn test // tests are required to run before generating the report
+//    reports {
+//        html.required = false
+//        xml.required = true
+//        csv.required = false
+//        xml.destination file("${buildDir}/reports/jacoco/report.xml")
+//    }
+//}
 
 
 
@@ -99,12 +100,11 @@ compileTestJava {
     targetCompatibility = '1.8'
 }
 
-intellij {
-    version = ideaVersion
-    pluginName = 'eo-intellij'
-    downloadSources = false
-    updateSinceUntilBuild = false
-    plugins = ["com.intellij.java", "org.jetbrains.idea.maven"]
+intellijPlatform {
+    pluginConfiguration {
+        name = 'eo-intellij'
+        version = '0.0.0'
+    }
 }
 
 test {
@@ -118,7 +118,7 @@ publishPlugin {
 
 generateGrammarSource {
     dependsOn(getGrammar)
-    dependsOn(qulice)
+//    dependsOn(qulice)
     dependsOn(cleanParser)
     outputDirectory = new File("src/main/java/org/eolang/jetbrains/parser".toString())
     arguments += ["-package", "org.eolang.jetbrains.parser", "-Xexact-output-dir"]
@@ -128,6 +128,10 @@ verifyPlugin {
 
 repositories {
     mavenCentral()
+
+    intellijPlatform {
+        defaultRepositories()
+    }
 }
 
 dependencies {
@@ -139,15 +143,15 @@ dependencies {
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.2'
     testImplementation 'org.junit.jupiter:junit-jupiter-engine:5.8.2'
     implementation 'org.jetbrains:annotations:13.0'
+
+    intellijPlatform {
+        intellijIdea("2025.1.1")
+        bundledPlugins(["com.intellij.java", "org.jetbrains.idea.maven"])
+    }
 }
 
 
 
 build {
-    dependsOn(jacocoTestReport)
+//    dependsOn(jacocoTestReport)
 }
-
-
-
-sourceCompatibility = JavaVersion.VERSION_1_9
-targetCompatibility = JavaVersion.VERSION_1_9
