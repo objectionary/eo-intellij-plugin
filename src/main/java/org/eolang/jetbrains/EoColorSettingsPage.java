@@ -10,6 +10,9 @@ import com.intellij.openapi.fileTypes.SyntaxHighlighter;
 import com.intellij.openapi.options.colors.AttributesDescriptor;
 import com.intellij.openapi.options.colors.ColorDescriptor;
 import com.intellij.openapi.options.colors.ColorSettingsPage;
+import com.intellij.openapi.util.text.StringUtil;
+import com.intellij.util.ResourceUtil;
+import java.io.IOException;
 import java.util.Collections;
 import java.util.Map;
 import javax.swing.Icon;
@@ -18,9 +21,11 @@ import org.jetbrains.annotations.Nullable;
 
 /**
  * Class for drawing settings page in IDE.
+ *
  * @since 0.0.0
  */
 public class EoColorSettingsPage implements ColorSettingsPage {
+
     /**
      * Here we describe tokens for display them in settings page.
      */
@@ -33,6 +38,13 @@ public class EoColorSettingsPage implements ColorSettingsPage {
         new AttributesDescriptor("Constants", EoSyntaxHighlighter.NUMBERS),
         new AttributesDescriptor("Braces", EoSyntaxHighlighter.BRACES),
     };
+
+    /**
+     * Ctor.
+     */
+    public EoColorSettingsPage() {
+        // IntelliJ instantiates this extension with no arguments
+    }
 
     @Nullable
     @Override
@@ -54,28 +66,21 @@ public class EoColorSettingsPage implements ColorSettingsPage {
     @NotNull
     @Override
     public final String getDemoText() {
-        return "+alias org.eolang.io.stdout\n"
-            .concat("+alias org.eolang.txt.sprintf\n\n")
-            .concat("# is year leap?\n\n")
-            .concat("[args...] > main\n")
-            .concat("  [y] > leap\n")
-            .concat("    or. > @\n")
-            .concat("      and.\n")
-            .concat("        eq. (mod. y 4) 0\n")
-            .concat("        not. (eq. (mod. y 100) 0)\n")
-            .concat("      eq. (mod. y 400) 0\n")
-            .concat("  stdout > @\n")
-            .concat("    sprintf\n")
-            .concat("    \"%d is %sa leap year!\"\n")
-            .concat("    (args.get 0).as-int > year!\n")
-            .concat("  if. (leap year:y) \"")
-            .concat("\" \"not \"\\n\"");
+        try {
+            return StringUtil.convertLineSeparators(
+                ResourceUtil.loadText(EoColorSettingsPage.class.getResourceAsStream("demo.eo"))
+            );
+        } catch (final IOException ex) {
+            throw new IllegalStateException(
+                "Cannot load the demo text of the EO color settings page", ex
+            );
+        }
     }
 
     @NotNull
     @Override
     public final AttributesDescriptor[] getAttributeDescriptors() {
-        return EoColorSettingsPage.DESCRIPTORS;
+        return EoColorSettingsPage.DESCRIPTORS.clone();
     }
 
     @NotNull

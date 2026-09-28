@@ -22,13 +22,21 @@ import org.jetbrains.idea.maven.utils.actions.MavenActionUtil;
 
 /**
  * Compile EO sources.
+ *
  * @since 1.0
  * @todo #20:30min Make compile action complete adding remaining compile actions
  *  (assemble, transpile etc.)
  * @todo #20:30min Create tests for the action
- * @checkstyle LineLengthCheck (30 lines)
  */
 public final class EoCompileAction extends AnAction {
+
+    /**
+     * Ctor.
+     */
+    public EoCompileAction() {
+        super();
+    }
+
     @Override
     public void actionPerformed(@NotNull final AnActionEvent action) {
         try {
@@ -38,10 +46,6 @@ public final class EoCompileAction extends AnAction {
         }
     }
 
-    /**
-     * Perform execution throwing exceptions.
-     * @param action Action to perform
-     */
     private static void performUnsafe(final AnActionEvent action) {
         final DataContext context = action.getDataContext();
         final Project project = MavenActionUtil.getProject(context);
@@ -80,10 +84,6 @@ public final class EoCompileAction extends AnAction {
         }
     }
 
-    /**
-     * Send compilation notification.
-     * @param reason Reason
-     */
     private static void notifyCannotCompile(final String reason) {
         NotificationGroupManager.getInstance()
             .getNotificationGroup("System Messages")

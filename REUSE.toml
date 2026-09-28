@@ -27,6 +27,7 @@ path = [
     ".gitignore",
     "README.md",
     "renovate.json",
+    "src/main/resources/org/eolang/jetbrains/demo.eo",
 ]
 precedence = "override"
 SPDX-FileCopyrightText = "Copyright (c) 2025 Yegor Bugayenko"

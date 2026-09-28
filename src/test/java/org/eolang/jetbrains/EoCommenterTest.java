@@ -10,10 +10,13 @@ import org.junit.Test;
 
 /**
  * Tests for {@link org.eolang.jetbrains.EoCommenter}.
+ *
  * @since 0.0.5
+ * @checkstyle ProhibitTestMethodNameCheck (50 lines)
  */
-@SuppressWarnings("PMD.JUnit5TestShouldBePackagePrivate")
+@SuppressWarnings("PMD.WrongTestAnnotation")
 public final class EoCommenterTest extends BasePlatformTestCase {
+
     /**
      * Test addition and deletion of single-line comment.
      */

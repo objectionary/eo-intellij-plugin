@@ -9,9 +9,11 @@ import com.intellij.lang.Language;
 
 /**
  * Language Definition.
+ *
  * @since 0.0.0
  */
 public final class EoLanguage extends Language {
+
     /**
      * Creating instance.
      */

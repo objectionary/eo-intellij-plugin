@@ -11,9 +11,11 @@ import org.jetbrains.annotations.NotNull;
 
 /**
  * Description of EO language files.
+ *
  * @since 0.0.0
  */
 public class EoFileType extends LanguageFileType {
+
     /**
      * Define EO language file extension.
      */

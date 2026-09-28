@@ -10,13 +10,19 @@ import javax.swing.Icon;
 
 /**
  * Class for getting icons.
+ *
  * @since 0.0.0
- * @checkstyle HideUtilityClassConstructorCheck (10 lines)
- * @checkstyle ModifierOrderCheck (10 lines)
  */
-public class Icons {
+public final class Icons {
+
     /**
      * Icon.
      */
-    public final static Icon EO_ICON = IconLoader.getIcon("/org/eolang/jetbrains/cactus-16svg.svg");
+    public static final Icon EO_ICON = IconLoader.getIcon("/org/eolang/jetbrains/cactus-16svg.svg");
+
+    /**
+     * Ctor.
+     */
+    private Icons() {
+    }
 }

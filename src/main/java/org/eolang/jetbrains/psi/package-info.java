@@ -5,6 +5,7 @@
 
 /**
  * Project structure interface.
+ *
  * @since 0.0.0
  */
 package org.eolang.jetbrains.psi;

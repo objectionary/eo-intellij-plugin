@@ -20,12 +20,12 @@ import static com.intellij.openapi.editor.colors.TextAttributesKey.createTextAtt
 /**
  * Class for declaration groups of tokens and highlighting colors.
  * We will highlight all tokens with one of colors below. One group - one color.
+ *
  * @since 0.0.0
- * @checkstyle LocalFinalVariableNameCheck (100 lines), CyclomaticComplexity (150 lines)
  * @checkstyle CyclomaticComplexity (150 lines)
- * @checkstyle NcssCount (150 lines)
  */
 public class EoSyntaxHighlighter extends SyntaxHighlighterBase {
+
     /**
      * Code below is description of token groups.
      */
@@ -106,18 +106,24 @@ public class EoSyntaxHighlighter extends SyntaxHighlighterBase {
      */
     private static final TextAttributesKey[] EMPTY_KEYS = new TextAttributesKey[0];
 
+    /**
+     * Ctor.
+     */
+    public EoSyntaxHighlighter() {
+        super();
+    }
+
     @NotNull
     @Override
     public final Lexer getHighlightingLexer() {
-        final EoLexer lexer = new EoLexer(null);
-        return new ANTLRLexerAdaptor(EoLanguage.INSTANCE, lexer);
+        return new ANTLRLexerAdaptor(EoLanguage.INSTANCE, new EoLexer(null));
     }
 
     // @checkstyle CyclomaticComplexity (100 lines)
     // @checkstyle JavaNCSSCheck (100 lines)
     // @checkstyle ReturnCountCheck (100 lines)
     @Override
-    @SuppressWarnings({"PMD.OnlyOneReturn", "PMD.CyclomaticComplexity", "PMD.NcssCount"})
+    @SuppressWarnings("PMD.OnlyOneReturn")
     public final TextAttributesKey[] getTokenHighlights(final IElementType tokentype) {
         if (!(tokentype instanceof TokenIElementType)) {
             return EoSyntaxHighlighter.EMPTY_KEYS;

@@ -10,9 +10,17 @@ import org.jetbrains.annotations.Nullable;
 
 /**
  * Commenter.
+ *
  * @since 0.0.5
  */
 public final class EoCommenter implements Commenter {
+
+    /**
+     * Ctor.
+     */
+    public EoCommenter() {
+        // IntelliJ instantiates this extension with no arguments
+    }
 
     @Nullable
     @Override
@@ -43,5 +51,4 @@ public final class EoCommenter implements Commenter {
     public String getCommentedBlockCommentSuffix() {
         return null;
     }
-
 }

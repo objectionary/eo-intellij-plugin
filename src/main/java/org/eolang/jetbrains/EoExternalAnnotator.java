@@ -8,7 +8,6 @@ package org.eolang.jetbrains;
 import com.intellij.lang.annotation.AnnotationHolder;
 import com.intellij.lang.annotation.ExternalAnnotator;
 import com.intellij.openapi.util.TextRange;
-import com.intellij.psi.PsiElement;
 import com.intellij.psi.PsiFile;
 import java.util.ArrayList;
 import java.util.List;
@@ -25,7 +24,14 @@ import org.jetbrains.annotations.NotNull;
  */
 @SuppressWarnings("PMD.SystemPrintln")
 public class EoExternalAnnotator
-    extends ExternalAnnotator<PsiFile, List<EoExternalAnnotator.Issue>> {
+    extends ExternalAnnotator<PsiFile, List<Issue>> {
+
+    /**
+     * Ctor.
+     */
+    public EoExternalAnnotator() {
+        super();
+    }
 
     // Called first; in our case, just return file and do nothing.
     @Override
@@ -59,49 +65,6 @@ public class EoExternalAnnotator
                 continue;
             }
             holder.createErrorAnnotation(range, issue.getMsg());
-        }
-    }
-
-    /**
-     * Issue report.
-     * @since 0.0.0
-     */
-    public static class Issue {
-
-        /**
-         * Message.
-         */
-        private final String msg;
-
-        /**
-         * Node.
-         */
-        private final PsiElement offendnode;
-
-        /**
-         * Issue init.
-         * @param msg String
-         * @param node PsiElement
-         */
-        public Issue(final String msg, final PsiElement node) {
-            this.msg = msg;
-            this.offendnode = node;
-        }
-
-        /**
-         * Accessor.
-         * @return String message
-         */
-        final String getMsg() {
-            return this.msg;
-        }
-
-        /**
-         * Accessor.
-         * @return Offending node
-         */
-        final PsiElement getOffendnode() {
-            return this.offendnode;
         }
     }
 }

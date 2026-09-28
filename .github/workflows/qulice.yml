@@ -19,6 +19,5 @@ jobs:
       - uses: actions/setup-java@v6
         with:
           distribution: temurin
-          java-version: 17
-      - run: |
-          mvn com.qulice:qulice-maven-plugin:check -Dqulice.excludes=pmd:.* -Dqulice.license=file:LICENSE.txt
+          java-version: 21
+      - run: mvn com.qulice:qulice-maven-plugin:check

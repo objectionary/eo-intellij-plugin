@@ -13,9 +13,18 @@ import org.jetbrains.annotations.NotNull;
 
 /**
  * Definition of SyntaxHighlighter.
+ *
  * @since 0.0.0
  */
 public class EoSyntaxHighlighterFactory extends SyntaxHighlighterFactory {
+
+    /**
+     * Ctor.
+     */
+    public EoSyntaxHighlighterFactory() {
+        super();
+    }
+
     @NotNull
     @Override
     public final SyntaxHighlighter getSyntaxHighlighter(

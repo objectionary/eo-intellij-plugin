@@ -21,11 +21,14 @@ import org.jetbrains.annotations.Nullable;
 
 /**
  * Describing PSIFileRoot.
+ *
  * @since 0.0.0
  */
 public class EoPsiFileRoot extends PsiFileBase implements ScopeNode {
+
     /**
      * Definition of PsiFileRoot.
+     *
      * @param viewprovider FileViewProvider
      */
     public EoPsiFileRoot(@NotNull final FileViewProvider viewprovider) {

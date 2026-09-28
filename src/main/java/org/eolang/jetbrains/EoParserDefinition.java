@@ -29,18 +29,15 @@ import org.jetbrains.annotations.NotNull;
 
 /**
  * Let's define a parser for EO language.
+ *
  * @since 0.0.0
- * @checkstyle MultilineJavadocTagsCheck (200 lines)
- * @checkstyle VisibilityModifierCheck (200 lines)
  */
 public class EoParserDefinition implements ParserDefinition {
+
     /**
      * Instance of EO language.
      */
     public static final IFileElementType FILE = new IFileElementType(EoLanguage.INSTANCE);
-    /**
-     * ID of token element type.
-     */
 
     static {
         PSIElementTypeFactory.defineLanguageIElementTypes(
@@ -48,11 +45,17 @@ public class EoParserDefinition implements ParserDefinition {
         );
     }
 
+    /**
+     * Ctor.
+     */
+    public EoParserDefinition() {
+        // IntelliJ instantiates this extension with no arguments
+    }
+
     @NotNull
     @Override
     public final Lexer createLexer(final Project project) {
-        final EoLexer lexer = new EoLexer(null);
-        return new ANTLRLexerAdaptor(EoLanguage.INSTANCE, lexer);
+        return new ANTLRLexerAdaptor(EoLanguage.INSTANCE, new EoLexer(null));
     }
 
     @NotNull
