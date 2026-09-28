@@ -3,7 +3,7 @@
 ---
 # yamllint disable rule:line-length
 name: Codecov
-on: [push, pull_request]
+'on': [push, pull_request]
 jobs:
   run:
     timeout-minutes: 15
@@ -14,12 +14,14 @@ jobs:
         with:
           distribution: temurin
           java-version: 17
+      - uses: gradle/actions/setup-gradle@v6
+        with:
+          gradle-version: 8.14.5
       - run: |
-          gradle wrapper;
           gradle build
           gradle jacocoTestReport
       - uses: codecov/codecov-action@v5
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
-          file: build/reports/jacoco/report.xml
+          files: build/reports/jacoco/report.xml
           fail_ci_if_error: true

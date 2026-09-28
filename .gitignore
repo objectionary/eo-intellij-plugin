@@ -20,7 +20,7 @@ gradle/
 gradlew
 gradlew.bat
 node_modules/
-src/main/antlr/org/jetbrains/eolang/parser/EO.g4
+src/main/antlr/org/jetbrains/eolang/parser/Eo.g4
 src/main/gen/
 src/main/java/org/eolang/jetbrains/parser/
 target/

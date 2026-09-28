@@ -14,24 +14,16 @@ jobs:
   build:
     timeout-minutes: 15
     runs-on: ubuntu-24.04
-    strategy:
-      matrix:
-        env:
-          # see https://www.jetbrains.com/idea/download/previous.html
-          # and https://www.jetbrains.com/intellij-repository/snapshots/
-          - IDEA_VERSION: IC-2020.3
-          - IDEA_VERSION: IC-2021.2.4
-          - IDEA_VERSION: IC-2021.3.3
-          - IDEA_VERSION: IC-2022.1.1
-          - IDEA_VERSION: IU-LATEST-EAP-SNAPSHOT
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-java@v6
         with:
           distribution: temurin
           java-version: 17
-      - run: gradle wrapper; gradle build
-        env: ${{ matrix.env }}
+      - uses: gradle/actions/setup-gradle@v6
+        with:
+          gradle-version: 8.14.5
+      - run: gradle build
   telegram:
     needs: build
     runs-on: ubuntu-24.04

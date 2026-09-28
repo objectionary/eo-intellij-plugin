@@ -56,9 +56,9 @@ task getGrammar {
         }
         println("Creating and downloading grammar file from " +
                 "https://raw.githubusercontent.com/objectionary/" +
-                "eo/refs/heads/master/eo-parser/src/main/antlr4/org/eolang/parser/Eo.g4")
+                "eo/refs/tags/${eoVersion}/eo-parser/src/main/antlr4/org/eolang/parser/Eo.g4")
 
-        new URL('https://raw.githubusercontent.com/objectionary/eo/refs/heads/master/eo-parser/src/main/antlr4/org/eolang/parser/Eo.g4').
+        new URL("https://raw.githubusercontent.com/objectionary/eo/refs/tags/${eoVersion}/eo-parser/src/main/antlr4/org/eolang/parser/Eo.g4").
                 withInputStream { i -> f.withOutputStream { it << i } }
         f.append('\n\nBAD_CHARACTER\n' +
                 '\t:\t.\t-> channel(HIDDEN)\n' +
