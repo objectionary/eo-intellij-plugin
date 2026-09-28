@@ -4,7 +4,7 @@
 [![DevOps By Rultor.com](http://www.rultor.com/b/objectionary/eo)](http://www.rultor.com/p/objectionary/eo)
 [![We recommend IntelliJ IDEA](https://www.elegantobjects.org/intellij-idea.svg)](https://www.jetbrains.com/idea/)
 
-[![build](https://github.com/objectionary/eo-intellij-plugin/actions/workflows/build.yml/badge.svg)](https://github.com/objectionary/eo-intellij-plugin/actions/workflows/build.yml)
+[![gradle](https://github.com/objectionary/eo-intellij-plugin/actions/workflows/gradle.yml/badge.svg)](https://github.com/objectionary/eo-intellij-plugin/actions/workflows/gradle.yml)
 [![Hits-of-Code](https://hitsofcode.com/github/objectionary/eo-intellij-plugin)](https://hitsofcode.com/view/github/objectionary/eo-intellij-plugin)
 [![codecov](https://codecov.io/gh/objectionary/eo-intellij-plugin/branch/master/graph/badge.svg)](https://codecov.io/gh/objectionary/eo-intellij-plugin)
 [![License](https://img.shields.io/badge/license-MIT-green.svg)](https://github.com/objectionary/eo/blob/master/LICENSE.txt)
