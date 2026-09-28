@@ -4,8 +4,8 @@
 [![DevOps By Rultor.com](http://www.rultor.com/b/objectionary/eo)](http://www.rultor.com/p/objectionary/eo)
 [![We recommend IntelliJ IDEA](https://www.elegantobjects.org/intellij-idea.svg)](https://www.jetbrains.com/idea/)
 
+[![build](https://github.com/objectionary/eo-intellij-plugin/actions/workflows/build.yml/badge.svg)](https://github.com/objectionary/eo-intellij-plugin/actions/workflows/build.yml)
 [![Hits-of-Code](https://hitsofcode.com/github/objectionary/eo-intellij-plugin)](https://hitsofcode.com/view/github/objectionary/eo-intellij-plugin)
-[![build](https://img.shields.io/github/workflow/status/objectionary/eo-intellij-plugin/build)](https://github.com/yasamprom/eo-intellij-plugin/actions/workflows/build.yaml)
 [![codecov](https://codecov.io/gh/objectionary/eo-intellij-plugin/branch/master/graph/badge.svg)](https://codecov.io/gh/objectionary/eo-intellij-plugin)
 [![License](https://img.shields.io/badge/license-MIT-green.svg)](https://github.com/objectionary/eo/blob/master/LICENSE.txt)
 
@@ -32,6 +32,7 @@ before sending us your pull request please run full gradle build:
 ```bash
 gradle build
 ```
+
 For checking code quality we use [Qulice](https://www.qulice.com/index.html)
 
 ```bash
@@ -40,8 +41,6 @@ gradle qulice
 
 You will need [Gradle](https://gradle.org/guides/),
 [Maven](https://maven.apache.org/) and Java 14+ installed.
-
-
 
 ## Structure
 
