@@ -6,6 +6,9 @@ name: copyrights
 'on':
   push:
   pull_request:
+concurrency:
+  group: copyrights-${{ github.ref }}
+  cancel-in-progress: true
 jobs:
   copyrights:
     timeout-minutes: 15

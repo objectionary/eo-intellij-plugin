@@ -4,6 +4,9 @@
 # yamllint disable rule:line-length
 name: Codecov
 'on': [push, pull_request]
+concurrency:
+  group: codecov-${{ github.ref }}
+  cancel-in-progress: true
 jobs:
   run:
     timeout-minutes: 15

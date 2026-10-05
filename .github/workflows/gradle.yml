@@ -10,6 +10,9 @@ name: gradle
   pull_request:
     branches:
       - master
+concurrency:
+  group: gradle-${{ github.ref }}
+  cancel-in-progress: true
 jobs:
   build:
     timeout-minutes: 15

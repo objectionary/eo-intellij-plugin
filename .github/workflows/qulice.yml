@@ -18,6 +18,9 @@ name: qulice
       - '**.java'
       - '**/pom.xml'
       - '.github/workflows/qulice.yml'
+concurrency:
+  group: qulice-${{ github.ref }}
+  cancel-in-progress: true
 jobs:
   qulice:
     timeout-minutes: 15
