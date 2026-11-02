@@ -73,11 +73,14 @@ task getGrammar {
 }
 
 jacoco {
-    toolVersion = "0.8.7"
+    toolVersion = "0.8.16"
 }
 
 jacocoTestReport {
     dependsOn test // tests are required to run before generating the report
+    classDirectories.setFrom(
+        files(instrumentCode).asFileTree.matching { exclude 'org/eolang/jetbrains/parser/**' }
+    )
     reports {
         html.required = false
         xml.required = true
@@ -109,6 +112,10 @@ intellij {
 
 test {
     useJUnitPlatform()  // Sign to use JUnit 5
+    jacoco {
+        includeNoLocationClasses = true
+        excludes = ['jdk.internal.*']
+    }
 }
 
 publishPlugin {
@@ -136,9 +143,12 @@ dependencies {
     }
     implementation 'org.antlr:antlr4-intellij-adaptor:0.1'
     testImplementation group: 'junit', name: 'junit', version: '4.13.2'
-    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.2'
-    testImplementation 'org.junit.jupiter:junit-jupiter-engine:5.8.2'
-    implementation 'org.jetbrains:annotations:13.0'
+    testImplementation platform('org.junit:junit-bom:5.14.4')
+    testImplementation 'org.junit.jupiter:junit-jupiter-api'
+    testImplementation 'org.junit.jupiter:junit-jupiter-engine'
+    testRuntimeOnly 'org.junit.vintage:junit-vintage-engine'
+    testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+    implementation 'org.jetbrains:annotations:26.1.0'
 }
 
 
