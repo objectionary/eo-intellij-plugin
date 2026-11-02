@@ -73,7 +73,7 @@ task getGrammar {
 }
 
 jacoco {
-    toolVersion = "0.8.7"
+    toolVersion = "0.8.16"
 }
 
 jacocoTestReport {
@@ -148,7 +148,7 @@ dependencies {
     testImplementation 'org.junit.jupiter:junit-jupiter-engine'
     testRuntimeOnly 'org.junit.vintage:junit-vintage-engine'
     testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
-    implementation 'org.jetbrains:annotations:13.0'
+    implementation 'org.jetbrains:annotations:26.1.0'
 }
 
 
