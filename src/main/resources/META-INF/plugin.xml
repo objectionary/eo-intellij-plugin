@@ -21,11 +21,6 @@
   <depends>org.jetbrains.idea.maven</depends>
   <application-components>
     </application-components>
-  <project-components>
-    <component>
-      <implementation-class>org.eolang.jetbrains.EoPluginController</implementation-class>
-    </component>
-  </project-components>
   <actions>
     <action id="org.eolang.jetbrains.EoCompileAction" class="org.eolang.jetbrains.EoCompileAction" text="EO Compile" description="Compile EO files" icon="org.eolang.jetbrains.Icons.EO_ICON">
       <add-to-group group-id="BuildMenu" anchor="first"/>
