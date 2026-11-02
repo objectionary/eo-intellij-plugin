@@ -78,6 +78,9 @@ jacoco {
 
 jacocoTestReport {
     dependsOn test // tests are required to run before generating the report
+    classDirectories.setFrom(
+        files(instrumentCode).asFileTree.matching { exclude 'org/eolang/jetbrains/parser/**' }
+    )
     reports {
         html.required = false
         xml.required = true
@@ -109,6 +112,10 @@ intellij {
 
 test {
     useJUnitPlatform()  // Sign to use JUnit 5
+    jacoco {
+        includeNoLocationClasses = true
+        excludes = ['jdk.internal.*']
+    }
 }
 
 publishPlugin {
@@ -138,6 +145,7 @@ dependencies {
     testImplementation group: 'junit', name: 'junit', version: '4.13.2'
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.2'
     testImplementation 'org.junit.jupiter:junit-jupiter-engine:5.8.2'
+    testRuntimeOnly 'org.junit.vintage:junit-vintage-engine:5.8.2'
     implementation 'org.jetbrains:annotations:13.0'
 }
 
