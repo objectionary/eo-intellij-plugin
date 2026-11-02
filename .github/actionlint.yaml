@@ -1,0 +1,6 @@
+# SPDX-FileCopyrightText: Copyright (c) 2021-2025 Stepan Strunkov
+# SPDX-License-Identifier: MIT
+---
+self-hosted-runner:
+  labels:
+    - ubuntu-26.04
