@@ -13,8 +13,13 @@ buildscript {
 }
 
 
+import org.jetbrains.intellij.platform.gradle.TestFrameworkType
+
 plugins {
-    id "org.jetbrains.intellij" version "1.17.4"
+    id 'java'
+    id 'antlr'
+    id 'jacoco'
+    id 'org.jetbrains.intellij.platform' version '2.19.0'
 }
 
 java {
@@ -25,12 +30,6 @@ java {
 
 group 'antlr'
 version pluginVersion
-
-
-apply plugin: 'java'
-apply plugin: 'org.jetbrains.intellij'
-apply plugin: 'antlr'
-apply plugin: 'jacoco'
 
 task cleanParser(type: Delete) {
     delete fileTree("src/main/java/org/eolang/jetbrains/parser") //Deletes antlr auto-generated classes
@@ -85,7 +84,7 @@ jacocoTestReport {
         html.required = false
         xml.required = true
         csv.required = false
-        xml.destination file("${buildDir}/reports/jacoco/report.xml")
+        xml.outputLocation = layout.buildDirectory.file("reports/jacoco/report.xml")
     }
 }
 
@@ -102,12 +101,16 @@ compileTestJava {
     targetCompatibility = '1.8'
 }
 
-intellij {
-    version = ideaVersion
-    pluginName = 'eo-intellij'
-    downloadSources = false
-    updateSinceUntilBuild = false
-    plugins = ["com.intellij.java", "org.jetbrains.idea.maven"]
+intellijPlatform {
+    pluginConfiguration {
+        name = 'eo-intellij'
+        ideaVersion {
+            untilBuild = provider { null }
+        }
+    }
+    publishing {
+        token = providers.environmentVariable('MARKETPLACE_TOKEN')
+    }
 }
 
 test {
@@ -120,7 +123,6 @@ test {
 
 publishPlugin {
     dependsOn(test)
-    token = System.getenv('MARKETPLACE_TOKEN')
 }
 
 generateGrammarSource {
@@ -130,14 +132,20 @@ generateGrammarSource {
     outputDirectory = new File("src/main/java/org/eolang/jetbrains/parser".toString())
     arguments += ["-package", "org.eolang.jetbrains.parser", "-Xexact-output-dir"]
 }
-verifyPlugin {
-}
-
 repositories {
     mavenCentral()
+    intellijPlatform {
+        defaultRepositories()
+    }
 }
 
 dependencies {
+    intellijPlatform {
+        intellijIdeaCommunity(ideaVersion)
+        bundledPlugin 'com.intellij.java'
+        bundledPlugin 'org.jetbrains.idea.maven'
+        testFramework TestFrameworkType.Platform.INSTANCE
+    }
     antlr("org.antlr:antlr4:$antlr4Version") {
         exclude group:'com.ibm.icu', module:'icu4j'
     }
@@ -156,8 +164,3 @@ dependencies {
 build {
     dependsOn(jacocoTestReport)
 }
-
-
-
-sourceCompatibility = JavaVersion.VERSION_1_9
-targetCompatibility = JavaVersion.VERSION_1_9

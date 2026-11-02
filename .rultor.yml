@@ -10,7 +10,7 @@ install: |
   curl -s "https://get.sdkman.io" | bash
   source "$HOME/.sdkman/bin/sdkman-init.sh"
   sdk version
-  sdk install gradle 8.1.1
+  sdk install gradle 9.8.2
 merge:
   script: |
     gradle wrapper
