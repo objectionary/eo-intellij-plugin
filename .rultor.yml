@@ -3,14 +3,14 @@
 ---
 # yamllint disable rule:line-length
 docker:
-  image: yegor256/rultor-image:1.9.1
+  image: yegor256/rultor-image:1.24.0
 assets:
   tokenscript.txt: yegor256/objectionary-secrets#marketplace.token.sh
 install: |
   curl -s "https://get.sdkman.io" | bash
   source "$HOME/.sdkman/bin/sdkman-init.sh"
   sdk version
-  sdk install gradle 9.8.2
+  sdk install gradle 9.9.0
 merge:
   script: |
     gradle wrapper
