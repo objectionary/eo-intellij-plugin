@@ -6,7 +6,6 @@
 package org.eolang.jetbrains;
 
 import com.intellij.psi.PsiErrorElement;
-import com.intellij.psi.PsiFile;
 import com.intellij.psi.util.PsiTreeUtil;
 import com.intellij.testFramework.ParsingTestCase;
 import java.util.Collection;
@@ -18,7 +17,7 @@ import org.junit.Test;
  * @since 0.0.0
  * @checkstyle ProhibitTestMethodNameCheck (50 lines)
  */
-@SuppressWarnings({"PMD.WrongTestAnnotation", "PMD.UnitTestShouldIncludeAssert"})
+@SuppressWarnings("PMD.WrongTestAnnotation")
 public final class EoDemoTextTest extends ParsingTestCase {
 
     /**
@@ -33,11 +32,9 @@ public final class EoDemoTextTest extends ParsingTestCase {
      */
     @Test
     public void testDemoTextHasNoSyntaxErrors() {
-        final PsiFile file = this.createPsiFile(
-            "demo", new EoColorSettingsPage().getDemoText()
-        );
         final Collection<PsiErrorElement> errors = PsiTreeUtil.collectElementsOfType(
-            file, PsiErrorElement.class
+            this.createPsiFile("demo", new EoColorSettingsPage().getDemoText()),
+            PsiErrorElement.class
         );
         assertTrue(
             String.format("Demo text has syntax errors: %s", errors),
