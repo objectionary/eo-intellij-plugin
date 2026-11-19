@@ -24,5 +24,9 @@ public final class EoCompileActionTest extends BasePlatformTestCase {
     public void testNotifiesWhenMavenProjectIsMissing() {
         final EoCompileAction action = new EoCompileAction();
         action.actionPerformed(TestActionEvent.createTestEvent(action));
+        assertNotNull(
+            "Action must stay usable after a failed compile",
+            action.getTemplatePresentation()
+        );
     }
 }
