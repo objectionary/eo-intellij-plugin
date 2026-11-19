@@ -1,17 +1,13 @@
-+alias org.eolang.io.stdout
-+alias org.eolang.txt.sprintf
++architect yegor256@gmail.com
++home https://github.com/objectionary/eo
++version 0.0.0
 
-# is year leap?
+# Boolean value, parameterized by its choice `if`.
+[if] > bool
+  if > @
+    FF-
+    00-
 
-[args...] > main
-  [y] > leap
-    or. > @
-      and.
-        eq. (mod. y 4) 0
-        not. (eq. (mod. y 100) 0)
-      eq. (mod. y 400) 0
-  stdout > @
-    sprintf
-    "%d is %sa leap year!"
-    (args.get 0).as-int > year!
-  if. (leap year:y) "" "not "\n"
+  # Logical AND of this value and another one.
+  [x] > and
+    x.eq FF- > @
