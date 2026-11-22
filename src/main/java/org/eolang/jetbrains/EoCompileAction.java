@@ -42,7 +42,10 @@ public final class EoCompileAction extends AnAction {
         try {
             EoCompileAction.performUnsafe(action);
         } catch (final IllegalStateException exception) {
-            EoCompileAction.notifyCannotCompile(exception.getMessage());
+            EoCompileAction.notifyCannotCompile(
+                MavenActionUtil.getProject(action.getDataContext()),
+                exception.getMessage()
+            );
         }
     }
 
@@ -84,10 +87,12 @@ public final class EoCompileAction extends AnAction {
         }
     }
 
-    private static void notifyCannotCompile(final String reason) {
+    private static void notifyCannotCompile(
+        final Project project, final String reason
+    ) {
         NotificationGroupManager.getInstance()
             .getNotificationGroup("System Messages")
             .createNotification("Cannot compile EO", reason, NotificationType.WARNING)
-            .notifyAll();
+            .notify(project);
     }
 }
