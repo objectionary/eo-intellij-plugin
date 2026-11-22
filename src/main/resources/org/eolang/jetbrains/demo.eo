@@ -2,12 +2,5 @@
 +home https://github.com/objectionary/eo
 +version 0.0.0
 
-# Boolean value, parameterized by its choice `if`.
-[if] > bool
-  if > @
-    FF-
-    00-
-
-  # Logical AND of this value and another one.
-  [x] > and
-    x.eq FF- > @
+# Boolean value, parameterized by its choice.
+[choice] > bool
